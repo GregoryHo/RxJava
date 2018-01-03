@@ -19,6 +19,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.*;
 import org.mockito.*;
@@ -1397,5 +1398,106 @@ public class ObservableBufferTest {
 
         to
         .assertFailure(TestException.class);
+    }
+
+    @Test
+    public void withTimeAndSizeCapacityRace() {
+        for (int i = 0; i < 1000; i++) {
+            final TestScheduler scheduler = new TestScheduler();
+
+            final PublishSubject<Object> ps = PublishSubject.create();
+
+            TestObserver<List<Object>> ts = ps.buffer(1, TimeUnit.SECONDS, scheduler, 5).test();
+
+            ps.onNext(1);
+            ps.onNext(2);
+            ps.onNext(3);
+            ps.onNext(4);
+
+            Runnable r1 = new Runnable() {
+                @Override
+                public void run() {
+                    ps.onNext(5);
+                }
+            };
+
+            Runnable r2 = new Runnable() {
+                @Override
+                public void run() {
+                    scheduler.advanceTimeBy(1, TimeUnit.SECONDS);
+                }
+            };
+
+            TestHelper.race(r1, r2);
+
+            ps.onComplete();
+
+            int items = 0;
+            for (List<Object> o : ts.values()) {
+                items += o.size();
+            }
+
+            assertEquals("Round: " + i, 5, items);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void noCompletionCancelExact() {
+        final AtomicInteger counter = new AtomicInteger();
+
+        Observable.<Integer>empty()
+        .doOnDispose(new Action() {
+            @Override
+            public void run() throws Exception {
+                counter.getAndIncrement();
+            }
+        })
+        .buffer(5, TimeUnit.SECONDS)
+        .test()
+        .awaitDone(5, TimeUnit.SECONDS)
+        .assertResult(Collections.<Integer>emptyList());
+
+        assertEquals(0, counter.get());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void noCompletionCancelSkip() {
+        final AtomicInteger counter = new AtomicInteger();
+
+        Observable.<Integer>empty()
+        .doOnDispose(new Action() {
+            @Override
+            public void run() throws Exception {
+                counter.getAndIncrement();
+            }
+        })
+        .buffer(5, 10, TimeUnit.SECONDS)
+        .test()
+        .awaitDone(5, TimeUnit.SECONDS)
+        .assertResult(Collections.<Integer>emptyList());
+
+        assertEquals(0, counter.get());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void noCompletionCancelOverlap() {
+        final AtomicInteger counter = new AtomicInteger();
+
+        Observable.<Integer>empty()
+        .doOnDispose(new Action() {
+            @Override
+            public void run() throws Exception {
+                counter.getAndIncrement();
+            }
+        })
+        .buffer(10, 5, TimeUnit.SECONDS)
+        .test()
+        .awaitDone(5, TimeUnit.SECONDS)
+        .assertResult(Collections.<Integer>emptyList());
+
+        assertEquals(0, counter.get());
     }
 }

@@ -13,29 +13,25 @@
 
 package io.reactivex.processors;
 
-import io.reactivex.Flowable;
-import io.reactivex.TestHelper;
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.junit.Test;
+import org.mockito.*;
+import org.reactivestreams.*;
+
+import io.reactivex.*;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.exceptions.TestException;
 import io.reactivex.functions.Function;
 import io.reactivex.internal.subscriptions.BooleanSubscription;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.schedulers.TestScheduler;
-import io.reactivex.subscribers.DefaultSubscriber;
-import io.reactivex.subscribers.TestSubscriber;
-import org.junit.Test;
-import org.mockito.InOrder;
-import org.mockito.Mockito;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
-import java.util.Arrays;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import io.reactivex.schedulers.*;
+import io.reactivex.subscribers.*;
 
 public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
@@ -48,25 +44,25 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
     @Test
     public void testCompleted() {
-        ReplayProcessor<String> subject = ReplayProcessor.create();
+        ReplayProcessor<String> processor = ReplayProcessor.create();
 
         Subscriber<String> o1 = TestHelper.mockSubscriber();
-        subject.subscribe(o1);
+        processor.subscribe(o1);
 
-        subject.onNext("one");
-        subject.onNext("two");
-        subject.onNext("three");
-        subject.onComplete();
+        processor.onNext("one");
+        processor.onNext("two");
+        processor.onNext("three");
+        processor.onComplete();
 
-        subject.onNext("four");
-        subject.onComplete();
-        subject.onError(new Throwable());
+        processor.onNext("four");
+        processor.onComplete();
+        processor.onError(new Throwable());
 
         assertCompletedSubscriber(o1);
 
         // assert that subscribing a 2nd time gets the same data
         Subscriber<String> o2 = TestHelper.mockSubscriber();
-        subject.subscribe(o2);
+        processor.subscribe(o2);
         assertCompletedSubscriber(o2);
     }
 
@@ -141,17 +137,17 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
     @Test
     public void testCompletedAfterError() {
-        ReplayProcessor<String> subject = ReplayProcessor.create();
+        ReplayProcessor<String> processor = ReplayProcessor.create();
 
         Subscriber<String> observer = TestHelper.mockSubscriber();
 
-        subject.onNext("one");
-        subject.onError(testException);
-        subject.onNext("two");
-        subject.onComplete();
-        subject.onError(new RuntimeException());
+        processor.onNext("one");
+        processor.onError(testException);
+        processor.onNext("two");
+        processor.onComplete();
+        processor.onError(new RuntimeException());
 
-        subject.subscribe(observer);
+        processor.subscribe(observer);
         verify(observer).onSubscribe((Subscription)notNull());
         verify(observer, times(1)).onNext("one");
         verify(observer, times(1)).onError(testException);
@@ -171,24 +167,24 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
     @Test
     public void testError() {
-        ReplayProcessor<String> subject = ReplayProcessor.create();
+        ReplayProcessor<String> processor = ReplayProcessor.create();
 
         Subscriber<String> observer = TestHelper.mockSubscriber();
-        subject.subscribe(observer);
+        processor.subscribe(observer);
 
-        subject.onNext("one");
-        subject.onNext("two");
-        subject.onNext("three");
-        subject.onError(testException);
+        processor.onNext("one");
+        processor.onNext("two");
+        processor.onNext("three");
+        processor.onError(testException);
 
-        subject.onNext("four");
-        subject.onError(new Throwable());
-        subject.onComplete();
+        processor.onNext("four");
+        processor.onError(new Throwable());
+        processor.onComplete();
 
         assertErrorSubscriber(observer);
 
         observer = TestHelper.mockSubscriber();
-        subject.subscribe(observer);
+        processor.subscribe(observer);
         assertErrorSubscriber(observer);
     }
 
@@ -202,22 +198,22 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
     @Test
     public void testSubscribeMidSequence() {
-        ReplayProcessor<String> subject = ReplayProcessor.create();
+        ReplayProcessor<String> processor = ReplayProcessor.create();
 
         Subscriber<String> observer = TestHelper.mockSubscriber();
-        subject.subscribe(observer);
+        processor.subscribe(observer);
 
-        subject.onNext("one");
-        subject.onNext("two");
+        processor.onNext("one");
+        processor.onNext("two");
 
         assertObservedUntilTwo(observer);
 
         Subscriber<String> anotherSubscriber = TestHelper.mockSubscriber();
-        subject.subscribe(anotherSubscriber);
+        processor.subscribe(anotherSubscriber);
         assertObservedUntilTwo(anotherSubscriber);
 
-        subject.onNext("three");
-        subject.onComplete();
+        processor.onNext("three");
+        processor.onComplete();
 
         assertCompletedSubscriber(observer);
         assertCompletedSubscriber(anotherSubscriber);
@@ -225,24 +221,24 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
     @Test
     public void testUnsubscribeFirstSubscriber() {
-        ReplayProcessor<String> subject = ReplayProcessor.create();
+        ReplayProcessor<String> processor = ReplayProcessor.create();
 
         Subscriber<String> observer = TestHelper.mockSubscriber();
         TestSubscriber<String> ts = new TestSubscriber<String>(observer);
-        subject.subscribe(ts);
+        processor.subscribe(ts);
 
-        subject.onNext("one");
-        subject.onNext("two");
+        processor.onNext("one");
+        processor.onNext("two");
 
         ts.dispose();
         assertObservedUntilTwo(observer);
 
         Subscriber<String> anotherSubscriber = TestHelper.mockSubscriber();
-        subject.subscribe(anotherSubscriber);
+        processor.subscribe(anotherSubscriber);
         assertObservedUntilTwo(anotherSubscriber);
 
-        subject.onNext("three");
-        subject.onComplete();
+        processor.onNext("three");
+        processor.onComplete();
 
         assertObservedUntilTwo(observer);
         assertCompletedSubscriber(anotherSubscriber);
@@ -313,15 +309,15 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
         };
 
-        ReplayProcessor<String> subject = ReplayProcessor.create();
-        subject.subscribe(observer1);
-        subject.onNext("one");
+        ReplayProcessor<String> processor = ReplayProcessor.create();
+        processor.subscribe(observer1);
+        processor.onNext("one");
         assertEquals("one", lastValueForSubscriber1.get());
-        subject.onNext("two");
+        processor.onNext("two");
         assertEquals("two", lastValueForSubscriber1.get());
 
         // use subscribeOn to make this async otherwise we deadlock as we are using CountDownLatches
-        subject.subscribeOn(Schedulers.newThread()).subscribe(observer2);
+        processor.subscribeOn(Schedulers.newThread()).subscribe(observer2);
 
         System.out.println("before waiting for one");
 
@@ -330,7 +326,7 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
         System.out.println("after waiting for one");
 
-        subject.onNext("three");
+        processor.onNext("three");
 
         System.out.println("sent three");
 
@@ -339,9 +335,9 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
 
         System.out.println("about to send onComplete");
 
-        subject.onComplete();
+        processor.onComplete();
 
-        System.out.println("completed subject");
+        System.out.println("completed processor");
 
         // release
         makeSlow.countDown();
@@ -1031,6 +1027,26 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
     }
 
     @Test
+    public void peekStateTimeAndSizeValueExpired() {
+        TestScheduler scheduler = new TestScheduler();
+        ReplayProcessor<Integer> rp = ReplayProcessor.createWithTime(1, TimeUnit.DAYS, scheduler);
+
+        assertNull(rp.getValue());
+        assertNull(rp.getValues(new Integer[2])[0]);
+
+        rp.onNext(2);
+
+        assertEquals((Integer)2, rp.getValue());
+        assertEquals(2, rp.getValues()[0]);
+
+        scheduler.advanceTimeBy(2, TimeUnit.DAYS);
+
+        assertEquals(null, rp.getValue());
+        assertEquals(0, rp.getValues().length);
+        assertNull(rp.getValues(new Integer[2])[0]);
+    }
+
+    @Test
     public void capacityHint() {
         ReplayProcessor<Integer> rp = ReplayProcessor.create(8);
 
@@ -1297,5 +1313,233 @@ public class ReplayProcessorTest extends FlowableProcessorTest<Object> {
         scheduler.advanceTimeBy(3, TimeUnit.SECONDS);
 
         source.test().assertResult();
+    }
+
+    int raceLoop = 10000;
+
+    @Test
+    public void unboundedRequestCompleteRace() {
+        for (int i = 0; i < raceLoop; i++) {
+            final ReplayProcessor<Integer> source = ReplayProcessor.create();
+
+            final TestSubscriber<Integer> ts = source.test(0);
+
+            Runnable r1 = new Runnable() {
+                @Override
+                public void run() {
+                    source.onComplete();
+                }
+            };
+
+            Runnable r2 = new Runnable() {
+                @Override
+                public void run() {
+                    ts.request(1);
+                }
+            };
+
+            TestHelper.race(r1, r2);
+
+            ts.assertResult();
+        }
+    }
+
+    @Test
+    public void sizeRequestCompleteRace() {
+        for (int i = 0; i < raceLoop; i++) {
+            final ReplayProcessor<Integer> source = ReplayProcessor.createWithSize(10);
+
+            final TestSubscriber<Integer> ts = source.test(0);
+
+            Runnable r1 = new Runnable() {
+                @Override
+                public void run() {
+                    source.onComplete();
+                }
+            };
+
+            Runnable r2 = new Runnable() {
+                @Override
+                public void run() {
+                    ts.request(1);
+                }
+            };
+
+            TestHelper.race(r1, r2);
+
+            ts.assertResult();
+        }
+    }
+
+    @Test
+    public void timedRequestCompleteRace() {
+        for (int i = 0; i < raceLoop; i++) {
+            final ReplayProcessor<Integer> source = ReplayProcessor.createWithTime(2, TimeUnit.HOURS, Schedulers.single());
+
+            final TestSubscriber<Integer> ts = source.test(0);
+
+            Runnable r1 = new Runnable() {
+                @Override
+                public void run() {
+                    source.onComplete();
+                }
+            };
+
+            Runnable r2 = new Runnable() {
+                @Override
+                public void run() {
+                    ts.request(1);
+                }
+            };
+
+            TestHelper.race(r1, r2);
+
+            ts.assertResult();
+        }
+    }
+
+    @Test
+    public void timeAndSizeRequestCompleteRace() {
+        for (int i = 0; i < raceLoop; i++) {
+            final ReplayProcessor<Integer> source = ReplayProcessor.createWithTimeAndSize(2, TimeUnit.HOURS, Schedulers.single(), 100);
+
+            final TestSubscriber<Integer> ts = source.test(0);
+
+            Runnable r1 = new Runnable() {
+                @Override
+                public void run() {
+                    source.onComplete();
+                }
+            };
+
+            Runnable r2 = new Runnable() {
+                @Override
+                public void run() {
+                    ts.request(1);
+                }
+            };
+
+            TestHelper.race(r1, r2);
+
+            ts.assertResult();
+        }
+    }
+
+    @Test
+    public void unboundedZeroRequestComplete() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.create();
+
+        source.onComplete();
+
+        source.test(0).assertResult();
+    }
+
+    @Test
+    public void unboundedZeroRequestError() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.create();
+
+        source.onError(new TestException());
+
+        source.test(0).assertFailure(TestException.class);
+    }
+
+    @Test
+    public void sizeBoundZeroRequestComplete() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.createWithSize(16);
+
+        source.onComplete();
+
+        source.test(0).assertResult();
+    }
+
+    @Test
+    public void sizeBoundZeroRequestError() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.createWithSize(16);
+
+        source.onError(new TestException());
+
+        source.test(0).assertFailure(TestException.class);
+    }
+
+    @Test
+    public void timeBoundZeroRequestComplete() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.createWithTime(1, TimeUnit.MINUTES, Schedulers.single());
+
+        source.onComplete();
+
+        source.test(0).assertResult();
+    }
+
+    @Test
+    public void timeBoundZeroRequestError() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.createWithTime(1, TimeUnit.MINUTES, Schedulers.single());
+
+        source.onError(new TestException());
+
+        source.test(0).assertFailure(TestException.class);
+    }
+
+    @Test
+    public void timeAndSizeBoundZeroRequestComplete() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.createWithTimeAndSize(1, TimeUnit.MINUTES, Schedulers.single(), 16);
+
+        source.onComplete();
+
+        source.test(0).assertResult();
+    }
+
+    @Test
+    public void timeAndSizeBoundZeroRequestError() {
+        final ReplayProcessor<Integer> source = ReplayProcessor.createWithTimeAndSize(1, TimeUnit.MINUTES, Schedulers.single(), 16);
+
+        source.onError(new TestException());
+
+        source.test(0).assertFailure(TestException.class);
+    }
+
+    TestSubscriber<Integer> take1AndCancel() {
+        return new TestSubscriber<Integer>(1) {
+            @Override
+            public void onNext(Integer t) {
+                super.onNext(t);
+                cancel();
+                onComplete();
+            }
+        };
+    }
+
+    @Test
+    public void unboundedCancelAfterOne() {
+        ReplayProcessor<Integer> source = ReplayProcessor.create();
+        source.onNext(1);
+
+        source.subscribeWith(take1AndCancel())
+        .assertResult(1);
+    }
+
+    @Test
+    public void sizeBoundCancelAfterOne() {
+        ReplayProcessor<Integer> source = ReplayProcessor.createWithSize(16);
+        source.onNext(1);
+
+        source.subscribeWith(take1AndCancel())
+        .assertResult(1);
+    }
+
+    @Test
+    public void timeBoundCancelAfterOne() {
+        ReplayProcessor<Integer> source = ReplayProcessor.createWithTime(1, TimeUnit.MINUTES, Schedulers.single());
+        source.onNext(1);
+
+        source.subscribeWith(take1AndCancel())
+        .assertResult(1);
+    }
+    @Test
+    public void timeAndSizeBoundCancelAfterOne() {
+        ReplayProcessor<Integer> source = ReplayProcessor.createWithTimeAndSize(1, TimeUnit.MINUTES, Schedulers.single(), 16);
+        source.onNext(1);
+
+        source.subscribeWith(take1AndCancel())
+        .assertResult(1);
     }
 }

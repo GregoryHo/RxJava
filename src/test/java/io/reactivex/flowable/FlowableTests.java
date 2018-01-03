@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
+import io.reactivex.Observable;
 import org.junit.*;
 import org.mockito.InOrder;
 import org.reactivestreams.*;
@@ -1026,17 +1027,6 @@ public class FlowableTests {
         Flowable.just(1).ambWith(Flowable.just(2)).subscribe(ts);
         ts.assertValue(1);
     }
-// FIXME Subscribers can't throw
-//    @Test(expected = OnErrorNotImplementedException.class)
-//    public void testSubscribeWithoutOnError() {
-//        Observable<String> o = Observable.just("a", "b").flatMap(new Func1<String, Observable<String>>() {
-//            @Override
-//            public Observable<String> call(String s) {
-//                return Observable.error(new Exception("test"));
-//            }
-//        });
-//        o.subscribe();
-//    }
 
     @Test
     public void testTakeWhileToList() {
@@ -1113,28 +1103,6 @@ public class FlowableTests {
         verify(w, never()).onError(any(Throwable.class));
     }
 
-// FIXME this test doesn't make sense
-//    @Test // cf. https://github.com/ReactiveX/RxJava/issues/2599
-//    public void testSubscribingSubscriberAsObserverMaintainsSubscriptionChain() {
-//        TestSubscriber<Object> subscriber = new TestSubscriber<T>();
-//        Subscription subscription = Observable.just("event").subscribe((Observer<Object>) subscriber);
-//        subscription.unsubscribe();
-//
-//        subscriber.assertUnsubscribed();
-//    }
-
-// FIXME subscribers can't throw
-//    @Test(expected=OnErrorNotImplementedException.class)
-//    public void testForEachWithError() {
-//        Observable.error(new Exception("boo"))
-//        //
-//        .forEach(new Action1<Object>() {
-//            @Override
-//            public void call(Object t) {
-//                //do nothing
-//            }});
-//    }
-
     @Test(expected = NullPointerException.class)
     public void testForEachWithNull() {
         Flowable.error(new Exception("boo"))
@@ -1146,7 +1114,7 @@ public class FlowableTests {
     public void testExtend() {
         final TestSubscriber<Object> subscriber = new TestSubscriber<Object>();
         final Object value = new Object();
-        Flowable.just(value).to(new Function<Flowable<Object>, Object>() {
+        Object returned = Flowable.just(value).to(new Function<Flowable<Object>, Object>() {
             @Override
             public Object apply(Flowable<Object> onSubscribe) {
                     onSubscribe.subscribe(subscriber);
@@ -1156,6 +1124,36 @@ public class FlowableTests {
                     return subscriber.values().get(0);
                 }
         });
+        assertSame(returned, value);
+    }
+
+    @Test
+    public void testAsExtend() {
+        final TestSubscriber<Object> subscriber = new TestSubscriber<Object>();
+        final Object value = new Object();
+        Object returned = Flowable.just(value).as(new FlowableConverter<Object, Object>() {
+            @Override
+            public Object apply(Flowable<Object> onSubscribe) {
+                    onSubscribe.subscribe(subscriber);
+                    subscriber.assertNoErrors();
+                    subscriber.assertComplete();
+                    subscriber.assertValue(value);
+                    return subscriber.values().get(0);
+                }
+        });
+        assertSame(returned, value);
+    }
+
+    @Test
+    public void as() {
+        Flowable.just(1).as(new FlowableConverter<Integer, Observable<Integer>>() {
+            @Override
+            public Observable<Integer> apply(Flowable<Integer> v) {
+                return v.toObservable();
+            }
+        })
+        .test()
+        .assertResult(1);
     }
 
     @Test

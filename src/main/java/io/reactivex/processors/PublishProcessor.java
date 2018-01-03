@@ -18,19 +18,20 @@ import org.reactivestreams.*;
 
 import io.reactivex.annotations.*;
 import io.reactivex.exceptions.MissingBackpressureException;
+import io.reactivex.internal.functions.ObjectHelper;
 import io.reactivex.internal.subscriptions.SubscriptionHelper;
 import io.reactivex.internal.util.BackpressureHelper;
 import io.reactivex.plugins.RxJavaPlugins;
 
 /**
- * A Subject that multicasts events to Subscribers that are currently subscribed to it.
+ * Processor that multicasts all subsequently observed items to its current {@link Subscriber}s.
  *
  * <p>
  * <img width="640" height="405" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/S.PublishSubject.png" alt="">
  *
- * <p>The subject does not coordinate backpressure for its subscribers and implements a weaker onSubscribe which
- * calls requests Long.MAX_VALUE from the incoming Subscriptions. This makes it possible to subscribe the PublishSubject
- * to multiple sources (note on serialization though) unlike the standard contract on Subscriber. Child subscribers, however, are not overflown but receive an
+ * <p>The processor does not coordinate backpressure for its subscribers and implements a weaker onSubscribe which
+ * calls requests Long.MAX_VALUE from the incoming Subscriptions. This makes it possible to subscribe the PublishProcessor
+ * to multiple sources (note on serialization though) unlike the standard Subscriber contract. Child subscribers, however, are not overflown but receive an
  * IllegalStateException in case their requested amount is zero.
  *
  * <p>The implementation of onXXX methods are technically thread-safe but non-serialized calls
@@ -40,7 +41,6 @@ import io.reactivex.plugins.RxJavaPlugins;
  * {@code new} but must be created via the {@link #create()} method.
  *
  * Example usage:
- * <p>
  * <pre> {@code
 
   PublishProcessor<Object> processor = PublishProcessor.create();
@@ -54,7 +54,7 @@ import io.reactivex.plugins.RxJavaPlugins;
   processor.onComplete();
 
   } </pre>
- * @param <T> the value type multicast to Subscribers.
+ * @param <T> the value type multicasted to Subscribers.
  */
 public final class PublishProcessor<T> extends FlowableProcessor<T> {
     /** The terminated indicator for the subscribers array. */
@@ -187,11 +187,8 @@ public final class PublishProcessor<T> extends FlowableProcessor<T> {
 
     @Override
     public void onNext(T t) {
+        ObjectHelper.requireNonNull(t, "onNext called with null. Null values are generally not allowed in 2.x operators and sources.");
         if (subscribers.get() == TERMINATED) {
-            return;
-        }
-        if (t == null) {
-            onError(new NullPointerException("onNext called with null. Null values are generally not allowed in 2.x operators and sources."));
             return;
         }
         for (PublishSubscription<T> s : subscribers.get()) {
@@ -202,12 +199,10 @@ public final class PublishProcessor<T> extends FlowableProcessor<T> {
     @SuppressWarnings("unchecked")
     @Override
     public void onError(Throwable t) {
+        ObjectHelper.requireNonNull(t, "onError called with null. Null values are generally not allowed in 2.x operators and sources.");
         if (subscribers.get() == TERMINATED) {
             RxJavaPlugins.onError(t);
             return;
-        }
-        if (t == null) {
-            t = new NullPointerException("onError called with null. Null values are generally not allowed in 2.x operators and sources.");
         }
         error = t;
 
@@ -314,9 +309,7 @@ public final class PublishProcessor<T> extends FlowableProcessor<T> {
             }
             if (r != 0L) {
                 actual.onNext(t);
-                if (r != Long.MAX_VALUE) {
-                    decrementAndGet();
-                }
+                BackpressureHelper.producedCancel(this, 1);
             } else {
                 cancel();
                 actual.onError(new MissingBackpressureException("Could not emit value due to lack of requests"));

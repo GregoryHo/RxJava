@@ -32,7 +32,6 @@ import io.reactivex.plugins.RxJavaPlugins;
  * <img width="640" height="405" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/S.ReplaySubject.png" alt="">
  * <p>
  * Example usage:
- * <p>
  * <pre> {@code
 
   ReplaySubject<Object> subject = new ReplaySubject<>();
@@ -253,10 +252,7 @@ public final class ReplaySubject<T> extends Subject<T> {
 
     @Override
     public void onNext(T t) {
-        if (t == null) {
-            onError(new NullPointerException("onNext called with null. Null values are generally not allowed in 2.x operators and sources."));
-            return;
-        }
+        ObjectHelper.requireNonNull(t, "onNext called with null. Null values are generally not allowed in 2.x operators and sources.");
         if (done) {
             return;
         }
@@ -271,9 +267,7 @@ public final class ReplaySubject<T> extends Subject<T> {
 
     @Override
     public void onError(Throwable t) {
-        if (t == null) {
-            t = new NullPointerException("onError called with null. Null values are generally not allowed in 2.x operators and sources.");
-        }
+        ObjectHelper.requireNonNull(t, "onError called with null. Null values are generally not allowed in 2.x operators and sources.");
         if (done) {
             RxJavaPlugins.onError(t);
             return;
@@ -1016,6 +1010,11 @@ public final class ReplaySubject<T> extends Subject<T> {
                 }
                 prev = h;
                 h = next;
+            }
+
+            long limit = scheduler.now(unit) - maxAge;
+            if (h.time < limit) {
+                return null;
             }
 
             Object v = h.value;

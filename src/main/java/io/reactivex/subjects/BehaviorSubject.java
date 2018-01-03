@@ -32,7 +32,6 @@ import io.reactivex.plugins.RxJavaPlugins;
  * <img width="640" height="415" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/S.BehaviorSubject.png" alt="">
  * <p>
  * Example usage:
- * <p>
  * <pre> {@code
 
   // observer will receive all 4 events (including "default").
@@ -172,10 +171,8 @@ public final class BehaviorSubject<T> extends Subject<T> {
 
     @Override
     public void onNext(T t) {
-        if (t == null) {
-            onError(new NullPointerException("onNext called with null. Null values are generally not allowed in 2.x operators and sources."));
-            return;
-        }
+        ObjectHelper.requireNonNull(t, "onNext called with null. Null values are generally not allowed in 2.x operators and sources.");
+
         if (terminalEvent.get() != null) {
             return;
         }
@@ -188,9 +185,7 @@ public final class BehaviorSubject<T> extends Subject<T> {
 
     @Override
     public void onError(Throwable t) {
-        if (t == null) {
-            t = new NullPointerException("onError called with null. Null values are generally not allowed in 2.x operators and sources.");
-        }
+        ObjectHelper.requireNonNull(t, "onError called with null. Null values are generally not allowed in 2.x operators and sources.");
         if (!terminalEvent.compareAndSet(null, t)) {
             RxJavaPlugins.onError(t);
             return;

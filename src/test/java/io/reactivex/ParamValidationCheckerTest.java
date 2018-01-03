@@ -182,8 +182,9 @@ public class ParamValidationCheckerTest {
         addOverride(new ParamOverride(Flowable.class, 0, ParamMode.ANY, "take", Long.TYPE, TimeUnit.class));
         addOverride(new ParamOverride(Flowable.class, 0, ParamMode.ANY, "take", Long.TYPE, TimeUnit.class, Scheduler.class));
 
-        // zero retry is allowed
+        // zero take/limit is allowed
         addOverride(new ParamOverride(Flowable.class, 0, ParamMode.NON_NEGATIVE, "take", Long.TYPE));
+        addOverride(new ParamOverride(Flowable.class, 0, ParamMode.NON_NEGATIVE, "limit", Long.TYPE));
 
         // negative time is considered as zero time
         addOverride(new ParamOverride(Flowable.class, 0, ParamMode.ANY, "sample", Long.TYPE, TimeUnit.class));
@@ -257,6 +258,7 @@ public class ParamValidationCheckerTest {
 
         // zero retry is allowed
         addOverride(new ParamOverride(Completable.class, 0, ParamMode.NON_NEGATIVE, "retry", Long.TYPE));
+        addOverride(new ParamOverride(Completable.class, 0, ParamMode.NON_NEGATIVE, "retry", Long.TYPE, Predicate.class));
 
         // negative time is considered as zero time
         addOverride(new ParamOverride(Completable.class, 0, ParamMode.ANY, "blockingGet", Long.TYPE, TimeUnit.class));
@@ -312,7 +314,9 @@ public class ParamValidationCheckerTest {
 
         // negative time is considered as zero time
         addOverride(new ParamOverride(Single.class, 0, ParamMode.ANY, "delay", Long.TYPE, TimeUnit.class));
+        addOverride(new ParamOverride(Single.class, 0, ParamMode.ANY, "delay", Long.TYPE, TimeUnit.class, Boolean.TYPE));
         addOverride(new ParamOverride(Single.class, 0, ParamMode.ANY, "delay", Long.TYPE, TimeUnit.class, Scheduler.class));
+        addOverride(new ParamOverride(Single.class, 0, ParamMode.ANY, "delay", Long.TYPE, TimeUnit.class, Scheduler.class, Boolean.TYPE));
 
 
         // zero repeat is allowed
@@ -320,6 +324,7 @@ public class ParamValidationCheckerTest {
 
         // zero retry is allowed
         addOverride(new ParamOverride(Single.class, 0, ParamMode.NON_NEGATIVE, "retry", Long.TYPE));
+        addOverride(new ParamOverride(Single.class, 0, ParamMode.NON_NEGATIVE, "retry", Long.TYPE, Predicate.class));
 
         // negative time is considered as zero time
         addOverride(new ParamOverride(Single.class, 0, ParamMode.ANY, "delaySubscription", Long.TYPE, TimeUnit.class));
@@ -556,6 +561,46 @@ public class ParamValidationCheckerTest {
         defaultValues.put(Subscriber[].class, new Subscriber[] { new AllFunctionals() });
 
         defaultValues.put(ParallelFailureHandling.class, ParallelFailureHandling.ERROR);
+
+        @SuppressWarnings("rawtypes")
+        class MixedConverters implements FlowableConverter, ObservableConverter, SingleConverter,
+        MaybeConverter, CompletableConverter, ParallelFlowableConverter {
+
+            @Override
+            public Object apply(ParallelFlowable upstream) {
+                return upstream;
+            }
+
+            @Override
+            public Object apply(Completable upstream) {
+                return upstream;
+            }
+
+            @Override
+            public Object apply(Maybe upstream) {
+                return upstream;
+            }
+
+            @Override
+            public Object apply(Single upstream) {
+                return upstream;
+            }
+
+            @Override
+            public Object apply(Observable upstream) {
+                return upstream;
+            }
+
+            @Override
+            public Object apply(Flowable upstream) {
+                return upstream;
+            }
+        }
+
+        MixedConverters mc = new MixedConverters();
+        for (Class<?> c : MixedConverters.class.getInterfaces()) {
+            defaultValues.put(c, mc);
+        }
 
         // -----------------------------------------------------------------------------------
 

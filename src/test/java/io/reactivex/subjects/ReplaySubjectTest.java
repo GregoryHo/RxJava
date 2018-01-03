@@ -31,9 +31,14 @@ import io.reactivex.functions.Function;
 import io.reactivex.observers.*;
 import io.reactivex.schedulers.*;
 
-public class ReplaySubjectTest {
+public class ReplaySubjectTest extends SubjectTest<Integer> {
 
     private final Throwable testException = new Throwable();
+
+    @Override
+    protected Subject<Integer> create() {
+        return ReplaySubject.create();
+    }
 
     @Test
     public void testCompleted() {
@@ -932,27 +937,23 @@ public class ReplaySubjectTest {
     }
 
     @Test
-    public void onNextNull() {
-        final ReplaySubject<Object> s = ReplaySubject.create();
+    public void peekStateTimeAndSizeValueExpired() {
+        TestScheduler scheduler = new TestScheduler();
+        ReplaySubject<Integer> rp = ReplaySubject.createWithTime(1, TimeUnit.DAYS, scheduler);
 
-        s.onNext(null);
+        assertNull(rp.getValue());
+        assertNull(rp.getValues(new Integer[2])[0]);
 
-        s.test()
-            .assertNoValues()
-            .assertError(NullPointerException.class)
-            .assertErrorMessage("onNext called with null. Null values are generally not allowed in 2.x operators and sources.");
-    }
+        rp.onNext(2);
 
-    @Test
-    public void onErrorNull() {
-        final ReplaySubject<Object> s = ReplaySubject.create();
+        assertEquals((Integer)2, rp.getValue());
+        assertEquals(2, rp.getValues()[0]);
 
-        s.onError(null);
+        scheduler.advanceTimeBy(2, TimeUnit.DAYS);
 
-        s.test()
-            .assertNoValues()
-            .assertError(NullPointerException.class)
-            .assertErrorMessage("onError called with null. Null values are generally not allowed in 2.x operators and sources.");
+        assertEquals(null, rp.getValue());
+        assertEquals(0, rp.getValues().length);
+        assertNull(rp.getValues(new Integer[2])[0]);
     }
 
     @Test

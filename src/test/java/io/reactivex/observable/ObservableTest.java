@@ -1044,17 +1044,6 @@ public class ObservableTest {
         Observable.just(1).ambWith(Observable.just(2)).subscribe(ts);
         ts.assertValue(1);
     }
-// FIXME Subscribers can't throw
-//    @Test(expected = OnErrorNotImplementedException.class)
-//    public void testSubscribeWithoutOnError() {
-//        Observable<String> o = Observable.just("a", "b").flatMap(new Func1<String, Observable<String>>() {
-//            @Override
-//            public Observable<String> call(String s) {
-//                return Observable.error(new Exception("test"));
-//            }
-//        });
-//        o.subscribe();
-//    }
 
     @Test
     public void testTakeWhileToList() {
@@ -1164,7 +1153,7 @@ public class ObservableTest {
     public void testExtend() {
         final TestObserver<Object> subscriber = new TestObserver<Object>();
         final Object value = new Object();
-        Observable.just(value).to(new Function<Observable<Object>, Object>() {
+        Object returned = Observable.just(value).to(new Function<Observable<Object>, Object>() {
             @Override
             public Object apply(Observable<Object> onSubscribe) {
                     onSubscribe.subscribe(subscriber);
@@ -1174,6 +1163,36 @@ public class ObservableTest {
                     return subscriber.values().get(0);
                 }
         });
+        assertSame(returned, value);
+    }
+
+    @Test
+    public void testAsExtend() {
+        final TestObserver<Object> subscriber = new TestObserver<Object>();
+        final Object value = new Object();
+        Object returned = Observable.just(value).as(new ObservableConverter<Object, Object>() {
+            @Override
+            public Object apply(Observable<Object> onSubscribe) {
+                onSubscribe.subscribe(subscriber);
+                subscriber.assertNoErrors();
+                subscriber.assertComplete();
+                subscriber.assertValue(value);
+                return subscriber.values().get(0);
+            }
+        });
+        assertSame(returned, value);
+    }
+
+    @Test
+    public void as() {
+        Observable.just(1).as(new ObservableConverter<Integer, Flowable<Integer>>() {
+            @Override
+            public Flowable<Integer> apply(Observable<Integer> v) {
+                return v.toFlowable(BackpressureStrategy.MISSING);
+            }
+        })
+        .test()
+        .assertResult(1);
     }
 
     @Test

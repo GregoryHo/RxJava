@@ -63,12 +63,12 @@ Flowable.just("Hello world")
       @Override public void accept(String s) {
           System.out.println(s);
       }
-  );
+  });
 ```
 
 RxJava 2 features several base classes you can discover operators on:
 
-  - `io.reactivex.Flowable` : 0..N flows, supporting Reactive-Streams and backpressure
+  - `io.reactivex.Flowable`: 0..N flows, supporting Reactive-Streams and backpressure
   - `io.reactivex.Observable`: 0..N flows, no backpressure
   - `io.reactivex.Single`: a flow of exactly 1 item or an error
   - `io.reactivex.Completable`: a flow without items but only a completion or error signal
@@ -133,7 +133,7 @@ Flowable.range(1, 10)
         .subscribeOn(Schedulers.computation())
         .map(w -> w * w)
   )
-.blockingSubscribe(System.out::println);
+  .blockingSubscribe(System.out::println);
 ```
 
 Practically, paralellism in RxJava means running independent flows and merging their results back into a single flow. The operator `flatMap` does this by first mapping each number from 1 to 10 into its own individual `Flowable`, runs them and merges the computed squares.
@@ -142,11 +142,11 @@ Starting from 2.0.5, there is an *experimental* operator `parallel()` and type `
 
 ```java
 Flowable.range(1, 10)
-.parallel()
-.runOn(Schedulers.computation())
-.map(v -> v * v)
-.sequential()
-.blockingSubscribe(System.out::println);
+  .parallel()
+  .runOn(Schedulers.computation())
+  .map(v -> v * v)
+  .sequential()
+  .blockingSubscribe(System.out::println);
 ```
 
 `flatMap` is a powerful operator and helps in a lot of situations. For example, given a service that returns a `Flowable`, we'd like to call another service with values emitted by the first service:
@@ -158,8 +158,8 @@ inventorySource.flatMap(inventoryItem ->
     erp.getDemandAsync(inventoryItem.getId())
     .map(demand 
         -> System.out.println("Item " + inventoryItem.getName() + " has demand " + demand));
-)
-.subscribe();
+  )
+  .subscribe();
 ```
 
 Note, however, that `flatMap` doesn't guarantee any order and the end result from the inner flows may end up interleaved. There are alternative operators:
@@ -175,6 +175,7 @@ For further details, consult the [wiki](https://github.com/ReactiveX/RxJava/wiki
 - Twitter: [@RxJava](http://twitter.com/RxJava)
 - [GitHub Issues](https://github.com/ReactiveX/RxJava/issues)
 - StackOverflow: [rx-java](http://stackoverflow.com/questions/tagged/rx-java) and [rx-java2](http://stackoverflow.com/questions/tagged/rx-java2)
+- [Gitter.im](https://gitter.im/ReactiveX/RxJava)
 
 ## Versioning
 
@@ -230,7 +231,7 @@ and for Ivy:
 <dependency org="io.reactivex.rxjava2" name="rxjava" rev="x.y.z" />
 ```
 
-Snapshots are available via [JFrog](https://oss.jfrog.org/webapp/#/home):
+Snapshots are available via https://oss.jfrog.org/libs-snapshot/io/reactivex/rxjava2/rxjava/
 
 ```groovy
 repositories {
@@ -238,7 +239,7 @@ repositories {
 }
 
 dependencies {
-    compile 'io.reactivex.rxjava2:rxjava:2.0.0-DP0-SNAPSHOT'
+    compile 'io.reactivex.rxjava2:rxjava:2.2.0-SNAPSHOT'
 }
 ```
 
@@ -249,7 +250,6 @@ To build:
 ```
 $ git clone git@github.com:ReactiveX/RxJava.git
 $ cd RxJava/
-$ git checkout -b 2.x
 $ ./gradlew build
 ```
 
@@ -262,19 +262,19 @@ For bugs, questions and discussions please use the [Github Issues](https://githu
  
 ## LICENSE
 
-Copyright (c) 2016-present, RxJava Contributors.
+    Copyright (c) 2016-present, RxJava Contributors.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-<http://www.apache.org/licenses/LICENSE-2.0>
+    http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 [beta source link]: https://github.com/ReactiveX/RxJava/blob/2.x/src/main/java/io/reactivex/annotations/Beta.java
 [experimental source link]: https://github.com/ReactiveX/RxJava/blob/2.x/src/main/java/io/reactivex/annotations/Experimental.java
