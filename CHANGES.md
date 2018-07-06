@@ -2,6 +2,224 @@
 
 The changelog of version 1.x can be found at https://github.com/ReactiveX/RxJava/blob/1.x/CHANGES.md
 
+### Version 2.1.16 - June 26, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.16%7C))
+
+This is a hotfix release for a late-identified issue with `concatMapMaybe` and `concatMapSingle`.
+
+#### Bugfixes
+
+- [Pull 6060](https://github.com/ReactiveX/RxJava/pull/6060): Fix `concatMap{Single|Maybe}` null emission on success-dispose race.
+
+### Version 2.1.15 - June 22, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.15%7C))
+
+#### API changes
+
+- [Pull 6026](https://github.com/ReactiveX/RxJava/pull/6026): Add `blockingSubscribe` overload with prefetch amount allowing bounded backpressure.
+- [Pull 6052](https://github.com/ReactiveX/RxJava/pull/6052): Change `{PublishSubject|PublishProcessor}.subscribeActual` to `protected`. They were accidentally made public and there is no reason to call them outside of RxJava internals.
+
+#### Documentation changes
+
+- [Pull 6031](https://github.com/ReactiveX/RxJava/pull/6031): Inline `CompositeDisposable` JavaDoc.
+- [Pull 6042](https://github.com/ReactiveX/RxJava/pull/6042): Fix `MulticastProcessor` JavaDoc comment.
+- [Pull 6049](https://github.com/ReactiveX/RxJava/pull/6049): Make it explicit that `throttleWithTimout` is an alias of `debounce`.
+- [Pull 6053](https://github.com/ReactiveX/RxJava/pull/6053): Add `Maybe` marble diagrams 06/21/a
+- [Pull 6057](https://github.com/ReactiveX/RxJava/pull/6057): Use different wording on `blockingForEach()` JavaDocs.
+- [Pull 6054](https://github.com/ReactiveX/RxJava/pull/6054): Expand `{X}Processor` JavaDocs by syncing with `{X}Subject` docs.
+
+#### Performance enhancements
+
+- [Pull 6021](https://github.com/ReactiveX/RxJava/pull/6021): Add full implementation for `Single.flatMapPublisher` so it doesn't batch requests.
+- [Pull 6024](https://github.com/ReactiveX/RxJava/pull/6024): Dedicated `{Single|Maybe}.flatMap{Publisher|Observable}` & `andThen(Observable|Publisher)` implementations.
+- [Pull 6028](https://github.com/ReactiveX/RxJava/pull/6028): Improve `Observable.takeUntil`.
+
+#### Bugfixes
+
+- [Pull 6019](https://github.com/ReactiveX/RxJava/pull/6019): Fix `Single.takeUntil`, `Maybe.takeUntil` dispose behavior.
+- [Pull 5947](https://github.com/ReactiveX/RxJava/pull/5947): Fix `groupBy` eviction so that source is cancelled and reduce volatile reads.
+- [Pull 6036](https://github.com/ReactiveX/RxJava/pull/6036): Fix disposed `LambdaObserver.onError` to route to global error handler.
+- [Pull 6045](https://github.com/ReactiveX/RxJava/pull/6045): Fix check in `BlockingSubscriber` that would always be false due to wrong variable.
+
+#### Other changes
+
+- [Pull 6022](https://github.com/ReactiveX/RxJava/pull/6022): Add TCK for `MulticastProcessor` & `{0..1}.flatMapPublisher`
+- [Pull 6029](https://github.com/ReactiveX/RxJava/pull/6029): Upgrade to Gradle 4.3.1, add `TakeUntilPerf`.
+- [Pull 6033](https://github.com/ReactiveX/RxJava/pull/6033): Update & fix grammar of `DESIGN.md`
+
+### Version 2.1.14 - May 23, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.14%7C))
+
+#### API changes
+
+- [Pull 5976](https://github.com/ReactiveX/RxJava/pull/5976): Add `Single.concatEager()`.
+- [Pull 5986](https://github.com/ReactiveX/RxJava/pull/5986): Add `ConnectableObservable.refCount()` and `ConnectableFlowable.refCount()` with minimum consumer count & disconnect grace period.
+- [Pull 5979](https://github.com/ReactiveX/RxJava/pull/5979): Add `Observable.throttleLatest` and `Flowable.throttleLatest()`.
+- [Pull 6002](https://github.com/ReactiveX/RxJava/pull/6002): Add `MulticastProcessor`.
+- [Pull 6010](https://github.com/ReactiveX/RxJava/pull/6010): Add `assertValueSetOnly` and `assertValueSequenceOnly` to `TestObserver`/`TestSubscriber`.
+
+#### Deprecations
+
+- [Pull 5982](https://github.com/ReactiveX/RxJava/pull/5982): Deprecate `getValues()` in `Subject`s/`FlowableProcessor`s to be removed in 3.x.
+
+#### Documentation changes
+
+- [Pull 5977](https://github.com/ReactiveX/RxJava/pull/5977): `Maybe`/`Single` JavaDocs; annotation cleanup.
+- [Pull 5981](https://github.com/ReactiveX/RxJava/pull/5981): Improve JavaDocs of the `subscribeActual` methods.
+- [Pull 5984](https://github.com/ReactiveX/RxJava/pull/5984): Add `blockingSubscribe` JavaDoc clarifications.
+- [Pull 5987](https://github.com/ReactiveX/RxJava/pull/5987): Add marble diagrams to some `Single.doOnX` methods.
+- [Pull 5992](https://github.com/ReactiveX/RxJava/pull/5992): `Observable` javadoc cleanup. 
+
+#### Bugfixes
+
+- [Pull 5975](https://github.com/ReactiveX/RxJava/pull/5975): Fix `refCount()` connect/subscribe/cancel deadlock.
+- [Pull 5978](https://github.com/ReactiveX/RxJava/pull/5978): `Flowable.take` to route post-cancel errors to plugin error handler.
+- [Pull 5991](https://github.com/ReactiveX/RxJava/pull/5991): Fix `switchMap` to indicate boundary fusion.
+
+#### Other changes
+
+- [Pull 5985](https://github.com/ReactiveX/RxJava/pull/5985): Cleanup in the `Scheduler` class.
+- [Pull 5996](https://github.com/ReactiveX/RxJava/pull/5996): Automatically publish the generated JavaDocs from CI.
+- [Pull 5995](https://github.com/ReactiveX/RxJava/pull/5995): Implement `toString` method for some `Emitter`s.
+- [Pull 6005](https://github.com/ReactiveX/RxJava/pull/6005): JavaDocs HTML formatting and whitespace cleanup.
+- [Pull 6014](https://github.com/ReactiveX/RxJava/pull/6014): Fix & prevent `null` checks on primitives.
+
+### Version 2.1.13 - April 27, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.13%7C))
+
+#### API changes
+
+- [Pull 5957](https://github.com/ReactiveX/RxJava/pull/5957): Add `Single.ignoreElement`, deprecate `Single.toCompletable` (will be removed in 3.0).
+
+#### Documentation changes
+
+- [Pull 5936](https://github.com/ReactiveX/RxJava/pull/5936): Fix `Completable.toMaybe()` `@return` javadoc.
+- [Pull 5948](https://github.com/ReactiveX/RxJava/pull/5948): Fix `Observable` javadoc mentioning `doOnCancel` instead of `doOnDispose`.
+- [Pull 5951](https://github.com/ReactiveX/RxJava/pull/5951): Update `blockingX` JavaDoc to mention wrapping of checked Exceptions.
+
+#### Bugfixes
+
+- [Pull 5952](https://github.com/ReactiveX/RxJava/pull/5952): Fixed conditional iteration breaking in `AppendOnlyLinkedArrayList.forEachWhile`.
+- [Pull 5972](https://github.com/ReactiveX/RxJava/pull/5972): Fix `Observable.concatMapSingle` dropping upstream items.
+
+#### Other changes
+
+- [Pull 5930](https://github.com/ReactiveX/RxJava/pull/5930): Add `@NonNull` annotations to create methods of `Subject`s and `Processor`s.
+- [Pull 5940](https://github.com/ReactiveX/RxJava/pull/5940): Allow `@SchedulerSupport` annotation on constructors.
+- [Pull 5942](https://github.com/ReactiveX/RxJava/pull/5942): Removed `TERMINATED` check in `PublishSubject.onNext` and `PublishProcessor.onNext`.
+- [Pull 5959](https://github.com/ReactiveX/RxJava/pull/5959): Fix some typos and grammar mistakes. 
+
+### Version 2.1.12 - March 23, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.12%7C))
+
+#### Bugfixes
+
+- [Pull 5928](https://github.com/ReactiveX/RxJava/pull/5928): Fix `concatMapSingle` & `concatMapMaybe` dispose-cleanup crash.
+
+### Version 2.1.11 - March 20, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.11%7C))
+
+#### API changes
+
+- [Pull 5871](https://github.com/ReactiveX/RxJava/pull/5871): Add `Flowable.concatMapCompletable{DelayError}` operator.
+- [Pull 5870](https://github.com/ReactiveX/RxJava/pull/5870): Add `Flowable.switchMapCompletable{DelayError}` operator.
+- [Pull 5872](https://github.com/ReactiveX/RxJava/pull/5872): Add `Flowable.concatMap{Maybe,Single}{DelayError}` operators. 
+- [Pull 5873](https://github.com/ReactiveX/RxJava/pull/5873): Add `Flowable.switchMap{Maybe,Single}{DelayError}` operators.
+- [Pull 5875](https://github.com/ReactiveX/RxJava/pull/5875): Add `Observable` `switchMapX` and `concatMapX` operators.
+- [Pull 5906](https://github.com/ReactiveX/RxJava/pull/5906): Add public constructor for `TestScheduler` that takes the initial virtual time.
+
+#### Performance enhancements
+
+- [Pull 5915](https://github.com/ReactiveX/RxJava/pull/5915): Optimize `Observable.concatMapCompletable`.
+- [Pull 5918](https://github.com/ReactiveX/RxJava/pull/5918): Improve the scalar source performance of `Observable.(concat|switch)Map{Completable|Single|Maybe}`.
+- [Pull 5919](https://github.com/ReactiveX/RxJava/pull/5919): Add fusion to `Observable.switchMap` inner source.
+
+#### Documentation changes
+
+- [Pull 5863](https://github.com/ReactiveX/RxJava/pull/5863): Expand the documentation of the `Flowable.lift()` operator.
+- [Pull 5865](https://github.com/ReactiveX/RxJava/pull/5865): Improve the JavaDoc of the other `lift()` operators.
+- [Pull 5876](https://github.com/ReactiveX/RxJava/pull/5876): Add note about `NoSuchElementException` to `Single.zip()`.
+- [Pull 5897](https://github.com/ReactiveX/RxJava/pull/5897): Clarify `dematerialize()` and terminal items/signals.
+- [Pull 5895](https://github.com/ReactiveX/RxJava/pull/5895): Fix `buffer()` documentation to correctly describe `onError` behavior.
+
+#### Bugfixes
+
+- [Pull 5887](https://github.com/ReactiveX/RxJava/pull/5887): Fix `window(Observable|Callable)` upstream handling.
+- [Pull 5888](https://github.com/ReactiveX/RxJava/pull/5888): Fix `Flowable.window(Publisher|Callable)` upstream handling.
+- [Pull 5892](https://github.com/ReactiveX/RxJava/pull/5892): Fix the extra retention problem in `ReplaySubject`.
+- [Pull 5900](https://github.com/ReactiveX/RxJava/pull/5900): Fix `Observable.flatMap` scalar `maxConcurrency` overflow.
+- [Pull 5893](https://github.com/ReactiveX/RxJava/pull/5893): Fix `publish(-|Function)` subscriber swap possible data loss.
+- [Pull 5898](https://github.com/ReactiveX/RxJava/pull/5898): Fix excess item retention in the other `replay` components.
+- [Pull 5904](https://github.com/ReactiveX/RxJava/pull/5904): Fix `Flowable.singleOrError().toFlowable()` not signalling `NoSuchElementException`.
+- [Pull 5883](https://github.com/ReactiveX/RxJava/pull/5883): Fix `FlowableWindowBoundary` not cancelling the upstream on a missing backpressure case, causing `NullPointerException`.
+
+#### Other changes
+
+- [Pull 5890](https://github.com/ReactiveX/RxJava/pull/5890): Added `@Nullable` annotations to subjects.
+- [Pull 5886](https://github.com/ReactiveX/RxJava/pull/5886): Upgrade the algorithm of Observable.timeout(time|selector) operators.
+- Coverage improvements
+  - [Pull 5883](https://github.com/ReactiveX/RxJava/pull/5883): Improve coverage and fix small mistakes/untaken paths in operators.
+  - [Pull 5889](https://github.com/ReactiveX/RxJava/pull/5889): Cleanup, coverage and related component fixes
+  - [Pull 5891](https://github.com/ReactiveX/RxJava/pull/5891): Improve coverage & related cleanup 03/05.
+  - [Pull 5905](https://github.com/ReactiveX/RxJava/pull/5905): Coverage improvements, logical fixes and cleanups 03/08.
+  - [Pull 5910](https://github.com/ReactiveX/RxJava/pull/5910): Improve coverage, fix operator logic 03/12.
+
+### Version 2.1.10 - February 24, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.10%7C))
+
+#### API changes
+
+- [Pull 5845](https://github.com/ReactiveX/RxJava/pull/5845): Add efficient `concatWith(Single|Maybe|Completable)` overloads to `Flowable` and `Observable`.
+- [Pull 5847](https://github.com/ReactiveX/RxJava/pull/5847): Add efficient `mergeWith(Single|Maybe|Completable)` overloads to `Flowable` and `Observable`.
+- [Pull 5860](https://github.com/ReactiveX/RxJava/pull/5860): Add `Flowable.groupBy` overload with evicting map factory.
+
+#### Documentation changes
+
+- [Pull 5824](https://github.com/ReactiveX/RxJava/pull/5824): Improve the wording of the `share()` JavaDocs.
+- [Pull 5826](https://github.com/ReactiveX/RxJava/pull/5826): Fix `Observable.blockingIterable(int)` and add `Observable.blockingLatest` marbles.
+- [Pull 5828](https://github.com/ReactiveX/RxJava/pull/5828): Document size-bounded `replay` emission's item retention property.
+- [Pull 5830](https://github.com/ReactiveX/RxJava/pull/5830): Reword the `just()` operator and reference other typical alternatives.
+- [Pull 5834](https://github.com/ReactiveX/RxJava/pull/5834): Fix copy-paste errors in `SingleSubject` JavaDoc.
+- [Pull 5837](https://github.com/ReactiveX/RxJava/pull/5837): Detail `distinct()` and `distinctUntilChanged()` in JavaDoc.
+- [Pull 5841](https://github.com/ReactiveX/RxJava/pull/5841): Improve JavaDoc of `Observer`, `SingleObserver`, `MaybeObserver` and `CompletableObserver`. 
+- [Pull 5843](https://github.com/ReactiveX/RxJava/pull/5843): Expand the JavaDocs of the `Scheduler` API. 
+- [Pull 5844](https://github.com/ReactiveX/RxJava/pull/5844): Explain the properties of the `{Flowable|Observable|Single|Maybe|Completable}Emitter` interfaces in detail.
+- [Pull 5848](https://github.com/ReactiveX/RxJava/pull/5848): Improve the wording of the `Maybe.fromCallable` JavaDoc.
+- [Pull 5856](https://github.com/ReactiveX/RxJava/pull/5856): Add finite requirement to various collector operators' JavaDoc.
+
+#### Bugfixes
+
+- [Pull 5833](https://github.com/ReactiveX/RxJava/pull/5833): Fix `Observable.switchMap` main `onError` not disposing the current inner source.
+
+#### Other changes
+
+- [Pull 5838](https://github.com/ReactiveX/RxJava/pull/5838): Added nullability annotation for completable assembly.
+- [Pull 5858](https://github.com/ReactiveX/RxJava/pull/5858): Remove unnecessary comment from `Observable.timeInterval(TimeUnit)`.
+
+### Version 2.1.9 - January 24, 2018 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.9%7C))
+
+#### API changes
+
+- [Pull 5799](https://github.com/ReactiveX/RxJava/pull/5799): Add missing `{Maybe|Single}.mergeDelayError` variants.
+
+#### Performance improvements
+
+- [Pull 5790](https://github.com/ReactiveX/RxJava/pull/5790): Improve request accounting overhead in `Flowable` `retry`/`repeat`. 
+
+#### Documentation changes
+
+- [Pull 5783](https://github.com/ReactiveX/RxJava/pull/5783): Fix JavaDoc wording of `onTerminateDetach`.
+- [Pull 5780](https://github.com/ReactiveX/RxJava/pull/5780): Improve `BehaviorSubject` JavaDoc + related clarifications. 
+- [Pull 5781](https://github.com/ReactiveX/RxJava/pull/5781): Describe `merge()` error handling.
+- [Pull 5785](https://github.com/ReactiveX/RxJava/pull/5785): Update `Maybe doOn{Success,Error,Complete}` JavaDoc.
+- [Pull 5786](https://github.com/ReactiveX/RxJava/pull/5786): Add error handling section to `merge()` operator JavaDocs.
+- [Pull 5802](https://github.com/ReactiveX/RxJava/pull/5802): Improved `XSubject` JavaDocs.
+- Marble diagram fixes to `Observable`:
+  - [Pull 5795](https://github.com/ReactiveX/RxJava/pull/5795): More marbles 01/08-a.
+  - [Pull 5797](https://github.com/ReactiveX/RxJava/pull/5797): `Observable` marble fixes 01/08-b.
+  - [Pull 5798](https://github.com/ReactiveX/RxJava/pull/5798): `Observable.replay(Function, ...)` marble fixes.
+  - [Pull 5804](https://github.com/ReactiveX/RxJava/pull/5804): More `Observable` marbles, 01/10-a.
+  - [Pull 5805](https://github.com/ReactiveX/RxJava/pull/5805): Final planned `Observable` marble additions/fixes.
+ - [Pull 5816](https://github.com/ReactiveX/RxJava/pull/5816): Add `Subject` and `Processor` marbles.
+
+#### Bugfixes
+
+- [Pull 5792](https://github.com/ReactiveX/RxJava/pull/5792): Fix `flatMap` inner fused poll crash not cancelling the upstream.
+- [Pull 5811](https://github.com/ReactiveX/RxJava/pull/5811): Fix `buffer(open, close)` not disposing indicators properly.
+
 ### Version 2.1.8 - December 27, 2017 ([Maven](http://search.maven.org/#artifactdetails%7Cio.reactivex.rxjava2%7Crxjava%7C2.1.8%7C))
 
 **Warning! Behavior change regarding handling illegal calls with `null` in `Processor`s and `Subject`s.**

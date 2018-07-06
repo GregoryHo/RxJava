@@ -16,7 +16,9 @@ package io.reactivex.internal.operators.flowable;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.reactivestreams.*;
@@ -27,7 +29,6 @@ import io.reactivex.exceptions.TestException;
 import io.reactivex.functions.Cancellable;
 import io.reactivex.internal.subscriptions.BooleanSubscription;
 import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.TestSubscriber;
 
 public class FlowableCreateTest {
@@ -480,14 +481,14 @@ public class FlowableCreateTest {
                         }
                     };
 
-                    TestHelper.race(r1, r2, Schedulers.single());
+                    TestHelper.race(r1, r2);
                 }
             }, m);
 
             List<Throwable> errors = TestHelper.trackPluginErrors();
 
             try {
-                for (int i = 0; i < 500; i++) {
+                for (int i = 0; i < TestHelper.RACE_DEFAULT_LOOPS; i++) {
                     source
                     .test()
                     .assertFailure(Throwable.class);
@@ -521,11 +522,11 @@ public class FlowableCreateTest {
                         }
                     };
 
-                    TestHelper.race(r1, r2, Schedulers.single());
+                    TestHelper.race(r1, r2);
                 }
             }, m);
 
-            for (int i = 0; i < 500; i++) {
+            for (int i = 0; i < TestHelper.RACE_DEFAULT_LOOPS; i++) {
                 source
                 .test()
                 .assertResult();
@@ -589,7 +590,7 @@ public class FlowableCreateTest {
                         }
                     };
 
-                    TestHelper.race(r1, r2, Schedulers.single());
+                    TestHelper.race(r1, r2);
                 }
             }, m)
             .test()
@@ -783,25 +784,25 @@ public class FlowableCreateTest {
                     Runnable r1 = new Runnable() {
                         @Override
                         public void run() {
-                            for (int i = 0; i < 1000; i++) {
+                            for (int i = 0; i < TestHelper.RACE_DEFAULT_LOOPS; i++) {
                                 f.onNext(1);
                             }
                         }
                     };
 
-                    TestHelper.race(r1, r1, Schedulers.single());
+                    TestHelper.race(r1, r1);
                 }
             }, m)
-            .take(1000)
+            .take(TestHelper.RACE_DEFAULT_LOOPS)
             .test()
-            .assertSubscribed().assertValueCount(1000).assertComplete().assertNoErrors();
+            .assertSubscribed().assertValueCount(TestHelper.RACE_DEFAULT_LOOPS).assertComplete().assertNoErrors();
         }
     }
 
     @Test
     public void serializedConcurrentOnNextOnComplete() {
         for (BackpressureStrategy m : BackpressureStrategy.values()) {
-            TestSubscriber<Object> to = Flowable.create(new FlowableOnSubscribe<Object>() {
+            TestSubscriber<Object> ts = Flowable.create(new FlowableOnSubscribe<Object>() {
                 @Override
                 public void subscribe(FlowableEmitter<Object> e) throws Exception {
                     final FlowableEmitter<Object> f = e.serialize();
@@ -825,14 +826,14 @@ public class FlowableCreateTest {
                         }
                     };
 
-                    TestHelper.race(r1, r2, Schedulers.single());
+                    TestHelper.race(r1, r2);
                 }
             }, m)
             .test()
             .assertSubscribed().assertComplete()
             .assertNoErrors();
 
-            int c = to.valueCount();
+            int c = ts.valueCount();
             assertTrue("" + c, c >= 100);
         }
     }
@@ -930,6 +931,29 @@ public class FlowableCreateTest {
             } finally {
                 RxJavaPlugins.reset();
             }
+        }
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void emittersHasToString() {
+        Map<BackpressureStrategy, Class<? extends FlowableEmitter>> emitterMap =
+                new HashMap<BackpressureStrategy, Class<? extends FlowableEmitter>>();
+
+        emitterMap.put(BackpressureStrategy.MISSING, FlowableCreate.MissingEmitter.class);
+        emitterMap.put(BackpressureStrategy.ERROR, FlowableCreate.ErrorAsyncEmitter.class);
+        emitterMap.put(BackpressureStrategy.DROP, FlowableCreate.DropAsyncEmitter.class);
+        emitterMap.put(BackpressureStrategy.LATEST, FlowableCreate.LatestAsyncEmitter.class);
+        emitterMap.put(BackpressureStrategy.BUFFER, FlowableCreate.BufferAsyncEmitter.class);
+
+        for (final Map.Entry<BackpressureStrategy, Class<? extends FlowableEmitter>> entry : emitterMap.entrySet()) {
+            Flowable.create(new FlowableOnSubscribe<Object>() {
+                @Override
+                public void subscribe(FlowableEmitter<Object> emitter) throws Exception {
+                    assertTrue(emitter.toString().contains(entry.getValue().getSimpleName()));
+                    assertTrue(emitter.serialize().toString().contains(entry.getValue().getSimpleName()));
+                }
+            }, entry.getKey()).test().assertEmpty();
         }
     }
 }

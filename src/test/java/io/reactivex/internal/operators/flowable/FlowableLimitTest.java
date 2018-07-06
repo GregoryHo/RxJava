@@ -190,7 +190,7 @@ public class FlowableLimitTest implements LongConsumer, Action {
 
     @Test
     public void requestRace() {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < TestHelper.RACE_DEFAULT_LOOPS; i++) {
             final TestSubscriber<Integer> ts = Flowable.range(1, 10)
                     .limit(5)
                     .test(0L);
@@ -205,6 +205,21 @@ public class FlowableLimitTest implements LongConsumer, Action {
             TestHelper.race(r, r);
 
             ts.assertResult(1, 2, 3, 4, 5);
+        }
+    }
+
+    @Test
+    public void errorAfterLimitReached() {
+        List<Throwable> errors = TestHelper.trackPluginErrors();
+        try {
+            Flowable.error(new TestException())
+            .limit(0)
+            .test()
+            .assertResult();
+
+            TestHelper.assertUndeliverable(errors, 0, TestException.class);
+        } finally {
+            RxJavaPlugins.reset();
         }
     }
 }

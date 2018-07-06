@@ -14,6 +14,7 @@
 package io.reactivex.completable;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.util.*;
@@ -26,7 +27,7 @@ import org.reactivestreams.*;
 import io.reactivex.*;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.*;
 import io.reactivex.exceptions.*;
 import io.reactivex.functions.*;
 import io.reactivex.internal.disposables.*;
@@ -2599,24 +2600,24 @@ public class CompletableTest {
 
     @Test(timeout = 5000)
     public void subscribeObserverNormal() {
-        TestObserver<Object> ts = new TestObserver<Object>();
+        TestObserver<Object> to = new TestObserver<Object>();
 
-        normal.completable.toObservable().subscribe(ts);
+        normal.completable.toObservable().subscribe(to);
 
-        ts.assertComplete();
-        ts.assertNoValues();
-        ts.assertNoErrors();
+        to.assertComplete();
+        to.assertNoValues();
+        to.assertNoErrors();
     }
 
     @Test(timeout = 5000)
     public void subscribeObserverError() {
-        TestObserver<Object> ts = new TestObserver<Object>();
+        TestObserver<Object> to = new TestObserver<Object>();
 
-        error.completable.toObservable().subscribe(ts);
+        error.completable.toObservable().subscribe(to);
 
-        ts.assertNotComplete();
-        ts.assertNoValues();
-        ts.assertError(TestException.class);
+        to.assertNotComplete();
+        to.assertNoValues();
+        to.assertError(TestException.class);
     }
 
     @Test(timeout = 5000)
@@ -2978,12 +2979,12 @@ public class CompletableTest {
 
     @Test(timeout = 5000)
     public void ambArrayOneFires() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = Completable.ambArray(c1, c2);
 
@@ -2996,25 +2997,25 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps1.onComplete();
+        pp1.onComplete();
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get());
     }
 
     @Test(timeout = 5000)
     public void ambArrayOneFiresError() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = Completable.ambArray(c1, c2);
 
@@ -3027,25 +3028,25 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps1.onError(new TestException());
+        pp1.onError(new TestException());
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get() instanceof TestException);
     }
 
     @Test(timeout = 5000)
     public void ambArraySecondFires() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = Completable.ambArray(c1, c2);
 
@@ -3058,25 +3059,25 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps2.onComplete();
+        pp2.onComplete();
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get());
     }
 
     @Test(timeout = 5000)
     public void ambArraySecondFiresError() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = Completable.ambArray(c1, c2);
 
@@ -3089,13 +3090,13 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps2.onError(new TestException());
+        pp2.onError(new TestException());
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get() instanceof TestException);
     }
@@ -3199,12 +3200,12 @@ public class CompletableTest {
 
     @Test(timeout = 5000)
     public void ambWithArrayOneFires() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = c1.ambWith(c2);
 
@@ -3217,25 +3218,25 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps1.onComplete();
+        pp1.onComplete();
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get());
     }
 
     @Test(timeout = 5000)
     public void ambWithArrayOneFiresError() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = c1.ambWith(c2);
 
@@ -3248,25 +3249,25 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps1.onError(new TestException());
+        pp1.onError(new TestException());
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get() instanceof TestException);
     }
 
     @Test(timeout = 5000)
     public void ambWithArraySecondFires() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = c1.ambWith(c2);
 
@@ -3279,25 +3280,25 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps2.onComplete();
+        pp2.onComplete();
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get());
     }
 
     @Test(timeout = 5000)
     public void ambWithArraySecondFiresError() {
-        PublishProcessor<Object> ps1 = PublishProcessor.create();
-        PublishProcessor<Object> ps2 = PublishProcessor.create();
+        PublishProcessor<Object> pp1 = PublishProcessor.create();
+        PublishProcessor<Object> pp2 = PublishProcessor.create();
 
-        Completable c1 = Completable.fromPublisher(ps1);
+        Completable c1 = Completable.fromPublisher(pp1);
 
-        Completable c2 = Completable.fromPublisher(ps2);
+        Completable c2 = Completable.fromPublisher(pp2);
 
         Completable c = c1.ambWith(c2);
 
@@ -3310,13 +3311,13 @@ public class CompletableTest {
             }
         });
 
-        Assert.assertTrue("First subject no subscribers", ps1.hasSubscribers());
-        Assert.assertTrue("Second subject no subscribers", ps2.hasSubscribers());
+        Assert.assertTrue("First subject no subscribers", pp1.hasSubscribers());
+        Assert.assertTrue("Second subject no subscribers", pp2.hasSubscribers());
 
-        ps2.onError(new TestException());
+        pp2.onError(new TestException());
 
-        Assert.assertFalse("First subject has subscribers", ps1.hasSubscribers());
-        Assert.assertFalse("Second subject has subscribers", ps2.hasSubscribers());
+        Assert.assertFalse("First subject has subscribers", pp1.hasSubscribers());
+        Assert.assertFalse("Second subject has subscribers", pp2.hasSubscribers());
 
         Assert.assertTrue("Not completed", complete.get() instanceof TestException);
     }
@@ -3395,7 +3396,7 @@ public class CompletableTest {
     @Test(timeout = 5000)
     public void startWithObservableNormal() {
         final AtomicBoolean run = new AtomicBoolean();
-        Observable<Object> c = normal.completable
+        Observable<Object> o = normal.completable
                 .startWith(Observable.fromCallable(new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
@@ -3404,32 +3405,32 @@ public class CompletableTest {
                     }
                 }));
 
-        TestObserver<Object> ts = new TestObserver<Object>();
+        TestObserver<Object> to = new TestObserver<Object>();
 
-        c.subscribe(ts);
+        o.subscribe(to);
 
         Assert.assertTrue("Did not start with other", run.get());
         normal.assertSubscriptions(1);
 
-        ts.assertValue(1);
-        ts.assertComplete();
-        ts.assertNoErrors();
+        to.assertValue(1);
+        to.assertComplete();
+        to.assertNoErrors();
     }
 
     @Test(timeout = 5000)
     public void startWithObservableError() {
-        Observable<Object> c = normal.completable
+        Observable<Object> o = normal.completable
                 .startWith(Observable.error(new TestException()));
 
-        TestObserver<Object> ts = new TestObserver<Object>();
+        TestObserver<Object> to = new TestObserver<Object>();
 
-        c.subscribe(ts);
+        o.subscribe(to);
 
         normal.assertSubscriptions(0);
 
-        ts.assertNoValues();
-        ts.assertError(TestException.class);
-        ts.assertNotComplete();
+        to.assertNoValues();
+        to.assertError(TestException.class);
+        to.assertNotComplete();
     }
 
     @Test(expected = NullPointerException.class)
@@ -4428,6 +4429,7 @@ public class CompletableTest {
         Completable.unsafeCreate(new CompletableSource() {
                 @Override
                 public void subscribe(CompletableObserver cs) {
+                    cs.onSubscribe(Disposables.empty());
                     cs.onError(e);
                 }
             })

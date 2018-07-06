@@ -63,6 +63,38 @@ public class FlowableBlockingTest {
     }
 
     @Test
+    public void boundedBlockingSubscribeConsumer() {
+        final List<Integer> list = new ArrayList<Integer>();
+
+        Flowable.range(1, 5)
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer v) throws Exception {
+                        list.add(v);
+                    }
+                }, 128);
+
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), list);
+    }
+
+    @Test
+    public void boundedBlockingSubscribeConsumerBufferExceed() {
+        final List<Integer> list = new ArrayList<Integer>();
+
+        Flowable.range(1, 5)
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer v) throws Exception {
+                        list.add(v);
+                    }
+                }, 3);
+
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), list);
+    }
+
+    @Test
     public void blockingSubscribeConsumerConsumer() {
         final List<Object> list = new ArrayList<Object>();
 
@@ -74,6 +106,38 @@ public class FlowableBlockingTest {
                 list.add(v);
             }
         }, Functions.emptyConsumer());
+
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), list);
+    }
+
+    @Test
+    public void boundedBlockingSubscribeConsumerConsumer() {
+        final List<Object> list = new ArrayList<Object>();
+
+        Flowable.range(1, 5)
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer v) throws Exception {
+                        list.add(v);
+                    }
+                }, Functions.emptyConsumer(), 128);
+
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), list);
+    }
+
+    @Test
+    public void boundedBlockingSubscribeConsumerConsumerBufferExceed() {
+        final List<Object> list = new ArrayList<Object>();
+
+        Flowable.range(1, 5)
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer v) throws Exception {
+                        list.add(v);
+                    }
+                }, Functions.emptyConsumer(), 3);
 
         assertEquals(Arrays.asList(1, 2, 3, 4, 5), list);
     }
@@ -99,6 +163,26 @@ public class FlowableBlockingTest {
     }
 
     @Test
+    public void boundedBlockingSubscribeConsumerConsumerError() {
+        final List<Object> list = new ArrayList<Object>();
+
+        TestException ex = new TestException();
+
+        Consumer<Object> cons = new Consumer<Object>() {
+            @Override
+            public void accept(Object v) throws Exception {
+                list.add(v);
+            }
+        };
+
+        Flowable.range(1, 5).concatWith(Flowable.<Integer>error(ex))
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(cons, cons, 128);
+
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5, ex), list);
+    }
+
+    @Test
     public void blockingSubscribeConsumerConsumerAction() {
         final List<Object> list = new ArrayList<Object>();
 
@@ -119,6 +203,81 @@ public class FlowableBlockingTest {
         });
 
         assertEquals(Arrays.asList(1, 2, 3, 4, 5, 100), list);
+    }
+
+    @Test
+    public void boundedBlockingSubscribeConsumerConsumerAction() {
+        final List<Object> list = new ArrayList<Object>();
+
+        Consumer<Object> cons = new Consumer<Object>() {
+            @Override
+            public void accept(Object v) throws Exception {
+                list.add(v);
+            }
+        };
+
+        Action action = new Action() {
+            @Override
+            public void run() throws Exception {
+                list.add(100);
+            }
+        };
+
+        Flowable.range(1, 5)
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(cons, cons, action, 128);
+
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5, 100), list);
+    }
+
+    @Test
+    public void boundedBlockingSubscribeConsumerConsumerActionBufferExceed() {
+        final List<Object> list = new ArrayList<Object>();
+
+        Consumer<Object> cons = new Consumer<Object>() {
+            @Override
+            public void accept(Object v) throws Exception {
+                list.add(v);
+            }
+        };
+
+        Action action = new Action() {
+            @Override
+            public void run() throws Exception {
+                list.add(100);
+            }
+        };
+
+        Flowable.range(1, 5)
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(cons, cons, action, 3);
+
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5, 100), list);
+    }
+
+    @Test
+    public void boundedBlockingSubscribeConsumerConsumerActionBufferExceedMillionItem() {
+        final List<Object> list = new ArrayList<Object>();
+
+        Consumer<Object> cons = new Consumer<Object>() {
+            @Override
+            public void accept(Object v) throws Exception {
+                list.add(v);
+            }
+        };
+
+        Action action = new Action() {
+            @Override
+            public void run() throws Exception {
+                list.add(1000001);
+            }
+        };
+
+        Flowable.range(1, 1000000)
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(cons, cons, action, 128);
+
+        assertEquals(1000000 + 1, list.size());
     }
 
     @Test
@@ -291,12 +450,12 @@ public class FlowableBlockingTest {
 
     @Test
     public void onCompleteDelayed() {
-        TestSubscriber<Object> to = new TestSubscriber<Object>();
+        TestSubscriber<Object> ts = new TestSubscriber<Object>();
 
         Flowable.empty().delay(100, TimeUnit.MILLISECONDS)
-        .blockingSubscribe(to);
+        .blockingSubscribe(ts);
 
-        to.assertResult();
+        ts.assertResult();
     }
 
     @Test
@@ -306,24 +465,24 @@ public class FlowableBlockingTest {
 
     @Test
     public void disposeUpFront() {
-        TestSubscriber<Object> to = new TestSubscriber<Object>();
-        to.dispose();
-        Flowable.just(1).blockingSubscribe(to);
+        TestSubscriber<Object> ts = new TestSubscriber<Object>();
+        ts.dispose();
+        Flowable.just(1).blockingSubscribe(ts);
 
-        to.assertEmpty();
+        ts.assertEmpty();
     }
 
     @SuppressWarnings("rawtypes")
     @Test
     public void delayed() throws Exception {
-        final TestSubscriber<Object> to = new TestSubscriber<Object>();
+        final TestSubscriber<Object> ts = new TestSubscriber<Object>();
         final Subscriber[] s = { null };
 
         Schedulers.single().scheduleDirect(new Runnable() {
             @SuppressWarnings("unchecked")
             @Override
             public void run() {
-                to.dispose();
+                ts.dispose();
                 s[0].onNext(1);
             }
         }, 200, TimeUnit.MILLISECONDS);
@@ -334,18 +493,18 @@ public class FlowableBlockingTest {
                 observer.onSubscribe(new BooleanSubscription());
                 s[0] = observer;
             }
-        }.blockingSubscribe(to);
+        }.blockingSubscribe(ts);
 
-        while (!to.isDisposed()) {
+        while (!ts.isDisposed()) {
             Thread.sleep(100);
         }
 
-        to.assertEmpty();
+        ts.assertEmpty();
     }
 
     @Test
     public void blockinsSubscribeCancelAsync() {
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < TestHelper.RACE_DEFAULT_LOOPS; i++) {
             final TestSubscriber<Integer> ts = new TestSubscriber<Integer>();
 
             final PublishProcessor<Integer> pp = PublishProcessor.create();

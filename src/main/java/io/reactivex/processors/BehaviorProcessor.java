@@ -34,7 +34,7 @@ import io.reactivex.plugins.RxJavaPlugins;
  * <img width="640" height="460" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/S.BehaviorProcessor.png" alt="">
  * <p>
  * This processor does not have a public constructor by design; a new empty instance of this
- * {@code BehaviorSubject} can be created via the {@link #create()} method and
+ * {@code BehaviorProcessor} can be created via the {@link #create()} method and
  * a new non-empty instance can be created via {@link #createDefault(Object)} (named as such to avoid
  * overload resolution conflict with {@code Flowable.create} that creates a Flowable, not a {@code BehaviorProcessor}).
  * <p>
@@ -81,15 +81,17 @@ import io.reactivex.plugins.RxJavaPlugins;
  * <p>
  * Even though {@code BehaviorProcessor} implements the {@code Subscriber} interface, calling
  * {@code onSubscribe} is not required (<a href="https://github.com/reactive-streams/reactive-streams-jvm#2.12">Rule 2.12</a>)
- * if the processor is used as a standalone source. However, calling {@code onSubscribe} is
- * called after the {@code BehaviorProcessor} reached its terminal state will result in the
+ * if the processor is used as a standalone source. However, calling {@code onSubscribe}
+ * after the {@code BehaviorProcessor} reached its terminal state will result in the
  * given {@code Subscription} being cancelled immediately.
  * <p>
- * Calling {@link #onNext(Object)}, {@link #onError(Throwable)} and {@link #onComplete()}
- * is still required to be serialized (called from the same thread or called non-overlappingly from different threads
+ * Calling {@link #onNext(Object)}, {@link #offer(Object)}, {@link #onError(Throwable)} and {@link #onComplete()}
+ * is required to be serialized (called from the same thread or called non-overlappingly from different threads
  * through external means of serialization). The {@link #toSerialized()} method available to all {@code FlowableProcessor}s
  * provides such serialization and also protects against reentrance (i.e., when a downstream {@code Subscriber}
- * consuming this processor also wants to call {@link #onNext(Object)} on this processor recursively.
+ * consuming this processor also wants to call {@link #onNext(Object)} on this processor recursively).
+ * Note that serializing over {@link #offer(Object)} is not supported through {@code toSerialized()} because it is a method
+ * available on the {@code PublishProcessor} and {@code BehaviorProcessor} classes only.
  * <p>
  * This {@code BehaviorProcessor} supports the standard state-peeking methods {@link #hasComplete()}, {@link #hasThrowable()},
  * {@link #getThrowable()} and {@link #hasSubscribers()} as well as means to read the latest observed value
@@ -112,39 +114,49 @@ import io.reactivex.plugins.RxJavaPlugins;
  *  <dt><b>Scheduler:</b></dt>
  *  <dd>{@code BehaviorProcessor} does not operate by default on a particular {@link io.reactivex.Scheduler} and
  *  the {@code Subscriber}s get notified on the thread the respective {@code onXXX} methods were invoked.</dd>
+ *  <dt><b>Error handling:</b></dt>
+ *  <dd>When the {@link #onError(Throwable)} is called, the {@code BehaviorProcessor} enters into a terminal state
+ *  and emits the same {@code Throwable} instance to the last set of {@code Subscriber}s. During this emission,
+ *  if one or more {@code Subscriber}s cancel their respective {@code Subscription}s, the
+ *  {@code Throwable} is delivered to the global error handler via
+ *  {@link io.reactivex.plugins.RxJavaPlugins#onError(Throwable)} (multiple times if multiple {@code Subscriber}s
+ *  cancel at once).
+ *  If there were no {@code Subscriber}s subscribed to this {@code BehaviorProcessor} when the {@code onError()}
+ *  was called, the global error handler is not invoked.
+ *  </dd>
  * </dl>
  * <p>
  * Example usage:
  * <pre> {@code
 
-  // observer will receive all events.
+  // subscriber will receive all events.
   BehaviorProcessor<Object> processor = BehaviorProcessor.create("default");
-  processor.subscribe(observer);
+  processor.subscribe(subscriber);
   processor.onNext("one");
   processor.onNext("two");
   processor.onNext("three");
 
-  // observer will receive the "one", "two" and "three" events, but not "zero"
+  // subscriber will receive the "one", "two" and "three" events, but not "zero"
   BehaviorProcessor<Object> processor = BehaviorProcessor.create("default");
   processor.onNext("zero");
   processor.onNext("one");
-  processor.subscribe(observer);
+  processor.subscribe(subscriber);
   processor.onNext("two");
   processor.onNext("three");
 
-  // observer will receive only onComplete
+  // subscriber will receive only onComplete
   BehaviorProcessor<Object> processor = BehaviorProcessor.create("default");
   processor.onNext("zero");
   processor.onNext("one");
   processor.onComplete();
-  processor.subscribe(observer);
+  processor.subscribe(subscriber);
 
-  // observer will receive only onError
+  // subscriber will receive only onError
   BehaviorProcessor<Object> processor = BehaviorProcessor.create("default");
   processor.onNext("zero");
   processor.onNext("one");
   processor.onError(new RuntimeException("error"));
-  processor.subscribe(observer);
+  processor.subscribe(subscriber);
   } </pre>
  *
  * @param <T>
@@ -179,6 +191,7 @@ public final class BehaviorProcessor<T> extends FlowableProcessor<T> {
      * @return the constructed {@link BehaviorProcessor}
      */
     @CheckReturnValue
+    @NonNull
     public static <T> BehaviorProcessor<T> create() {
         return new BehaviorProcessor<T>();
     }
@@ -195,6 +208,7 @@ public final class BehaviorProcessor<T> extends FlowableProcessor<T> {
      * @return the constructed {@link BehaviorProcessor}
      */
     @CheckReturnValue
+    @NonNull
     public static <T> BehaviorProcessor<T> createDefault(T defaultValue) {
         ObjectHelper.requireNonNull(defaultValue, "defaultValue is null");
         return new BehaviorProcessor<T>(defaultValue);
@@ -338,6 +352,7 @@ public final class BehaviorProcessor<T> extends FlowableProcessor<T> {
     }
 
     @Override
+    @Nullable
     public Throwable getThrowable() {
         Object o = value.get();
         if (NotificationLite.isError(o)) {
@@ -351,6 +366,7 @@ public final class BehaviorProcessor<T> extends FlowableProcessor<T> {
      * <p>The method is thread-safe.
      * @return a single value the BehaviorProcessor currently has or null if no such value exists
      */
+    @Nullable
     public T getValue() {
         Object o = value.get();
         if (NotificationLite.isComplete(o) || NotificationLite.isError(o)) {
@@ -363,7 +379,9 @@ public final class BehaviorProcessor<T> extends FlowableProcessor<T> {
      * Returns an Object array containing snapshot all values of the BehaviorProcessor.
      * <p>The method is thread-safe.
      * @return the array containing the snapshot of all values of the BehaviorProcessor
+     * @deprecated in 2.1.14; put the result of {@link #getValue()} into an array manually, will be removed in 3.x
      */
+    @Deprecated
     public Object[] getValues() {
         @SuppressWarnings("unchecked")
         T[] a = (T[])EMPTY_ARRAY;
@@ -382,7 +400,9 @@ public final class BehaviorProcessor<T> extends FlowableProcessor<T> {
      * <p>The method is thread-safe.
      * @param array the target array to copy values into if it fits
      * @return the given array if the values fit into it or a new array containing all values
+     * @deprecated in 2.1.14; put the result of {@link #getValue()} into an array manually, will be removed in 3.x
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public T[] getValues(T[] array) {
         Object o = value.get();
@@ -449,10 +469,10 @@ public final class BehaviorProcessor<T> extends FlowableProcessor<T> {
     void remove(BehaviorSubscription<T> rs) {
         for (;;) {
             BehaviorSubscription<T>[] a = subscribers.get();
-            if (a == TERMINATED || a == EMPTY) {
+            int len = a.length;
+            if (len == 0) {
                 return;
             }
-            int len = a.length;
             int j = -1;
             for (int i = 0; i < len; i++) {
                 if (a[i] == rs) {

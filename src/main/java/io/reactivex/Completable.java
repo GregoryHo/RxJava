@@ -24,9 +24,8 @@ import io.reactivex.internal.functions.*;
 import io.reactivex.internal.fuseable.*;
 import io.reactivex.internal.observers.*;
 import io.reactivex.internal.operators.completable.*;
-import io.reactivex.internal.operators.flowable.FlowableDelaySubscriptionOther;
 import io.reactivex.internal.operators.maybe.*;
-import io.reactivex.internal.operators.observable.ObservableDelaySubscriptionOther;
+import io.reactivex.internal.operators.mixed.*;
 import io.reactivex.internal.operators.single.SingleDelayWithCompletable;
 import io.reactivex.internal.util.ExceptionHelper;
 import io.reactivex.observers.TestObserver;
@@ -451,10 +450,23 @@ public abstract class Completable implements CompletableSource {
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code mergeArray} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>If any of the source {@code CompletableSource}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Completable} terminates with that {@code Throwable} and all other source {@code CompletableSource}s are cancelled.
+     *  If more than one {@code CompletableSource} signals an error, the resulting {@code Completable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Completable} has been cancelled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeArrayDelayError(CompletableSource...)} to merge sources and terminate only when all source {@code CompletableSource}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      * @param sources the iterable sequence of sources.
      * @return the new Completable instance
      * @throws NullPointerException if sources is null
+     * @see #mergeArrayDelayError(CompletableSource...)
      */
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -475,10 +487,24 @@ public abstract class Completable implements CompletableSource {
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code CompletableSource}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Completable} terminates with that {@code Throwable} and all other source {@code CompletableSource}s are cancelled.
+     *  If more than one {@code CompletableSource} signals an error, the resulting {@code Completable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Completable} has been cancelled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Iterable)} to merge sources and terminate only when all source {@code CompletableSource}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      * @param sources the iterable sequence of sources.
      * @return the new Completable instance
      * @throws NullPointerException if sources is null
+     * @see #mergeDelayError(Iterable)
      */
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -496,10 +522,23 @@ public abstract class Completable implements CompletableSource {
      *  and expects the other {@code Publisher} to honor it as well.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>If any of the source {@code CompletableSource}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Completable} terminates with that {@code Throwable} and all other source {@code CompletableSource}s are cancelled.
+     *  If more than one {@code CompletableSource} signals an error, the resulting {@code Completable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Completable} has been cancelled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Publisher)} to merge sources and terminate only when all source {@code CompletableSource}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      * @param sources the iterable sequence of sources.
      * @return the new Completable instance
      * @throws NullPointerException if sources is null
+     * @see #mergeDelayError(Publisher)
      */
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -517,12 +556,25 @@ public abstract class Completable implements CompletableSource {
      *  and expects the other {@code Publisher} to honor it as well.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>If any of the source {@code CompletableSource}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Completable} terminates with that {@code Throwable} and all other source {@code CompletableSource}s are cancelled.
+     *  If more than one {@code CompletableSource} signals an error, the resulting {@code Completable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Completable} has been cancelled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Publisher, int)} to merge sources and terminate only when all source {@code CompletableSource}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      * @param sources the iterable sequence of sources.
      * @param maxConcurrency the maximum number of concurrent subscriptions
      * @return the new Completable instance
      * @throws NullPointerException if sources is null
      * @throws IllegalArgumentException if maxConcurrency is less than 1
+     * @see #mergeDelayError(Publisher, int)
      */
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -819,7 +871,7 @@ public abstract class Completable implements CompletableSource {
     @SchedulerSupport(SchedulerSupport.NONE)
     public final <T> Observable<T> andThen(ObservableSource<T> next) {
         ObjectHelper.requireNonNull(next, "next is null");
-        return RxJavaPlugins.onAssembly(new ObservableDelaySubscriptionOther<T, Object>(next, toObservable()));
+        return RxJavaPlugins.onAssembly(new CompletableAndThenObservable<T>(this, next));
     }
 
     /**
@@ -844,7 +896,7 @@ public abstract class Completable implements CompletableSource {
     @SchedulerSupport(SchedulerSupport.NONE)
     public final <T> Flowable<T> andThen(Publisher<T> next) {
         ObjectHelper.requireNonNull(next, "next is null");
-        return RxJavaPlugins.onAssembly(new FlowableDelaySubscriptionOther<T, Object>(next, toFlowable()));
+        return RxJavaPlugins.onAssembly(new CompletableAndThenPublisher<T>(this, next));
     }
 
     /**
@@ -936,6 +988,10 @@ public abstract class Completable implements CompletableSource {
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingAwait} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      * @throws RuntimeException wrapping an InterruptedException if the current thread is interrupted
      */
@@ -952,6 +1008,10 @@ public abstract class Completable implements CompletableSource {
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingAwait} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      * @param timeout the timeout value
      * @param unit the timeout unit
@@ -1253,7 +1313,7 @@ public abstract class Completable implements CompletableSource {
 
     /**
      * Returns a Completable instance that calls the given onTerminate callback just before this Completable
-     * completes normally or with an exception
+     * completes normally or with an exception.
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code doOnTerminate} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -1272,7 +1332,7 @@ public abstract class Completable implements CompletableSource {
 
     /**
      * Returns a Completable instance that calls the given onTerminate callback after this Completable
-     * completes normally or with an exception
+     * completes normally or with an exception.
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code doAfterTerminate} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -1316,15 +1376,132 @@ public abstract class Completable implements CompletableSource {
     }
 
     /**
-     * <strong>Advanced use without safeguards:</strong> lifts a CompletableOperator
-     * transformation into the chain of Completables.
+     * <strong>This method requires advanced knowledge about building operators, please consider
+     * other standard composition methods first;</strong>
+     * Returns a {@code Completable} which, when subscribed to, invokes the {@link CompletableOperator#apply(CompletableObserver) apply(CompletableObserver)} method
+     * of the provided {@link CompletableOperator} for each individual downstream {@link Completable} and allows the
+     * insertion of a custom operator by accessing the downstream's {@link CompletableObserver} during this subscription phase
+     * and providing a new {@code CompletableObserver}, containing the custom operator's intended business logic, that will be
+     * used in the subscription process going further upstream.
+     * <p>
+     * Generally, such a new {@code CompletableObserver} will wrap the downstream's {@code CompletableObserver} and forwards the
+     * {@code onError} and {@code onComplete} events from the upstream directly or according to the
+     * emission pattern the custom operator's business logic requires. In addition, such operator can intercept the
+     * flow control calls of {@code dispose} and {@code isDisposed} that would have traveled upstream and perform
+     * additional actions depending on the same business logic requirements.
+     * <p>
+     * Example:
+     * <pre><code>
+     * // Step 1: Create the consumer type that will be returned by the CompletableOperator.apply():
+     * 
+     * public final class CustomCompletableObserver implements CompletableObserver, Disposable {
+     *
+     *     // The downstream's CompletableObserver that will receive the onXXX events
+     *     final CompletableObserver downstream;
+     *
+     *     // The connection to the upstream source that will call this class' onXXX methods
+     *     Disposable upstream;
+     *
+     *     // The constructor takes the downstream subscriber and usually any other parameters
+     *     public CustomCompletableObserver(CompletableObserver downstream) {
+     *         this.downstream = downstream;
+     *     }
+     *
+     *     // In the subscription phase, the upstream sends a Disposable to this class
+     *     // and subsequently this class has to send a Disposable to the downstream.
+     *     // Note that relaying the upstream's Disposable directly is not allowed in RxJava
+     *     &#64;Override
+     *     public void onSubscribe(Disposable s) {
+     *         if (upstream != null) {
+     *             s.cancel();
+     *         } else {
+     *             upstream = s;
+     *             downstream.onSubscribe(this);
+     *         }
+     *     }
+     *
+     *     // Some operators may handle the upstream's error while others
+     *     // could just forward it to the downstream.
+     *     &#64;Override
+     *     public void onError(Throwable throwable) {
+     *         downstream.onError(throwable);
+     *     }
+     *
+     *     // When the upstream completes, usually the downstream should complete as well.
+     *     // In completable, this could also mean doing some side-effects
+     *     &#64;Override
+     *     public void onComplete() {
+     *         System.out.println("Sequence completed");
+     *         downstream.onComplete();
+     *     }
+     *
+     *     // Some operators may use their own resources which should be cleaned up if
+     *     // the downstream disposes the flow before it completed. Operators without
+     *     // resources can simply forward the dispose to the upstream.
+     *     // In some cases, a disposed flag may be set by this method so that other parts
+     *     // of this class may detect the dispose and stop sending events
+     *     // to the downstream.
+     *     &#64;Override
+     *     public void dispose() {
+     *         upstream.dispose();
+     *     }
+     *
+     *     // Some operators may simply forward the call to the upstream while others
+     *     // can return the disposed flag set in dispose().
+     *     &#64;Override
+     *     public boolean isDisposed() {
+     *         return upstream.isDisposed();
+     *     }
+     * }
+     *
+     * // Step 2: Create a class that implements the CompletableOperator interface and
+     * //         returns the custom consumer type from above in its apply() method.
+     * //         Such class may define additional parameters to be submitted to
+     * //         the custom consumer type.
+     *
+     * final class CustomCompletableOperator implements CompletableOperator {
+     *     &#64;Override
+     *     public CompletableObserver apply(CompletableObserver upstream) {
+     *         return new CustomCompletableObserver(upstream);
+     *     }
+     * }
+     *
+     * // Step 3: Apply the custom operator via lift() in a flow by creating an instance of it
+     * //         or reusing an existing one.
+     *
+     * Completable.complete()
+     * .lift(new CustomCompletableOperator())
+     * .test()
+     * .assertResult();
+     * </code></pre>
+     * <p>
+     * Creating custom operators can be complicated and it is recommended one consults the
+     * <a href="https://github.com/ReactiveX/RxJava/wiki/Writing-operators-for-2.0">RxJava wiki: Writing operators</a> page about
+     * the tools, requirements, rules, considerations and pitfalls of implementing them.
+     * <p>
+     * Note that implementing custom operators via this {@code lift()} method adds slightly more overhead by requiring
+     * an additional allocation and indirection per assembled flows. Instead, extending the abstract {@code Completable}
+     * class and creating a {@link CompletableTransformer} with it is recommended.
+     * <p>
+     * Note also that it is not possible to stop the subscription phase in {@code lift()} as the {@code apply()} method
+     * requires a non-null {@code CompletableObserver} instance to be returned, which is then unconditionally subscribed to
+     * the upstream {@code Completable}. For example, if the operator decided there is no reason to subscribe to the
+     * upstream source because of some optimization possibility or a failure to prepare the operator, it still has to
+     * return a {@code CompletableObserver} that should immediately dispose the upstream's {@code Disposable} in its
+     * {@code onSubscribe} method. Again, using a {@code CompletableTransformer} and extending the {@code Completable} is
+     * a better option as {@link #subscribeActual} can decide to not subscribe to its upstream after all.
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code lift} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code lift} does not operate by default on a particular {@link Scheduler}, however, the
+     *  {@link CompletableOperator} may use a {@code Scheduler} to support its own asynchronous behavior.</dd>
      * </dl>
-     * @param onLift the lifting function that transforms the child subscriber with a parent subscriber.
+     *
+     * @param onLift the {@link CompletableOperator} that receives the downstream's {@code CompletableObserver} and should return
+     *               a {@code CompletableObserver} with custom behavior to be used as the consumer for the current
+     *               {@code Completable}.
      * @return the new Completable instance
-     * @throws NullPointerException if onLift is null
+     * @see <a href="https://github.com/ReactiveX/RxJava/wiki/Writing-operators-for-2.0">RxJava wiki: Writing operators</a>
+     * @see #compose(CompletableTransformer)
      */
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -1749,8 +1926,11 @@ public abstract class Completable implements CompletableSource {
     }
 
     /**
-     * Implement this to handle the incoming CompletableObserver and
+     * Implement this method to handle the incoming {@link CompletableObserver}s and
      * perform the business logic in your operator.
+     * <p>There is no need to call any of the plugin hooks on the current {@code Completable} instance or
+     * the {@code CompletableObserver}; all hooks and basic safeguards have been
+     * applied by {@link #subscribe(CompletableObserver)} before this method gets called.
      * @param s the CompletableObserver instance, never null
      */
     protected abstract void subscribeActual(CompletableObserver s);
@@ -2012,7 +2192,8 @@ public abstract class Completable implements CompletableSource {
      * </dl>
      *
      * @param <T> the value type
-     * @return a {@link Maybe} that emits a single item T or an error.
+     * @return a {@link Maybe} that only calls {@code onComplete} or {@code onError}, based on which one is
+     *         called by the source Completable.
      */
     @CheckReturnValue
     @SuppressWarnings("unchecked")
@@ -2084,7 +2265,7 @@ public abstract class Completable implements CompletableSource {
 
     /**
      * Returns a Completable which makes sure when a subscriber cancels the subscription, the
-     * dispose is called on the specified scheduler
+     * dispose is called on the specified scheduler.
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code unsubscribeOn} calls dispose() of the upstream on the {@link Scheduler} you specify.</dd>
@@ -2116,9 +2297,9 @@ public abstract class Completable implements CompletableSource {
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
     public final TestObserver<Void> test() {
-        TestObserver<Void> ts = new TestObserver<Void>();
-        subscribe(ts);
-        return ts;
+        TestObserver<Void> to = new TestObserver<Void>();
+        subscribe(to);
+        return to;
     }
 
     /**
@@ -2135,12 +2316,12 @@ public abstract class Completable implements CompletableSource {
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
     public final TestObserver<Void> test(boolean cancelled) {
-        TestObserver<Void> ts = new TestObserver<Void>();
+        TestObserver<Void> to = new TestObserver<Void>();
 
         if (cancelled) {
-            ts.cancel();
+            to.cancel();
         }
-        subscribe(ts);
-        return ts;
+        subscribe(to);
+        return to;
     }
 }

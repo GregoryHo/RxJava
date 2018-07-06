@@ -37,7 +37,7 @@ public class FlowableRepeatTest {
 
     @Test(timeout = 2000)
     public void testRepetition() {
-        int NUM = 10;
+        int num = 10;
         final AtomicInteger count = new AtomicInteger();
         int value = Flowable.unsafeCreate(new Publisher<Integer>() {
 
@@ -47,9 +47,9 @@ public class FlowableRepeatTest {
                 o.onComplete();
             }
         }).repeat().subscribeOn(Schedulers.computation())
-        .take(NUM).blockingLast();
+        .take(num).blockingLast();
 
-        assertEquals(NUM, value);
+        assertEquals(num, value);
     }
 
     @Test(timeout = 2000)
@@ -257,6 +257,19 @@ public class FlowableRepeatTest {
         .take(5)
         .test()
         .assertResult(1, 1, 1, 1, 1);
+    }
+
+    @Test
+    public void repeatUntilCancel() {
+        Flowable.just(1)
+        .repeatUntil(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() throws Exception {
+                return true;
+            }
+        })
+        .test(2L, true)
+        .assertEmpty();
     }
 
     @Test

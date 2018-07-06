@@ -25,6 +25,7 @@ import io.reactivex.functions.*;
 import io.reactivex.internal.functions.*;
 import io.reactivex.internal.fuseable.*;
 import io.reactivex.internal.operators.flowable.*;
+import io.reactivex.internal.operators.mixed.*;
 import io.reactivex.internal.operators.observable.ObservableFromPublisher;
 import io.reactivex.internal.schedulers.ImmediateThinScheduler;
 import io.reactivex.internal.subscribers.*;
@@ -148,7 +149,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided array of source Publishers is empty, the resulting sequence completes immediately without emitting
@@ -192,7 +193,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If there are no source Publishers provided, the resulting sequence completes immediately without emitting
@@ -236,7 +237,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided array of source Publishers is empty, the resulting sequence completes immediately without emitting
@@ -288,7 +289,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided iterable of source Publishers is empty, the resulting sequence completes immediately without emitting
@@ -333,7 +334,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided iterable of source Publishers is empty, the resulting sequence completes immediately without emitting any items and
@@ -383,7 +384,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided array of source Publishers is empty, the resulting sequence completes immediately without emitting
@@ -429,7 +430,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If there are no source Publishers provided, the resulting sequence completes immediately without emitting
@@ -475,7 +476,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If there are no source Publishers provided, the resulting sequence completes immediately without emitting
@@ -523,7 +524,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided array of source Publishers is empty, the resulting sequence completes immediately without emitting
@@ -577,7 +578,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided iterable of source Publishers is empty, the resulting sequence completes immediately without emitting
@@ -623,7 +624,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * {@code Function<Integer[], R>} passed to the method would trigger a {@code ClassCastException}.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * If the provided iterable of source Publishers is empty, the resulting sequence completes immediately without emitting
@@ -669,7 +670,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -714,7 +715,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -763,7 +764,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -816,7 +817,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -874,7 +875,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -936,7 +937,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -1003,7 +1004,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -1074,7 +1075,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * aggregation is defined by a specified function.
      * <p>
      * If any of the sources never produces an item but only terminates (normally or with an error), the
-     * resulting sequence terminates immediately (normally or with all the errors accumulated till that point).
+     * resulting sequence terminates immediately (normally or with all the errors accumulated until that point).
      * If that input source is also synchronous, other sources after it will not be subscribed to.
      * <p>
      * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/combineLatest.png" alt="">
@@ -1181,7 +1182,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream. Both the outer and inner {@code Publisher}
      *  sources are expected to honor backpressure as well. If the outer violates this, a
-     *  {@code MissingBackpressureException} is signalled. If any of the inner {@code Publisher}s violates
+     *  {@code MissingBackpressureException} is signaled. If any of the inner {@code Publisher}s violates
      *  this, it <em>may</em> throw an {@code IllegalStateException} when an inner {@code Publisher} completes.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code concat} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -1210,7 +1211,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream. Both the outer and inner {@code Publisher}
      *  sources are expected to honor backpressure as well. If the outer violates this, a
-     *  {@code MissingBackpressureException} is signalled. If any of the inner {@code Publisher}s violates
+     *  {@code MissingBackpressureException} is signaled. If any of the inner {@code Publisher}s violates
      *  this, it <em>may</em> throw an {@code IllegalStateException} when an inner {@code Publisher} completes.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code concat} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -1458,7 +1459,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param <T> the value type
      * @param sources a sequence of Publishers that need to be eagerly concatenated
      * @param maxConcurrency the maximum number of concurrent subscriptions at a time, Integer.MAX_VALUE
-     *                       is interpreted as indication to subscribe to all sources at once
+     *                       is interpreted as an indication to subscribe to all sources at once
      * @param prefetch the number of elements to prefetch from each Publisher source
      * @return the new Publisher instance with the specified concatenation behavior
      * @since 2.0
@@ -1482,7 +1483,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream. Both the outer and inner {@code Publisher}
      *  sources are expected to honor backpressure as well. If the outer violates this, a
-     *  {@code MissingBackpressureException} is signalled. If any of the inner {@code Publisher}s violates
+     *  {@code MissingBackpressureException} is signaled. If any of the inner {@code Publisher}s violates
      *  this, it <em>may</em> throw an {@code IllegalStateException} when an inner {@code Publisher} completes.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code concatDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -1729,7 +1730,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <p>
      * <img width="640" height="340" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/defer.png" alt="">
      * <p>
-     * The defer Subscriber allows you to defer or delay emitting items from a Publisher until such time as an
+     * The defer Subscriber allows you to defer or delay emitting items from a Publisher until such time as a
      * Subscriber subscribes to the Publisher. This allows a {@link Subscriber} to easily obtain updates or a
      * refreshed version of the sequence.
      * <dl>
@@ -1910,12 +1911,12 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="315" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/from.Future.png" alt="">
      * <p>
      * You can convert any object that supports the {@link Future} interface into a Publisher that emits the
-     * return value of the {@link Future#get} method of that object, by passing the object into the {@code from}
+     * return value of the {@link Future#get} method of that object by passing the object into the {@code from}
      * method.
      * <p>
      * <em>Important note:</em> This Publisher is blocking on the thread it gets subscribed on; you cannot cancel it.
      * <p>
-     * Unlike 1.x, cancelling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
+     * Unlike 1.x, canceling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
      * cancellation effect: {@code futurePublisher.doOnCancel(() -> future.cancel(true));}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
@@ -1946,10 +1947,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="315" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/from.Future.png" alt="">
      * <p>
      * You can convert any object that supports the {@link Future} interface into a Publisher that emits the
-     * return value of the {@link Future#get} method of that object, by passing the object into the {@code fromFuture}
+     * return value of the {@link Future#get} method of that object by passing the object into the {@code fromFuture}
      * method.
      * <p>
-     * Unlike 1.x, cancelling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
+     * Unlike 1.x, canceling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
      * cancellation effect: {@code futurePublisher.doOnCancel(() -> future.cancel(true));}.
      * <p>
      * <em>Important note:</em> This Publisher is blocking on the thread it gets subscribed on; you cannot cancel it.
@@ -1987,10 +1988,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="315" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/from.Future.png" alt="">
      * <p>
      * You can convert any object that supports the {@link Future} interface into a Publisher that emits the
-     * return value of the {@link Future#get} method of that object, by passing the object into the {@code from}
+     * return value of the {@link Future#get} method of that object by passing the object into the {@code from}
      * method.
      * <p>
-     * Unlike 1.x, cancelling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
+     * Unlike 1.x, canceling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
      * cancellation effect: {@code futurePublisher.doOnCancel(() -> future.cancel(true));}.
      * <p>
      * <em>Important note:</em> This Publisher is blocking; you cannot cancel it.
@@ -2031,10 +2032,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="315" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/from.Future.s.png" alt="">
      * <p>
      * You can convert any object that supports the {@link Future} interface into a Publisher that emits the
-     * return value of the {@link Future#get} method of that object, by passing the object into the {@code from}
+     * return value of the {@link Future#get} method of that object by passing the object into the {@code from}
      * method.
      * <p>
-     * Unlike 1.x, cancelling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
+     * Unlike 1.x, canceling the Flowable won't cancel the future. If necessary, one can use composition to achieve the
      * cancellation effect: {@code futurePublisher.doOnCancel(() -> future.cancel(true));}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
@@ -2115,7 +2116,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param <T> the value type of the flow
      * @param source the Publisher to convert
      * @return the new Flowable instance
-     * @throws NullPointerException if publisher is null
+     * @throws NullPointerException if the {@code source} {@code Publisher} is null
      * @see #create(FlowableOnSubscribe, BackpressureStrategy)
      */
     @CheckReturnValue
@@ -2143,7 +2144,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param <T> the generated value type
      * @param generator the Consumer called whenever a particular downstream Subscriber has
      * requested a value. The callback then should call {@code onNext}, {@code onError} or
-     * {@code onComplete} to signal a value or a terminal event. Signalling multiple {@code onNext}
+     * {@code onComplete} to signal a value or a terminal event. Signaling multiple {@code onNext}
      * in a call will make the operator signal {@code IllegalStateException}.
      * @return the new Flowable instance
      */
@@ -2171,7 +2172,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param initialState the Callable to generate the initial state for each Subscriber
      * @param generator the Consumer called with the current state whenever a particular downstream Subscriber has
      * requested a value. The callback then should call {@code onNext}, {@code onError} or
-     * {@code onComplete} to signal a value or a terminal event. Signalling multiple {@code onNext}
+     * {@code onComplete} to signal a value or a terminal event. Signaling multiple {@code onNext}
      * in a call will make the operator signal {@code IllegalStateException}.
      * @return the new Flowable instance
      */
@@ -2198,10 +2199,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param initialState the Callable to generate the initial state for each Subscriber
      * @param generator the Consumer called with the current state whenever a particular downstream Subscriber has
      * requested a value. The callback then should call {@code onNext}, {@code onError} or
-     * {@code onComplete} to signal a value or a terminal event. Signalling multiple {@code onNext}
+     * {@code onComplete} to signal a value or a terminal event. Signaling multiple {@code onNext}
      * in a call will make the operator signal {@code IllegalStateException}.
      * @param disposeState the Consumer that is called with the current state when the generator
-     * terminates the sequence or it gets cancelled
+     * terminates the sequence or it gets canceled
      * @return the new Flowable instance
      */
     @CheckReturnValue
@@ -2228,7 +2229,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param generator the Function called with the current state whenever a particular downstream Subscriber has
      * requested a value. The callback then should call {@code onNext}, {@code onError} or
      * {@code onComplete} to signal a value or a terminal event and should return a (new) state for
-     * the next invocation. Signalling multiple {@code onNext}
+     * the next invocation. Signaling multiple {@code onNext}
      * in a call will make the operator signal {@code IllegalStateException}.
      * @return the new Flowable instance
      */
@@ -2254,10 +2255,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param generator the Function called with the current state whenever a particular downstream Subscriber has
      * requested a value. The callback then should call {@code onNext}, {@code onError} or
      * {@code onComplete} to signal a value or a terminal event and should return a (new) state for
-     * the next invocation. Signalling multiple {@code onNext}
+     * the next invocation. Signaling multiple {@code onNext}
      * in a call will make the operator signal {@code IllegalStateException}.
      * @param disposeState the Consumer that is called with the current state when the generator
-     * terminates the sequence or it gets cancelled
+     * terminates the sequence or it gets canceled
      * @return the new Flowable instance
      */
     @CheckReturnValue
@@ -2271,7 +2272,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Flowable that emits a {@code 0L} after the {@code initialDelay} and ever increasing numbers
+     * Returns a Flowable that emits a {@code 0L} after the {@code initialDelay} and ever-increasing numbers
      * after each {@code period} of time thereafter.
      * <p>
      * <img width="640" height="200" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/timer.p.png" alt="">
@@ -2290,7 +2291,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            the period of time between emissions of the subsequent numbers
      * @param unit
      *            the time unit for both {@code initialDelay} and {@code period}
-     * @return a Flowable that emits a 0L after the {@code initialDelay} and ever increasing numbers after
+     * @return a Flowable that emits a 0L after the {@code initialDelay} and ever-increasing numbers after
      *         each {@code period} of time thereafter
      * @see <a href="http://reactivex.io/documentation/operators/interval.html">ReactiveX operators documentation: Interval</a>
      * @since 1.0.12
@@ -2303,7 +2304,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Flowable that emits a {@code 0L} after the {@code initialDelay} and ever increasing numbers
+     * Returns a Flowable that emits a {@code 0L} after the {@code initialDelay} and ever-increasing numbers
      * after each {@code period} of time thereafter, on a specified {@link Scheduler}.
      * <p>
      * <img width="640" height="200" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/timer.ps.png" alt="">
@@ -2324,7 +2325,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            the time unit for both {@code initialDelay} and {@code period}
      * @param scheduler
      *            the Scheduler on which the waiting happens and items are emitted
-     * @return a Flowable that emits a 0L after the {@code initialDelay} and ever increasing numbers after
+     * @return a Flowable that emits a 0L after the {@code initialDelay} and ever-increasing numbers after
      *         each {@code period} of time thereafter, while running on the given Scheduler
      * @see <a href="http://reactivex.io/documentation/operators/interval.html">ReactiveX operators documentation: Interval</a>
      * @since 1.0.12
@@ -2406,7 +2407,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * </dl>
      * @param start that start value of the range
      * @param count the number of values to emit in total, if zero, the operator emits an onComplete after the initial delay.
-     * @param initialDelay the initial delay before signalling the first value (the start)
+     * @param initialDelay the initial delay before signaling the first value (the start)
      * @param period the period between subsequent values
      * @param unit the unit of measure of the initialDelay and period amounts
      * @return the new Flowable instance
@@ -2430,7 +2431,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * </dl>
      * @param start that start value of the range
      * @param count the number of values to emit in total, if zero, the operator emits an onComplete after the initial delay.
-     * @param initialDelay the initial delay before signalling the first value (the start)
+     * @param initialDelay the initial delay before signaling the first value (the start)
      * @param period the period between subsequent values
      * @param unit the unit of measure of the initialDelay and period amounts
      * @param scheduler the target scheduler where the values and terminal signals will be emitted
@@ -2458,17 +2459,17 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Flowable that emits a single item and then completes.
+     * Returns a Flowable that signals the given (constant reference) item and then completes.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/just.png" alt="">
      * <p>
-     * To convert any object into a Publisher that emits that object, pass that object into the {@code just}
-     * method.
+     * Note that the item is taken and re-emitted as is and not computed by any means by {@code just}. Use {@link #fromCallable(Callable)}
+     * to generate a single item on demand (when {@code Subscriber}s subscribe to it).
      * <p>
-     * This is similar to the {@link #fromArray(java.lang.Object[])} method, except that {@code from} will convert
-     * an {@link Iterable} object into a Publisher that emits each of the items in the Iterable, one at a
-     * time, while the {@code just} method converts an Iterable into a Publisher that emits the entire
-     * Iterable as a single item.
+     * See the multi-parameter overloads of {@code just} to emit more than one (constant reference) items one after the other.
+     * Use {@link #fromArray(Object...)} to emit an arbitrary number of items that are known upfront.
+     * <p>
+     * To emit the items of an {@link Iterable} sequence (such as a {@link java.util.List}), use {@link #fromIterable(Iterable)}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream.</dd>
@@ -2482,6 +2483,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            the type of that item
      * @return a Flowable that emits {@code value} as a single item and then completes
      * @see <a href="http://reactivex.io/documentation/operators/just.html">ReactiveX operators documentation: Just</a>
+     * @see #just(Object, Object)
+     * @see #fromCallable(Callable)
+     * @see #fromArray(Object...)
+     * @see #fromIterable(Iterable)
      */
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.FULL)
@@ -2892,6 +2897,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Iterable, int, int)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -2906,6 +2924,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @throws IllegalArgumentException
      *             if {@code maxConcurrency} is less than or equal to 0
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Iterable, int, int)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -2929,6 +2948,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code mergeArray} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeArrayDelayError(int, int, Publisher[])} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -2943,6 +2975,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @throws IllegalArgumentException
      *             if {@code maxConcurrency} is less than or equal to 0
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeArrayDelayError(int, int, Publisher...)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -2965,6 +2998,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Iterable)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -2973,6 +3019,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @return a Flowable that emits items that are the result of flattening the items emitted by the
      *         Publishers in the Iterable
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Iterable)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -2996,6 +3043,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Iterable, int)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -3008,6 +3068,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @throws IllegalArgumentException
      *             if {@code maxConcurrency} is less than or equal to 0
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Iterable, int)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -3032,6 +3093,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Publisher)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -3040,6 +3114,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @return a Flowable that emits items that are the result of flattening the Publishers emitted by the
      *         {@code source} Publisher
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Publisher)
      */
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.FULL)
@@ -3063,6 +3138,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Publisher, int)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -3075,6 +3163,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @throws IllegalArgumentException
      *             if {@code maxConcurrency} is less than or equal to 0
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Publisher, int)
      * @since 1.1.0
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -3098,6 +3187,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code mergeArray} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeArrayDelayError(Publisher...)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -3105,6 +3207,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            the array of Publishers
      * @return a Flowable that emits all of the items emitted by the Publishers in the Array
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeArrayDelayError(Publisher...)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -3127,6 +3230,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Publisher, Publisher)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -3136,6 +3252,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            a Publisher to be merged
      * @return a Flowable that emits all of the items emitted by the source Publishers
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Publisher, Publisher)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -3160,6 +3277,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Publisher, Publisher, Publisher)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -3171,6 +3301,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            a Publisher to be merged
      * @return a Flowable that emits all of the items emitted by the source Publishers
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Publisher, Publisher, Publisher)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -3196,6 +3327,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  backpressure; if violated, the operator <em>may</em> signal {@code MissingBackpressureException}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code merge} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If any of the source {@code Publisher}s signal a {@code Throwable} via {@code onError}, the resulting
+     *  {@code Flowable} terminates with that {@code Throwable} and all other source {@code Publisher}s are canceled.
+     *  If more than one {@code Publisher} signals an error, the resulting {@code Flowable} may terminate with the
+     *  first one's error or, depending on the concurrency of the sources, may terminate with a
+     *  {@code CompositeException} containing two or more of the various error signals.
+     *  {@code Throwable}s that didn't make into the composite will be sent (individually) to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors. Similarly, {@code Throwable}s
+     *  signaled by source(s) after the returned {@code Flowable} has been canceled or terminated with a
+     *  (composite) error will be sent to the same global error handler.
+     *  Use {@link #mergeDelayError(Publisher, Publisher, Publisher, Publisher)} to merge sources and terminate only when all source {@code Publisher}s
+     *  have completed or failed with an error.
+     *  </dd>
      * </dl>
      *
      * @param <T> the common element base type
@@ -3209,6 +3353,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            a Publisher to be merged
      * @return a Flowable that emits all of the items emitted by the source Publishers
      * @see <a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a>
+     * @see #mergeDelayError(Publisher, Publisher, Publisher, Publisher)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @CheckReturnValue
@@ -3879,7 +4024,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * from the earlier-emitted Publisher and begins emitting items from the new one.
      * <p>
      * The resulting Publisher completes if both the outer Publisher and the last inner Publisher, if any, complete.
-     * If the outer Publisher signals an onError, the inner Publisher is cancelled and the error delivered in-sequence.
+     * If the outer Publisher signals an onError, the inner Publisher is canceled and the error delivered in-sequence.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream. The outer {@code Publisher} is consumed in an
@@ -3919,7 +4064,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * from the earlier-emitted Publisher and begins emitting items from the new one.
      * <p>
      * The resulting Publisher completes if both the outer Publisher and the last inner Publisher, if any, complete.
-     * If the outer Publisher signals an onError, the inner Publisher is cancelled and the error delivered in-sequence.
+     * If the outer Publisher signals an onError, the inner Publisher is canceled and the error delivered in-sequence.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream. The outer {@code Publisher} is consumed in an
@@ -3958,7 +4103,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <p>
      * The resulting Publisher completes if both the main Publisher and the last inner Publisher, if any, complete.
      * If the main Publisher signals an onError, the termination of the last inner Publisher will emit that error as is
-     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signalled.
+     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signaled.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream. The outer {@code Publisher} is consumed in an
@@ -3997,7 +4142,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <p>
      * The resulting Publisher completes if both the main Publisher and the last inner Publisher, if any, complete.
      * If the main Publisher signals an onError, the termination of the last inner Publisher will emit that error as is
-     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signalled.
+     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signaled.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream. The outer {@code Publisher} is consumed in an
@@ -4147,7 +4292,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Constructs a Publisher that creates a dependent resource object which is disposed of just before
      * termination if you have set {@code disposeEagerly} to {@code true} and cancellation does not occur
-     * before termination. Otherwise resource disposal will occur on cancellation.  Eager disposal is
+     * before termination. Otherwise, resource disposal will occur on cancellation.  Eager disposal is
      * particularly appropriate for a synchronous Publisher that reuses resources. {@code disposeAction} will
      * only be called once per subscription.
      * <p>
@@ -4199,8 +4344,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * The resulting {@code Publisher<R>} returned from {@code zip} will invoke {@code onNext} as many times as
      * the number of {@code onNext} invocations of the source Publisher that emits the fewest items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4252,7 +4397,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * The resulting {@code Publisher<R>} returned from {@code zip} will invoke {@code onNext} as many times as
      * the number of {@code onNext} invocations of the source Publisher that emits the fewest items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
      * one of the sources is shorter than the rest while cancel the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
@@ -4309,8 +4454,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4369,8 +4514,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4431,8 +4576,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4494,8 +4639,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4559,8 +4704,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4629,8 +4774,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4702,8 +4847,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4779,8 +4924,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4861,8 +5006,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -4947,8 +5092,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * as many times as the number of {@code onNext} invocations of the source Publisher that emits the fewest
      * items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -5035,8 +5180,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * The resulting {@code Publisher<R>} returned from {@code zip} will invoke {@code onNext} as many times as
      * the number of {@code onNext} invocations of the source Publisher that emits the fewest items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -5066,7 +5211,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            a function that, when applied to an item emitted by each of the source Publishers, results in
      *            an item that will be emitted by the resulting Publisher
      * @param delayError
-     *            delay errors signalled by any of the source Publisher until all Publishers terminate
+     *            delay errors signaled by any of the source Publisher until all Publishers terminate
      * @param bufferSize
      *            the number of elements to prefetch from each source Publisher
      * @return a Flowable that emits the zipped results
@@ -5097,8 +5242,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * The resulting {@code Publisher<R>} returned from {@code zip} will invoke {@code onNext} as many times as
      * the number of {@code onNext} invocations of the source Publisher that emits the fewest items.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -5126,7 +5271,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            a function that, when applied to an item emitted by each of the source Publishers, results in
      *            an item that will be emitted by the resulting Publisher
      * @param delayError
-     *            delay errors signalled by any of the source Publisher until all Publishers terminate
+     *            delay errors signaled by any of the source Publisher until all Publishers terminate
      * @param bufferSize
      *            the number of elements to prefetch from each source Publisher
      * @param <T> the common source value type
@@ -5213,7 +5358,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/exists.png" alt="">
      * <p>
-     * In Rx.Net this is the {@code any} Subscriber but we renamed it in RxJava to better match Java naming
+     * In Rx.Net this is the {@code any} operator but we renamed it in RxJava to better match Java naming
      * idioms.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
@@ -5271,6 +5416,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingFirst} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      *
      * @return the first item emitted by this {@code Flowable}
@@ -5300,6 +5449,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingFirst} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      *
      * @param defaultItem
@@ -5319,26 +5472,28 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Invokes a method on each item emitted by this {@code Flowable} and blocks until the Flowable
-     * completes.
-     * <p>
-     * <em>Note:</em> This will block even if the underlying Flowable is asynchronous.
+     * Consumes the upstream {@code Flowable} in a blocking fashion and invokes the given
+     * {@code Consumer} with each upstream item on the <em>current thread</em> until the
+     * upstream terminates.
      * <p>
      * <img width="640" height="330" src="https://github.com/ReactiveX/RxJava/wiki/images/rx-operators/B.forEach.png" alt="">
      * <p>
-     * This is similar to {@link Flowable#subscribe(Subscriber)}, but it blocks. Because it blocks it does not
-     * need the {@link Subscriber#onComplete()} or {@link Subscriber#onError(Throwable)} methods. If the
-     * underlying Flowable terminates with an error, rather than calling {@code onError}, this method will
-     * throw an exception.
-     *
-     * <p>The difference between this method and {@link #subscribe(Consumer)} is that the {@code onNext} action
-     * is executed on the emission thread instead of the current thread.
+     * <em>Note:</em> the method will only return if the upstream terminates or the current
+     * thread is interrupted.
+     * <p>
+     * This method executes the {@code Consumer} on the current thread while
+     * {@link #subscribe(Consumer)} executes the consumer on the original caller thread of the
+     * sequence.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator consumes the source {@code Flowable} in an unbounded manner
      *  (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingForEach} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      *
      * @param onNext
@@ -5421,6 +5576,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingLast} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      *
      * @return the last item emitted by this {@code Flowable}
@@ -5452,6 +5611,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingLast} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      *
      * @param defaultItem
@@ -5559,6 +5722,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingSingle} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      *
      * @return the single item emitted by this {@code Flowable}
@@ -5583,6 +5750,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code blockingSingle} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If the source signals an error, the operator wraps a checked {@link Exception}
+     *  into {@link RuntimeException} and throws that. Otherwise, {@code RuntimeException}s and
+     *  {@link Error}s are rethrown as they are.</dd>
      * </dl>
      *
      * @param defaultItem
@@ -5603,7 +5774,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <p>
      * If the {@link Flowable} emits more than one item, {@link java.util.concurrent.Future} will receive an
      * {@link java.lang.IllegalArgumentException}. If the {@link Flowable} is empty, {@link java.util.concurrent.Future}
-     * will receive an {@link java.util.NoSuchElementException}.
+     * will receive a {@link java.util.NoSuchElementException}.
      * <p>
      * If the {@code Flowable} may emit more than one item, use {@code Flowable.toList().toFuture()}.
      * <p>
@@ -5627,7 +5798,11 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Runs the source observable to a terminal event, ignoring any values and rethrowing any exception.
+     * Runs the source Flowable to a terminal event, ignoring any values and rethrowing any exception.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally or with an error. Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator consumes the source {@code Flowable} in an unbounded manner
@@ -5636,6 +5811,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dd>{@code blockingSubscribe} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
      * @since 2.0
+     * @see #blockingSubscribe(Consumer)
+     * @see #blockingSubscribe(Consumer, Consumer)
+     * @see #blockingSubscribe(Consumer, Consumer, Action)
      */
     @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -5649,6 +5827,12 @@ public abstract class Flowable<T> implements Publisher<T> {
      * If the Flowable emits an error, it is wrapped into an
      * {@link io.reactivex.exceptions.OnErrorNotImplementedException OnErrorNotImplementedException}
      * and routed to the RxJavaPlugins.onError handler.
+     * Using the overloads {@link #blockingSubscribe(Consumer, Consumer)}
+     * or {@link #blockingSubscribe(Consumer, Consumer, Action)} instead is recommended.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally or with an error. Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator consumes the source {@code Flowable} in an unbounded manner
@@ -5658,6 +5842,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * </dl>
      * @param onNext the callback action for each source value
      * @since 2.0
+     * @see #blockingSubscribe(Consumer, Consumer)
+     * @see #blockingSubscribe(Consumer, Consumer, Action)
      */
     @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -5667,6 +5853,42 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Subscribes to the source and calls the given callbacks <strong>on the current thread</strong>.
+     * <p>
+     * If the Flowable emits an error, it is wrapped into an
+     * {@link io.reactivex.exceptions.OnErrorNotImplementedException OnErrorNotImplementedException}
+     * and routed to the RxJavaPlugins.onError handler.
+     * Using the overloads {@link #blockingSubscribe(Consumer, Consumer)}
+     * or {@link #blockingSubscribe(Consumer, Consumer, Action)} instead is recommended.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally or with an error. Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator consumes the source {@code Flowable} in an bounded manner (up to bufferSize
+     *  outstanding request amount for items).</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code blockingSubscribe} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param onNext the callback action for each source value
+     * @param bufferSize the size of the buffer
+     * @since 2.1.15 - experimental
+     * @see #blockingSubscribe(Consumer, Consumer)
+     * @see #blockingSubscribe(Consumer, Consumer, Action)
+     */
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final void blockingSubscribe(Consumer<? super T> onNext, int bufferSize) {
+        FlowableBlockingSubscribe.subscribe(this, onNext, Functions.ON_ERROR_MISSING, Functions.EMPTY_ACTION, bufferSize);
+    }
+
+    /**
+     * Subscribes to the source and calls the given callbacks <strong>on the current thread</strong>.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally or with an error. Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator consumes the source {@code Flowable} in an unbounded manner
@@ -5677,6 +5899,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param onNext the callback action for each source value
      * @param onError the callback action for an error event
      * @since 2.0
+     * @see #blockingSubscribe(Consumer, Consumer, Action)
      */
     @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
     @SchedulerSupport(SchedulerSupport.NONE)
@@ -5684,9 +5907,39 @@ public abstract class Flowable<T> implements Publisher<T> {
         FlowableBlockingSubscribe.subscribe(this, onNext, onError, Functions.EMPTY_ACTION);
     }
 
+    /**
+     * Subscribes to the source and calls the given callbacks <strong>on the current thread</strong>.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally or with an error. Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator consumes the source {@code Flowable} in an bounded manner (up to bufferSize
+     *  outstanding request amount for items).</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code blockingSubscribe} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param onNext the callback action for each source value
+     * @param onError the callback action for an error event
+     * @param bufferSize the size of the buffer
+     * @since 2.1.15 - experimental
+     * @see #blockingSubscribe(Consumer, Consumer, Action)
+     */
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final void blockingSubscribe(Consumer<? super T> onNext, Consumer<? super Throwable> onError,
+        int bufferSize) {
+        FlowableBlockingSubscribe.subscribe(this, onNext, onError, Functions.EMPTY_ACTION, bufferSize);
+    }
 
     /**
      * Subscribes to the source and calls the given callbacks <strong>on the current thread</strong>.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally or with an error. Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator consumes the source {@code Flowable} in an unbounded manner
@@ -5706,7 +5959,40 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Subscribes to the source and calls the Subscriber methods <strong>on the current thread</strong>.
+     * Subscribes to the source and calls the given callbacks <strong>on the current thread</strong>.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally or with an error. Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator consumes the source {@code Flowable} in an bounded manner (up to bufferSize
+     *  outstanding request amount for items).</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code blockingSubscribe} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param onNext the callback action for each source value
+     * @param onError the callback action for an error event
+     * @param onComplete the callback action for the completion event.
+     * @param bufferSize the size of the buffer
+     * @since 2.1.15 - experimental
+     */
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final void blockingSubscribe(Consumer<? super T> onNext, Consumer<? super Throwable> onError, Action onComplete,
+        int bufferSize) {
+        FlowableBlockingSubscribe.subscribe(this, onNext, onError, onComplete, bufferSize);
+    }
+
+    /**
+     * Subscribes to the source and calls the {@link Subscriber} methods <strong>on the current thread</strong>.
+     * <p>
+     * Note that calling this method will block the caller thread until the upstream terminates
+     * normally, with an error or the {@code Subscriber} cancels the {@link Subscription} it receives via
+     * {@link Subscriber#onSubscribe(Subscription)}.
+     * Therefore, calling this method from special threads such as the
+     * Android Main Thread or the Swing Event Dispatch Thread is not recommended.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The supplied {@code Subscriber} determines how backpressure is applied.</dd>
@@ -5726,8 +6012,9 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers, each containing {@code count} items. When the source
-     * Publisher completes or encounters an error, the resulting Publisher emits the current buffer and
-     * propagates the notification from the source Publisher.
+     * Publisher completes, the resulting Publisher emits the current buffer and propagates the notification from the
+     * source Publisher. Note that if the source Publisher issues an onError notification the event is passed on
+     * immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer3.png" alt="">
      * <dl>
@@ -5755,8 +6042,9 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits buffers every {@code skip} items, each containing {@code count} items. When the source
-     * Publisher completes or encounters an error, the resulting Publisher emits the current buffer and
-     * propagates the notification from the source Publisher.
+     * Publisher completes, the resulting Publisher emits the current buffer and propagates the notification from the
+     * source Publisher. Note that if the source Publisher issues an onError notification the event is passed on
+     * immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer4.png" alt="">
      * <dl>
@@ -5788,8 +6076,9 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits buffers every {@code skip} items, each containing {@code count} items. When the source
-     * Publisher completes or encounters an error, the resulting Publisher emits the current buffer and
-     * propagates the notification from the source Publisher.
+     * Publisher completes, the resulting Publisher emits the current buffer and propagates the notification from the
+     * source Publisher. Note that if the source Publisher issues an onError notification the event is passed on
+     * immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer4.png" alt="">
      * <dl>
@@ -5828,8 +6117,9 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers, each containing {@code count} items. When the source
-     * Publisher completes or encounters an error, the resulting Publisher emits the current buffer and
-     * propagates the notification from the source Publisher.
+     * Publisher completes, the resulting Publisher emits the current buffer and propagates the notification from the
+     * source Publisher. Note that if the source Publisher issues an onError notification the event is passed on
+     * immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer3.png" alt="">
      * <dl>
@@ -5862,8 +6152,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher starts a new buffer periodically, as determined by the {@code timeskip} argument. It emits
      * each buffer after a fixed timespan, specified by the {@code timespan} argument. When the source
-     * Publisher completes or encounters an error, the resulting Publisher emits the current buffer and
-     * propagates the notification from the source Publisher.
+     * Publisher completes, the resulting Publisher emits the current buffer and propagates the notification from the
+     * source Publisher. Note that if the source Publisher issues an onError notification the event is passed on
+     * immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer7.png" alt="">
      * <dl>
@@ -5895,8 +6186,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher starts a new buffer periodically, as determined by the {@code timeskip} argument, and on the
      * specified {@code scheduler}. It emits each buffer after a fixed timespan, specified by the
-     * {@code timespan} argument. When the source Publisher completes or encounters an error, the resulting
-     * Publisher emits the current buffer and propagates the notification from the source Publisher.
+     * {@code timespan} argument. When the source Publisher completes, the resulting Publisher emits the current buffer
+     * and propagates the notification from the source Publisher. Note that if the source Publisher issues an onError
+     * notification the event is passed on immediately without first emitting the buffer it is in the process of
+     * assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer7.s.png" alt="">
      * <dl>
@@ -5930,8 +6223,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher starts a new buffer periodically, as determined by the {@code timeskip} argument, and on the
      * specified {@code scheduler}. It emits each buffer after a fixed timespan, specified by the
-     * {@code timespan} argument. When the source Publisher completes or encounters an error, the resulting
-     * Publisher emits the current buffer and propagates the notification from the source Publisher.
+     * {@code timespan} argument. When the source Publisher completes, the resulting Publisher emits the current buffer
+     * and propagates the notification from the source Publisher. Note that if the source Publisher issues an onError
+     * notification the event is passed on immediately without first emitting the buffer it is in the process of
+     * assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer7.s.png" alt="">
      * <dl>
@@ -5972,8 +6267,10 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers, each of a fixed duration specified by the
-     * {@code timespan} argument. When the source Publisher completes or encounters an error, the resulting
-     * Publisher emits the current buffer and propagates the notification from the source Publisher.
+     * {@code timespan} argument. When the source Publisher completes, the resulting Publisher emits the current buffer
+     * and propagates the notification from the source Publisher. Note that if the source Publisher issues an onError
+     * notification the event is passed on immediately without first emitting the buffer it is in the process of
+     * assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer5.png" alt="">
      * <dl>
@@ -6004,8 +6301,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers, each of a fixed duration specified by the
      * {@code timespan} argument or a maximum size specified by the {@code count} argument (whichever is reached
-     * first). When the source Publisher completes or encounters an error, the resulting Publisher emits the
-     * current buffer and propagates the notification from the source Publisher.
+     * first). When the source Publisher completes, the resulting Publisher emits the current buffer and propagates the
+     * notification from the source Publisher. Note that if the source Publisher issues an onError notification the event
+     * is passed on immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer6.png" alt="">
      * <dl>
@@ -6039,9 +6337,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers, each of a fixed duration specified by the
      * {@code timespan} argument as measured on the specified {@code scheduler}, or a maximum size specified by
-     * the {@code count} argument (whichever is reached first). When the source Publisher completes or
-     * encounters an error, the resulting Publisher emits the current buffer and propagates the notification
-     * from the source Publisher.
+     * the {@code count} argument (whichever is reached first). When the source Publisher completes, the resulting
+     * Publisher emits the current buffer and propagates the notification from the source Publisher. Note that if the
+     * source Publisher issues an onError notification the event is passed on immediately without first emitting the
+     * buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer6.s.png" alt="">
      * <dl>
@@ -6077,9 +6376,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers, each of a fixed duration specified by the
      * {@code timespan} argument as measured on the specified {@code scheduler}, or a maximum size specified by
-     * the {@code count} argument (whichever is reached first). When the source Publisher completes or
-     * encounters an error, the resulting Publisher emits the current buffer and propagates the notification
-     * from the source Publisher.
+     * the {@code count} argument (whichever is reached first). When the source Publisher completes, the resulting
+     * Publisher emits the current buffer and propagates the notification from the source Publisher. Note that if the
+     * source Publisher issues an onError notification the event is passed on immediately without first emitting the
+     * buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer6.s.png" alt="">
      * <dl>
@@ -6128,9 +6428,10 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers, each of a fixed duration specified by the
-     * {@code timespan} argument and on the specified {@code scheduler}. When the source Publisher completes or
-     * encounters an error, the resulting Publisher emits the current buffer and propagates the notification
-     * from the source Publisher.
+     * {@code timespan} argument and on the specified {@code scheduler}. When the source Publisher completes, the
+     * resulting Publisher emits the current buffer and propagates the notification from the source Publisher. Note that
+     * if the source Publisher issues an onError notification the event is passed on immediately without first emitting
+     * the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer5.s.png" alt="">
      * <dl>
@@ -6162,7 +6463,9 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits buffers that it creates when the specified {@code openingIndicator} Publisher emits an
-     * item, and closes when the Publisher returned from {@code closingIndicator} emits an item.
+     * item, and closes when the Publisher returned from {@code closingIndicator} emits an item. If any of the source
+     * Publisher, {@code openingIndicator} or {@code closingIndicator} issues an onError notification the event is passed
+     * on immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="470" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer2.png" alt="">
      * <dl>
@@ -6196,7 +6499,9 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits buffers that it creates when the specified {@code openingIndicator} Publisher emits an
-     * item, and closes when the Publisher returned from {@code closingIndicator} emits an item.
+     * item, and closes when the Publisher returned from {@code closingIndicator} emits an item. If any of the source
+     * Publisher, {@code openingIndicator} or {@code closingIndicator} issues an onError notification the event is passed
+     * on immediately without first emitting the buffer it is in the process of assembling.
      * <p>
      * <img width="640" height="470" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer2.png" alt="">
      * <dl>
@@ -6242,7 +6547,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="395" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer8.png" alt="">
      * <p>
      * Completion of either the source or the boundary Publisher causes the returned Publisher to emit the
-     * latest buffer and complete.
+     * latest buffer and complete. If either the source Publisher or the boundary Publisher issues an onError notification
+     * the event is passed on immediately without first emitting the buffer it is in the process of assembling.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it is instead controlled by the {@code Publisher}
@@ -6275,7 +6581,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="395" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer8.png" alt="">
      * <p>
      * Completion of either the source or the boundary Publisher causes the returned Publisher to emit the
-     * latest buffer and complete.
+     * latest buffer and complete. If either the source Publisher or the boundary Publisher issues an onError notification
+     * the event is passed on immediately without first emitting the buffer it is in the process of assembling.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it is instead controlled by the {@code Publisher}
@@ -6311,7 +6618,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="395" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer8.png" alt="">
      * <p>
      * Completion of either the source or the boundary Publisher causes the returned Publisher to emit the
-     * latest buffer and complete.
+     * latest buffer and complete. If either the source Publisher or the boundary Publisher issues an onError notification
+     * the event is passed on immediately without first emitting the buffer it is in the process of assembling.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it is instead controlled by the {@code Publisher}
@@ -6346,9 +6654,12 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers. It emits the current buffer and replaces it with a
-     * new buffer whenever the Publisher produced by the specified {@code closingIndicator} emits an item.
+     * new buffer whenever the Publisher produced by the specified {@code boundaryIndicatorSupplier} emits an item.
      * <p>
      * <img width="640" height="395" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer1.png" alt="">
+     * <p>
+     * If either the source {@code Publisher} or the boundary {@code Publisher} issues an {@code onError} notification the event is passed on
+     * immediately without first emitting the buffer it is in the process of assembling.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it is instead controlled by the given Publishers and
@@ -6360,7 +6671,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param <B> the value type of the boundary-providing Publisher
      * @param boundaryIndicatorSupplier
      *            a {@link Callable} that produces a Publisher that governs the boundary between buffers.
-     *            Whenever the source {@code Publisher} emits an item, {@code buffer} emits the current buffer and
+     *            Whenever the supplied {@code Publisher} emits an item, {@code buffer} emits the current buffer and
      *            begins to fill a new one
      * @return a Flowable that emits a connected, non-overlapping buffer of items from the source Publisher
      *         each time the Publisher created with the {@code closingIndicator} argument emits an item
@@ -6371,15 +6682,17 @@ public abstract class Flowable<T> implements Publisher<T> {
     @SchedulerSupport(SchedulerSupport.NONE)
     public final <B> Flowable<List<T>> buffer(Callable<? extends Publisher<B>> boundaryIndicatorSupplier) {
         return buffer(boundaryIndicatorSupplier, ArrayListSupplier.<T>asCallable());
-
     }
 
     /**
      * Returns a Flowable that emits buffers of items it collects from the source Publisher. The resulting
      * Publisher emits connected, non-overlapping buffers. It emits the current buffer and replaces it with a
-     * new buffer whenever the Publisher produced by the specified {@code closingIndicator} emits an item.
+     * new buffer whenever the Publisher produced by the specified {@code boundaryIndicatorSupplier} emits an item.
      * <p>
      * <img width="640" height="395" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/buffer1.png" alt="">
+     * <p>
+     * If either the source {@code Publisher} or the boundary {@code Publisher} issues an {@code onError} notification the event is passed on
+     * immediately without first emitting the buffer it is in the process of assembling.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it is instead controlled by the given Publishers and
@@ -6392,7 +6705,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param <B> the value type of the boundary-providing Publisher
      * @param boundaryIndicatorSupplier
      *            a {@link Callable} that produces a Publisher that governs the boundary between buffers.
-     *            Whenever the source {@code Publisher} emits an item, {@code buffer} emits the current buffer and
+     *            Whenever the supplied {@code Publisher} emits an item, {@code buffer} emits the current buffer and
      *            begins to fill a new one
      * @param bufferSupplier
      *            a factory function that returns an instance of the collection subclass to be used and returned
@@ -6562,12 +6875,16 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Collects items emitted by the source Publisher into a single mutable data structure and returns
+     * Collects items emitted by the finite source Publisher into a single mutable data structure and returns
      * a Single that emits this structure.
      * <p>
      * <img width="640" height="330" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/collect.png" alt="">
      * <p>
      * This is a simplified version of {@code reduce} that does not need to return the state on each pass.
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulator object to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure because by intent it will receive all values and reduce
@@ -6596,12 +6913,16 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Collects items emitted by the source Publisher into a single mutable data structure and returns
+     * Collects items emitted by the finite source Publisher into a single mutable data structure and returns
      * a Single that emits this structure.
      * <p>
      * <img width="640" height="330" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/collect.png" alt="">
      * <p>
      * This is a simplified version of {@code reduce} that does not need to return the state on each pass.
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulator object to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure because by intent it will receive all values and reduce
@@ -6677,7 +6998,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the type of the inner Publisher sources and thus the output type
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @return a Flowable that emits the result of applying the transformation function to each item emitted
      *         by the source Publisher and concatenating the Publishers obtained from this transformation
@@ -6709,7 +7030,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the type of the inner Publisher sources and thus the output type
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @param prefetch
      *            the number of elements to prefetch from the current Flowable
@@ -6732,6 +7053,168 @@ public abstract class Flowable<T> implements Publisher<T> {
             return FlowableScalarXMap.scalarXMap(v, mapper);
         }
         return RxJavaPlugins.onAssembly(new FlowableConcatMap<T, R>(this, mapper, prefetch, ErrorMode.IMMEDIATE));
+    }
+
+    /**
+     * Maps the upstream items into {@link CompletableSource}s and subscribes to them one after the
+     * other completes.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapCompletable} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code CompletableSource} to become the next source to
+     *               be subscribed to
+     * @return a new Completable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapCompletableDelayError(Function)
+     */
+    @CheckReturnValue
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @BackpressureSupport(BackpressureKind.FULL)
+    @Experimental
+    public final Completable concatMapCompletable(Function<? super T, ? extends CompletableSource> mapper) {
+        return concatMapCompletable(mapper, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link CompletableSource}s and subscribes to them one after the
+     * other completes.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapCompletable} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code CompletableSource} to become the next source to
+     *               be subscribed to
+     * @param prefetch The number of upstream items to prefetch so that fresh items are
+     *                 ready to be mapped when a previous {@code CompletableSource} terminates.
+     *                 The operator replenishes after half of the prefetch amount has been consumed
+     *                 and turned into {@code CompletableSource}s.
+     * @return a new Completable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapCompletableDelayError(Function, boolean, int)
+     */
+    @CheckReturnValue
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @BackpressureSupport(BackpressureKind.FULL)
+    @Experimental
+    public final Completable concatMapCompletable(Function<? super T, ? extends CompletableSource> mapper, int prefetch) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        ObjectHelper.verifyPositive(prefetch, "prefetch");
+        return RxJavaPlugins.onAssembly(new FlowableConcatMapCompletable<T>(this, mapper, ErrorMode.IMMEDIATE, prefetch));
+    }
+
+    /**
+     * Maps the upstream items into {@link CompletableSource}s and subscribes to them one after the
+     * other terminates, delaying all errors till both this {@code Flowable} and all
+     * inner {@code CompletableSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapCompletableDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code CompletableSource} to become the next source to
+     *               be subscribed to
+     * @return a new Completable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapCompletable(Function, int)
+     */
+    @CheckReturnValue
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @BackpressureSupport(BackpressureKind.FULL)
+    @Experimental
+    public final Completable concatMapCompletableDelayError(Function<? super T, ? extends CompletableSource> mapper) {
+        return concatMapCompletableDelayError(mapper, true, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link CompletableSource}s and subscribes to them one after the
+     * other terminates, optionally delaying all errors till both this {@code Flowable} and all
+     * inner {@code CompletableSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapCompletableDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code CompletableSource} to become the next source to
+     *               be subscribed to
+     * @param tillTheEnd If {@code true}, errors from this {@code Flowable} or any of the
+     *                   inner {@code CompletableSource}s are delayed until all
+     *                   of them terminate. If {@code false}, an error from this
+     *                   {@code Flowable} is delayed until the current inner
+     *                   {@code CompletableSource} terminates and only then is
+     *                   it emitted to the downstream.
+     * @return a new Completable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapCompletable(Function)
+     */
+    @CheckReturnValue
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @BackpressureSupport(BackpressureKind.FULL)
+    @Experimental
+    public final Completable concatMapCompletableDelayError(Function<? super T, ? extends CompletableSource> mapper, boolean tillTheEnd) {
+        return concatMapCompletableDelayError(mapper, tillTheEnd, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link CompletableSource}s and subscribes to them one after the
+     * other terminates, optionally delaying all errors till both this {@code Flowable} and all
+     * inner {@code CompletableSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapCompletableDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code CompletableSource} to become the next source to
+     *               be subscribed to
+     * @param tillTheEnd If {@code true}, errors from this {@code Flowable} or any of the
+     *                   inner {@code CompletableSource}s are delayed until all
+     *                   of them terminate. If {@code false}, an error from this
+     *                   {@code Flowable} is delayed until the current inner
+     *                   {@code CompletableSource} terminates and only then is
+     *                   it emitted to the downstream.
+     * @param prefetch The number of upstream items to prefetch so that fresh items are
+     *                 ready to be mapped when a previous {@code CompletableSource} terminates.
+     *                 The operator replenishes after half of the prefetch amount has been consumed
+     *                 and turned into {@code CompletableSource}s.
+     * @return a new Completable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapCompletable(Function, int)
+     */
+    @CheckReturnValue
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @BackpressureSupport(BackpressureKind.FULL)
+    @Experimental
+    public final Completable concatMapCompletableDelayError(Function<? super T, ? extends CompletableSource> mapper, boolean tillTheEnd, int prefetch) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        ObjectHelper.verifyPositive(prefetch, "prefetch");
+        return RxJavaPlugins.onAssembly(new FlowableConcatMapCompletable<T>(this, mapper, tillTheEnd ? ErrorMode.END : ErrorMode.BOUNDARY, prefetch));
     }
 
     /**
@@ -6785,7 +7268,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            the number of elements to prefetch from the current Flowable
      * @param tillTheEnd
      *            if true, all errors from the outer and inner Publisher sources are delayed until the end,
-     *            if false, an error from the main source is signalled when the current Publisher source terminates
+     *            if false, an error from the main source is signaled when the current Publisher source terminates
      * @return the new Publisher instance with the concatenation behavior
      */
     @CheckReturnValue
@@ -6886,7 +7369,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *               eagerly concatenated
      * @param tillTheEnd
      *            if true, all errors from the outer and inner Publisher sources are delayed until the end,
-     *            if false, an error from the main source is signalled when the current Publisher source terminates
+     *            if false, an error from the main source is signaled when the current Publisher source terminates
      * @return the new Publisher instance with the specified concatenation behavior
      * @since 2.0
      */
@@ -6999,6 +7482,362 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
+     * Maps the upstream items into {@link MaybeSource}s and subscribes to them one after the
+     * other succeeds or completes, emits their success value if available or terminates immediately if
+     * either this {@code Flowable} or the current inner {@code MaybeSource} fail.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapMaybe} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code MaybeSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code MaybeSource} to become the next source to
+     *               be subscribed to
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapMaybeDelayError(Function)
+     * @see #concatMapMaybe(Function, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapMaybe(Function<? super T, ? extends MaybeSource<? extends R>> mapper) {
+        return concatMapMaybe(mapper, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link MaybeSource}s and subscribes to them one after the
+     * other succeeds or completes, emits their success value if available or terminates immediately if
+     * either this {@code Flowable} or the current inner {@code MaybeSource} fail.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapMaybe} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code MaybeSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code MaybeSource} to become the next source to
+     *               be subscribed to
+     * @param prefetch The number of upstream items to prefetch so that fresh items are
+     *                 ready to be mapped when a previous {@code MaybeSource} terminates.
+     *                 The operator replenishes after half of the prefetch amount has been consumed
+     *                 and turned into {@code MaybeSource}s.
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapMaybe(Function)
+     * @see #concatMapMaybeDelayError(Function, boolean, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapMaybe(Function<? super T, ? extends MaybeSource<? extends R>> mapper, int prefetch) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        ObjectHelper.verifyPositive(prefetch, "prefetch");
+        return RxJavaPlugins.onAssembly(new FlowableConcatMapMaybe<T, R>(this, mapper, ErrorMode.IMMEDIATE, prefetch));
+    }
+
+    /**
+     * Maps the upstream items into {@link MaybeSource}s and subscribes to them one after the
+     * other terminates, emits their success value if available and delaying all errors
+     * till both this {@code Flowable} and all inner {@code MaybeSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapMaybeDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code MaybeSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code MaybeSource} to become the next source to
+     *               be subscribed to
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapMaybe(Function)
+     * @see #concatMapMaybeDelayError(Function, boolean)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapMaybeDelayError(Function<? super T, ? extends MaybeSource<? extends R>> mapper) {
+        return concatMapMaybeDelayError(mapper, true, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link MaybeSource}s and subscribes to them one after the
+     * other terminates, emits their success value if available and optionally delaying all errors
+     * till both this {@code Flowable} and all inner {@code MaybeSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapMaybeDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code MaybeSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code MaybeSource} to become the next source to
+     *               be subscribed to
+     * @param tillTheEnd If {@code true}, errors from this {@code Flowable} or any of the
+     *                   inner {@code MaybeSource}s are delayed until all
+     *                   of them terminate. If {@code false}, an error from this
+     *                   {@code Flowable} is delayed until the current inner
+     *                   {@code MaybeSource} terminates and only then is
+     *                   it emitted to the downstream.
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapMaybe(Function, int)
+     * @see #concatMapMaybeDelayError(Function, boolean, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapMaybeDelayError(Function<? super T, ? extends MaybeSource<? extends R>> mapper, boolean tillTheEnd) {
+        return concatMapMaybeDelayError(mapper, tillTheEnd, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link MaybeSource}s and subscribes to them one after the
+     * other terminates, emits their success value if available and optionally delaying all errors
+     * till both this {@code Flowable} and all inner {@code MaybeSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapMaybeDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code MaybeSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code MaybeSource} to become the next source to
+     *               be subscribed to
+     * @param tillTheEnd If {@code true}, errors from this {@code Flowable} or any of the
+     *                   inner {@code MaybeSource}s are delayed until all
+     *                   of them terminate. If {@code false}, an error from this
+     *                   {@code Flowable} is delayed until the current inner
+     *                   {@code MaybeSource} terminates and only then is
+     *                   it emitted to the downstream.
+     * @param prefetch The number of upstream items to prefetch so that fresh items are
+     *                 ready to be mapped when a previous {@code MaybeSource} terminates.
+     *                 The operator replenishes after half of the prefetch amount has been consumed
+     *                 and turned into {@code MaybeSource}s.
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapMaybe(Function, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapMaybeDelayError(Function<? super T, ? extends MaybeSource<? extends R>> mapper, boolean tillTheEnd, int prefetch) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        ObjectHelper.verifyPositive(prefetch, "prefetch");
+        return RxJavaPlugins.onAssembly(new FlowableConcatMapMaybe<T, R>(this, mapper, tillTheEnd ? ErrorMode.END : ErrorMode.BOUNDARY, prefetch));
+    }
+
+    /**
+     * Maps the upstream items into {@link SingleSource}s and subscribes to them one after the
+     * other succeeds, emits their success values or terminates immediately if
+     * either this {@code Flowable} or the current inner {@code SingleSource} fail.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapSingle} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code SingleSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code SingleSource} to become the next source to
+     *               be subscribed to
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapSingleDelayError(Function)
+     * @see #concatMapSingle(Function, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapSingle(Function<? super T, ? extends SingleSource<? extends R>> mapper) {
+        return concatMapSingle(mapper, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link SingleSource}s and subscribes to them one after the
+     * other succeeds, emits their success values or terminates immediately if
+     * either this {@code Flowable} or the current inner {@code SingleSource} fail.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapSingle} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code SingleSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code SingleSource} to become the next source to
+     *               be subscribed to
+     * @param prefetch The number of upstream items to prefetch so that fresh items are
+     *                 ready to be mapped when a previous {@code SingleSource} terminates.
+     *                 The operator replenishes after half of the prefetch amount has been consumed
+     *                 and turned into {@code SingleSource}s.
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapSingle(Function)
+     * @see #concatMapSingleDelayError(Function, boolean, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapSingle(Function<? super T, ? extends SingleSource<? extends R>> mapper, int prefetch) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        ObjectHelper.verifyPositive(prefetch, "prefetch");
+        return RxJavaPlugins.onAssembly(new FlowableConcatMapSingle<T, R>(this, mapper, ErrorMode.IMMEDIATE, prefetch));
+    }
+
+    /**
+     * Maps the upstream items into {@link SingleSource}s and subscribes to them one after the
+     * other succeeds or fails, emits their success values and delays all errors
+     * till both this {@code Flowable} and all inner {@code SingleSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapSingleDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code SingleSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code SingleSource} to become the next source to
+     *               be subscribed to
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapSingle(Function)
+     * @see #concatMapSingleDelayError(Function, boolean)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapSingleDelayError(Function<? super T, ? extends SingleSource<? extends R>> mapper) {
+        return concatMapSingleDelayError(mapper, true, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link SingleSource}s and subscribes to them one after the
+     * other succeeds or fails, emits their success values and optionally delays all errors
+     * till both this {@code Flowable} and all inner {@code SingleSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapSingleDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code SingleSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code SingleSource} to become the next source to
+     *               be subscribed to
+     * @param tillTheEnd If {@code true}, errors from this {@code Flowable} or any of the
+     *                   inner {@code SingleSource}s are delayed until all
+     *                   of them terminate. If {@code false}, an error from this
+     *                   {@code Flowable} is delayed until the current inner
+     *                   {@code SingleSource} terminates and only then is
+     *                   it emitted to the downstream.
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapSingle(Function, int)
+     * @see #concatMapSingleDelayError(Function, boolean, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapSingleDelayError(Function<? super T, ? extends SingleSource<? extends R>> mapper, boolean tillTheEnd) {
+        return concatMapSingleDelayError(mapper, tillTheEnd, 2);
+    }
+
+    /**
+     * Maps the upstream items into {@link SingleSource}s and subscribes to them one after the
+     * other succeeds or fails, emits their success values and optionally delays errors
+     * till both this {@code Flowable} and all inner {@code SingleSource}s terminate.
+     * <p>
+     * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concatMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator expects the upstream to support backpressure and honors
+     *  the backpressure from downstream. If this {@code Flowable} violates the rule, the operator will
+     *  signal a {@code MissingBackpressureException}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatMapSingleDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the result type of the inner {@code SingleSource}s
+     * @param mapper the function called with the upstream item and should return
+     *               a {@code SingleSource} to become the next source to
+     *               be subscribed to
+     * @param tillTheEnd If {@code true}, errors from this {@code Flowable} or any of the
+     *                   inner {@code SingleSource}s are delayed until all
+     *                   of them terminate. If {@code false}, an error from this
+     *                   {@code Flowable} is delayed until the current inner
+     *                   {@code SingleSource} terminates and only then is
+     *                   it emitted to the downstream.
+     * @param prefetch The number of upstream items to prefetch so that fresh items are
+     *                 ready to be mapped when a previous {@code SingleSource} terminates.
+     *                 The operator replenishes after half of the prefetch amount has been consumed
+     *                 and turned into {@code SingleSource}s.
+     * @return a new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #concatMapSingle(Function, int)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> concatMapSingleDelayError(Function<? super T, ? extends SingleSource<? extends R>> mapper, boolean tillTheEnd, int prefetch) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        ObjectHelper.verifyPositive(prefetch, "prefetch");
+        return RxJavaPlugins.onAssembly(new FlowableConcatMapSingle<T, R>(this, mapper, tillTheEnd ? ErrorMode.END : ErrorMode.BOUNDARY, prefetch));
+    }
+
+    /**
      * Returns a Flowable that emits the items emitted from the current Publisher, then the next, one after
      * the other, without interleaving them.
      * <p>
@@ -7024,6 +7863,83 @@ public abstract class Flowable<T> implements Publisher<T> {
     public final Flowable<T> concatWith(Publisher<? extends T> other) {
         ObjectHelper.requireNonNull(other, "other is null");
         return concat(this, other);
+    }
+
+    /**
+     * Returns a {@code Flowable} that emits the items from this {@code Flowable} followed by the success item or error event
+     * of the other {@link SingleSource}.
+     * <p>
+     * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concat.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator supports backpressure and makes sure the success item of the other {@code SingleSource}
+     *  is only emitted when there is a demand for it.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatWith} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param other the SingleSource whose signal should be emitted after this {@code Flowable} completes normally.
+     * @return the new Flowable instance
+     * @since 2.1.10 - experimental
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Flowable<T> concatWith(@NonNull SingleSource<? extends T> other) {
+        ObjectHelper.requireNonNull(other, "other is null");
+        return RxJavaPlugins.onAssembly(new FlowableConcatWithSingle<T>(this, other));
+    }
+
+    /**
+     * Returns a {@code Flowable} that emits the items from this {@code Flowable} followed by the success item or terminal events
+     * of the other {@link MaybeSource}.
+     * <p>
+     * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concat.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator supports backpressure and makes sure the success item of the other {@code MaybeSource}
+     *  is only emitted when there is a demand for it.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatWith} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param other the MaybeSource whose signal should be emitted after this Flowable completes normally.
+     * @return the new Flowable instance
+     * @since 2.1.10 - experimental
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Flowable<T> concatWith(@NonNull MaybeSource<? extends T> other) {
+        ObjectHelper.requireNonNull(other, "other is null");
+        return RxJavaPlugins.onAssembly(new FlowableConcatWithMaybe<T>(this, other));
+    }
+
+    /**
+     * Returns a {@code Flowable} that emits items from this {@code Flowable} and when it completes normally, the
+     * other {@link CompletableSource} is subscribed to and the returned {@code Flowable} emits its terminal events.
+     * <p>
+     * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concat.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator does not interfere with backpressure between the current Flowable and the
+     *  downstream consumer (i.e., acts as pass-through). When the operator switches to the
+     *  {@code Completable}, backpressure is no longer present because {@code Completable} doesn't
+     *  have items to apply backpressure to.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code concatWith} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param other the {@code CompletableSource} to subscribe to once the current {@code Flowable} completes normally
+     * @return the new Flowable instance
+     * @since 2.1.10 - experimental
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.PASS_THROUGH)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Flowable<T> concatWith(@NonNull CompletableSource other) {
+        ObjectHelper.requireNonNull(other, "other is null");
+        return RxJavaPlugins.onAssembly(new FlowableConcatWithCompletable<T>(this, other));
     }
 
     /**
@@ -7117,25 +8033,19 @@ public abstract class Flowable<T> implements Publisher<T> {
      * will be emitted by the resulting Publisher.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/debounce.png" alt="">
-     * <p>
-     * Information on debounce vs throttle:
-     * <ul>
-     * <li><a href="http://drupalmotion.com/article/debounce-and-throttle-visual-explanation">Debounce and Throttle: visual explanation</a></li>
-     * <li><a href="http://unscriptable.com/2009/03/20/debouncing-javascript-methods/">Debouncing: javascript methods</a></li>
-     * <li><a href="http://www.illyriad.co.uk/blog/index.php/2011/09/javascript-dont-spam-your-server-debounce-and-throttle/">Javascript - don't spam your server: debounce and throttle</a></li>
-     * </ul>
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it uses time to control data flow.</dd>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>This version of {@code debounce} operates by default on the {@code computation} {@link Scheduler}.</dd>
+     *  <dd>{@code debounce} operates by default on the {@code computation} {@link Scheduler}.</dd>
      * </dl>
      *
      * @param timeout
-     *            the time each item has to be "the most recent" of those emitted by the source Publisher to
-     *            ensure that it's not dropped
+     *            the length of the window of time that must pass after the emission of an item from the source
+     *            Publisher in which that Publisher emits no items in order for the item to be emitted by the
+     *            resulting Publisher
      * @param unit
-     *            the {@link TimeUnit} for the timeout
+     *            the unit of time for the specified {@code timeout}
      * @return a Flowable that filters out items from the source Publisher that are too quickly followed by
      *         newer items
      * @see <a href="http://reactivex.io/documentation/operators/debounce.html">ReactiveX operators documentation: Debounce</a>
@@ -7158,13 +8068,6 @@ public abstract class Flowable<T> implements Publisher<T> {
      * will be emitted by the resulting Publisher.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/debounce.s.png" alt="">
-     * <p>
-     * Information on debounce vs throttle:
-     * <ul>
-     * <li><a href="http://drupalmotion.com/article/debounce-and-throttle-visual-explanation">Debounce and Throttle: visual explanation</a></li>
-     * <li><a href="http://unscriptable.com/2009/03/20/debouncing-javascript-methods/">Debouncing: javascript methods</a></li>
-     * <li><a href="http://www.illyriad.co.uk/blog/index.php/2011/09/javascript-dont-spam-your-server-debounce-and-throttle/">Javascript - don't spam your server: debounce and throttle</a></li>
-     * </ul>
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it uses time to control data flow.</dd>
@@ -7176,7 +8079,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            the time each item has to be "the most recent" of those emitted by the source Publisher to
      *            ensure that it's not dropped
      * @param unit
-     *            the unit of time for the specified timeout
+     *            the unit of time for the specified {@code timeout}
      * @param scheduler
      *            the {@link Scheduler} to use internally to manage the timers that handle the timeout for each
      *            item
@@ -7204,7 +8107,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>If the source {@code Publisher} is empty, this operator is guaranteed to honor backpressure from downstream.
      *  If the source {@code Publisher} is non-empty, it is expected to honor backpressure as well; if the rule is violated,
-     *  a {@code MissingBackpressureException} <em>may</em> get signalled somewhere downstream.
+     *  a {@code MissingBackpressureException} <em>may</em> get signaled somewhere downstream.
      *  </dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code defaultIfEmpty} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -7302,8 +8205,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param unit
      *            the {@link TimeUnit} in which {@code period} is defined
      * @param delayError
-     *            if true, the upstream exception is signalled with the given delay, after all preceding normal elements,
-     *            if false, the upstream exception is signalled immediately
+     *            if true, the upstream exception is signaled with the given delay, after all preceding normal elements,
+     *            if false, the upstream exception is signaled immediately
      * @return the source Publisher shifted in time by the specified delay
      * @see <a href="http://reactivex.io/documentation/operators/delay.html">ReactiveX operators documentation: Delay</a>
      */
@@ -7361,8 +8264,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param scheduler
      *            the {@link Scheduler} to use for delaying
      * @param delayError
-     *            if true, the upstream exception is signalled with the given delay, after all preceding normal elements,
-     *            if false, the upstream exception is signalled immediately
+     *            if true, the upstream exception is signaled with the given delay, after all preceding normal elements,
+     *            if false, the upstream exception is signaled immediately
      * @return the source Publisher shifted in time by the specified delay
      * @see <a href="http://reactivex.io/documentation/operators/delay.html">ReactiveX operators documentation: Delay</a>
      */
@@ -7502,6 +8405,25 @@ public abstract class Flowable<T> implements Publisher<T> {
      * represent.
      * <p>
      * <img width="640" height="335" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/dematerialize.png" alt="">
+     * <p>
+     * When the upstream signals an {@link Notification#createOnError(Throwable) onError} or
+     * {@link Notification#createOnComplete() onComplete} item, the
+     * returned Flowable cancels the flow and terminates with that type of terminal event:
+     * <pre><code>
+     * Flowable.just(createOnNext(1), createOnComplete(), createOnNext(2))
+     * .doOnCancel(() -&gt; System.out.println("Cancelled!"));
+     * .test()
+     * .assertResult(1);
+     * </code></pre>
+     * If the upstream signals {@code onError} or {@code onComplete} directly, the flow is terminated
+     * with the same event.
+     * <pre><code>
+     * Flowable.just(createOnNext(1), createOnNext(2))
+     * .test()
+     * .assertResult(1, 2);
+     * </code></pre>
+     * If this behavior is not desired, the completion can be suppressed by applying {@link #concatWith(Publisher)}
+     * with a {@link #never()} source.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s
@@ -7525,9 +8447,24 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Flowable that emits all items emitted by the source Publisher that are distinct.
+     * Returns a Flowable that emits all items emitted by the source Publisher that are distinct
+     * based on {@link Object#equals(Object)} comparison.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/distinct.png" alt="">
+     * <p>
+     * It is recommended the elements' class {@code T} in the flow overrides the default {@code Object.equals()} and {@link Object#hashCode()} to provide
+     * a meaningful comparison between items as the default Java implementation only considers reference equivalence.
+     * <p>
+     * By default, {@code distinct()} uses an internal {@link java.util.HashSet} per Subscriber to remember
+     * previously seen items and uses {@link java.util.Set#add(Object)} returning {@code false} as the
+     * indicator for duplicates.
+     * <p>
+     * Note that this internal {@code HashSet} may grow unbounded as items won't be removed from it by
+     * the operator. Therefore, using very long or infinite upstream (with very distinct elements) may lead
+     * to {@code OutOfMemoryError}.
+     * <p>
+     * Customizing the retention policy can happen only by providing a custom {@link java.util.Collection} implementation
+     * to the {@link #distinct(Function, Callable)} overload.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s
@@ -7539,6 +8476,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @return a Flowable that emits only those items emitted by the source Publisher that are distinct from
      *         each other
      * @see <a href="http://reactivex.io/documentation/operators/distinct.html">ReactiveX operators documentation: Distinct</a>
+     * @see #distinct(Function)
+     * @see #distinct(Function, Callable)
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @CheckReturnValue
@@ -7550,9 +8489,24 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Flowable that emits all items emitted by the source Publisher that are distinct according
-     * to a key selector function.
+     * to a key selector function and based on {@link Object#equals(Object)} comparison of the objects
+     * returned by the key selector function.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/distinct.key.png" alt="">
+     * <p>
+     * It is recommended the keys' class {@code K} overrides the default {@code Object.equals()} and {@link Object#hashCode()} to provide
+     * a meaningful comparison between the key objects as the default Java implementation only considers reference equivalence.
+     * <p>
+     * By default, {@code distinct()} uses an internal {@link java.util.HashSet} per Subscriber to remember
+     * previously seen keys and uses {@link java.util.Set#add(Object)} returning {@code false} as the
+     * indicator for duplicates.
+     * <p>
+     * Note that this internal {@code HashSet} may grow unbounded as keys won't be removed from it by
+     * the operator. Therefore, using very long or infinite upstream (with very distinct keys) may lead
+     * to {@code OutOfMemoryError}.
+     * <p>
+     * Customizing the retention policy can happen only by providing a custom {@link java.util.Collection} implementation
+     * to the {@link #distinct(Function, Callable)} overload.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s
@@ -7567,6 +8521,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            is distinct from another one or not
      * @return a Flowable that emits those items emitted by the source Publisher that have distinct keys
      * @see <a href="http://reactivex.io/documentation/operators/distinct.html">ReactiveX operators documentation: Distinct</a>
+     * @see #distinct(Function, Callable)
      */
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.FULL)
@@ -7577,9 +8532,13 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Flowable that emits all items emitted by the source Publisher that are distinct according
-     * to a key selector function.
+     * to a key selector function and based on {@link Object#equals(Object)} comparison of the objects
+     * returned by the key selector function.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/distinct.key.png" alt="">
+     * <p>
+     * It is recommended the keys' class {@code K} overrides the default {@code Object.equals()} and {@link Object#hashCode()} to provide
+     * a meaningful comparison between the key objects as the default Java implementation only considers reference equivalence.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s
@@ -7610,9 +8569,18 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Flowable that emits all items emitted by the source Publisher that are distinct from their
-     * immediate predecessors.
+     * immediate predecessors based on {@link Object#equals(Object)} comparison.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/distinctUntilChanged.png" alt="">
+     * <p>
+     * It is recommended the elements' class {@code T} in the flow overrides the default {@code Object.equals()} to provide
+     * a meaningful comparison between items as the default Java implementation only considers reference equivalence.
+     * Alternatively, use the {@link #distinctUntilChanged(BiPredicate)} overload and provide a comparison function
+     * in case the class {@code T} can't be overridden with custom {@code equals()} or the comparison itself
+     * should happen on different terms or properties of the class {@code T}.
+     * <p>
+     * Note that the operator always retains the latest item from upstream regardless of the comparison result
+     * and uses it in the next comparison with the next upstream item.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s
@@ -7624,6 +8592,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @return a Flowable that emits those items from the source Publisher that are distinct from their
      *         immediate predecessors
      * @see <a href="http://reactivex.io/documentation/operators/distinct.html">ReactiveX operators documentation: Distinct</a>
+     * @see #distinctUntilChanged(BiPredicate)
      */
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.FULL)
@@ -7634,9 +8603,20 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Flowable that emits all items emitted by the source Publisher that are distinct from their
-     * immediate predecessors, according to a key selector function.
+     * immediate predecessors, according to a key selector function and based on {@link Object#equals(Object)} comparison
+     * of those objects returned by the key selector function.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/distinctUntilChanged.key.png" alt="">
+     * <p>
+     * It is recommended the keys' class {@code K} overrides the default {@code Object.equals()} to provide
+     * a meaningful comparison between the key objects as the default Java implementation only considers reference equivalence.
+     * Alternatively, use the {@link #distinctUntilChanged(BiPredicate)} overload and provide a comparison function
+     * in case the class {@code K} can't be overridden with custom {@code equals()} or the comparison itself
+     * should happen on different terms or properties of the item class {@code T} (for which the keys can be
+     * derived via a similar selector).
+     * <p>
+     * Note that the operator always retains the latest key from upstream regardless of the comparison result
+     * and uses it in the next comparison with the next key derived from the next upstream item.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s
@@ -7666,6 +8646,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * immediate predecessors when compared with each other via the provided comparator function.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/distinctUntilChanged.png" alt="">
+     * <p>
+     * Note that the operator always retains the latest item from upstream regardless of the comparison result
+     * and uses it in the next comparison with the next upstream item.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s
@@ -7690,7 +8673,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Calls the specified action after this Flowable signals onError or onCompleted or gets cancelled by
+     * Calls the specified action after this Flowable signals onError or onCompleted or gets canceled by
      * the downstream.
      * <p>In case of a race between a terminal event and a cancellation, the provided {@code onFinally} action
      * is executed once per subscription.
@@ -7707,7 +8690,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  synchronous or asynchronous queue-fusion.</dd>
      * </dl>
      * <p>History: 2.0.1 - experimental
-     * @param onFinally the action called when this Flowable terminates or gets cancelled
+     * @param onFinally the action called when this Flowable terminates or gets canceled
      * @return the new Flowable instance
      * @since 2.1
      */
@@ -7778,7 +8761,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Calls the cancel {@code Action} if the downstream cancels the sequence.
      * <p>
      * The action is shared between subscriptions and thus may be called concurrently from multiple
-     * threads; the action must be thread safe.
+     * threads; the action must be thread-safe.
      * <p>
      * If the action throws a runtime exception, that exception is rethrown by the {@code onCancel()} call,
      * sometimes as a {@code CompositeException} if there were multiple exceptions along the way.
@@ -7795,7 +8778,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * </dl>
      *
      * @param onCancel
-     *            the action that gets called when the source {@code Publisher}'s Subscription is cancelled
+     *            the action that gets called when the source {@code Publisher}'s Subscription is canceled
      * @return the source {@code Publisher} modified so as to call this Action when appropriate
      * @see <a href="http://reactivex.io/documentation/operators/do.html">ReactiveX operators documentation: Do</a>
      */
@@ -8307,7 +9290,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the value type of the inner Publishers and the output type
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @return a Flowable that emits the result of applying the transformation function to each item emitted
      *         by the source Publisher and merging the results of the Publishers obtained from this
@@ -8339,11 +9322,11 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the value type of the inner Publishers and the output type
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @param delayErrors
      *            if true, exceptions from the current Flowable and all inner Publishers are delayed until all of them terminate
-     *            if false, the first one signalling an exception will terminate the whole sequence immediately
+     *            if false, the first one signaling an exception will terminate the whole sequence immediately
      * @return a Flowable that emits the result of applying the transformation function to each item emitted
      *         by the source Publisher and merging the results of the Publishers obtained from this
      *         transformation
@@ -8375,7 +9358,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the value type of the inner Publishers and the output type
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @param maxConcurrency
      *         the maximum number of Publishers that may be subscribed to concurrently
@@ -8411,13 +9394,13 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the value type of the inner Publishers and the output type
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @param maxConcurrency
      *         the maximum number of Publishers that may be subscribed to concurrently
      * @param delayErrors
      *            if true, exceptions from the current Flowable and all inner Publishers are delayed until all of them terminate
-     *            if false, the first one signalling an exception will terminate the whole sequence immediately
+     *            if false, the first one signaling an exception will terminate the whole sequence immediately
      * @return a Flowable that emits the result of applying the transformation function to each item emitted
      *         by the source Publisher and merging the results of the Publishers obtained from this
      *         transformation
@@ -8450,13 +9433,13 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the value type of the inner Publishers and the output type
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @param maxConcurrency
      *         the maximum number of Publishers that may be subscribed to concurrently
      * @param delayErrors
      *            if true, exceptions from the current Flowable and all inner Publishers are delayed until all of them terminate
-     *            if false, the first one signalling an exception will terminate the whole sequence immediately
+     *            if false, the first one signaling an exception will terminate the whole sequence immediately
      * @param bufferSize
      *            the number of elements to prefetch from each inner Publisher
      * @return a Flowable that emits the result of applying the transformation function to each item emitted
@@ -8636,7 +9619,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            returns an item to be emitted by the resulting Publisher
      * @param delayErrors
      *            if true, exceptions from the current Flowable and all inner Publishers are delayed until all of them terminate
-     *            if false, the first one signalling an exception will terminate the whole sequence immediately
+     *            if false, the first one signaling an exception will terminate the whole sequence immediately
      * @return a Flowable that emits the results of applying a function to a pair of values emitted by the
      *         source Publisher and the collection Publisher
      * @see <a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
@@ -8678,7 +9661,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *         the maximum number of Publishers that may be subscribed to concurrently
      * @param delayErrors
      *            if true, exceptions from the current Flowable and all inner Publishers are delayed until all of them terminate
-     *            if false, the first one signalling an exception will terminate the whole sequence immediately
+     *            if false, the first one signaling an exception will terminate the whole sequence immediately
      * @return a Flowable that emits the results of applying a function to a pair of values emitted by the
      *         source Publisher and the collection Publisher
      * @see <a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
@@ -8721,7 +9704,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *         the maximum number of Publishers that may be subscribed to concurrently
      * @param delayErrors
      *            if true, exceptions from the current Flowable and all inner Publishers are delayed until all of them terminate
-     *            if false, the first one signalling an exception will terminate the whole sequence immediately
+     *            if false, the first one signaling an exception will terminate the whole sequence immediately
      * @param bufferSize
      *            the number of elements to prefetch from the inner Publishers.
      * @return a Flowable that emits the results of applying a function to a pair of values emitted by the
@@ -8806,7 +9789,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>If {@code maxConcurrency == Integer.MAX_VALUE} the operator consumes the upstream in an unbounded manner.
-     *  Otherwise the operator expects the upstream to honor backpressure. If the upstream doesn't support backpressure
+     *  Otherwise, the operator expects the upstream to honor backpressure. If the upstream doesn't support backpressure
      *  the operator behaves as if {@code maxConcurrency == Integer.MAX_VALUE} was used.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code flatMapCompletable} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -8996,7 +9979,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>If {@code maxConcurrency == Integer.MAX_VALUE} the operator consumes the upstream in an unbounded manner.
-     *  Otherwise the operator expects the upstream to honor backpressure. If the upstream doesn't support backpressure
+     *  Otherwise, the operator expects the upstream to honor backpressure. If the upstream doesn't support backpressure
      *  the operator behaves as if {@code maxConcurrency == Integer.MAX_VALUE} was used.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code flatMapMaybe} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -9044,7 +10027,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>If {@code maxConcurrency == Integer.MAX_VALUE} the operator consumes the upstream in an unbounded manner.
-     *  Otherwise the operator expects the upstream to honor backpressure. If the upstream doesn't support backpressure
+     *  Otherwise, the operator expects the upstream to honor backpressure. If the upstream doesn't support backpressure
      *  the operator behaves as if {@code maxConcurrency == Integer.MAX_VALUE} was used.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code flatMapSingle} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -9080,7 +10063,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param onNext
      *            {@link Consumer} to execute for each item.
      * @return
-     *            a Disposable that allows cancelling an asynchronous sequence
+     *            a Disposable that allows canceling an asynchronous sequence
      * @throws NullPointerException
      *             if {@code onNext} is null
      * @see <a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
@@ -9110,7 +10093,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param onNext
      *            {@link Predicate} to execute for each item.
      * @return
-     *            a {@link Disposable} that allows cancelling an asynchronous sequence
+     *            a {@link Disposable} that allows canceling an asynchronous sequence
      * @throws NullPointerException
      *             if {@code onNext} is null
      * @see <a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
@@ -9138,7 +10121,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param onError
      *            {@link Consumer} to execute when an error is emitted.
      * @return
-     *            a {@link Disposable} that allows cancelling an asynchronous sequence
+     *            a {@link Disposable} that allows canceling an asynchronous sequence
      * @throws NullPointerException
      *             if {@code onNext} is null, or
      *             if {@code onError} is null
@@ -9167,9 +10150,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param onError
      *            {@link Consumer} to execute when an error is emitted.
      * @param onComplete
-     *            {@link Action} to execute when completion is signalled.
+     *            {@link Action} to execute when completion is signaled.
      * @return
-     *            a {@link Disposable} that allows cancelling an asynchronous sequence
+     *            a {@link Disposable} that allows canceling an asynchronous sequence
      * @throws NullPointerException
      *             if {@code onNext} is null, or
      *             if {@code onError} is null, or
@@ -9418,7 +10401,114 @@ public abstract class Flowable<T> implements Publisher<T> {
         ObjectHelper.requireNonNull(valueSelector, "valueSelector is null");
         ObjectHelper.verifyPositive(bufferSize, "bufferSize");
 
-        return RxJavaPlugins.onAssembly(new FlowableGroupBy<T, K, V>(this, keySelector, valueSelector, bufferSize, delayError));
+        return RxJavaPlugins.onAssembly(new FlowableGroupBy<T, K, V>(this, keySelector, valueSelector, bufferSize, delayError, null));
+    }
+
+    /**
+     * Groups the items emitted by a {@code Publisher} according to a specified criterion, and emits these
+     * grouped items as {@link GroupedFlowable}s. The emitted {@code GroupedFlowable} allows only a single
+     * {@link Subscriber} during its lifetime and if this {@code Subscriber} cancels before the
+     * source terminates, the next emission by the source having the same key will trigger a new
+     * {@code GroupedPublisher} emission. The {@code evictingMapFactory} is used to create a map that will
+     * be used to hold the {@link GroupedFlowable}s by key. The evicting map created by this factory must
+     * notify the provided {@code Consumer<Object>} with the entry value (not the key!) when an entry in this
+     * map has been evicted. The next source emission will bring about the completion of the evicted
+     * {@link GroupedFlowable}s and the arrival of an item with the same key as a completed {@link GroupedFlowable}
+     * will prompt the creation and emission of a new {@link GroupedFlowable} with that key.
+     * 
+     * <p>A use case for specifying an {@code evictingMapFactory} is where the source is infinite and fast and
+     * over time the number of keys grows enough to be a concern in terms of the memory footprint of the
+     * internal hash map containing the {@link GroupedFlowable}s.
+     * 
+     * <p>The map created by an {@code evictingMapFactory} must be thread-safe.
+     * 
+     * <p>An example of an {@code evictingMapFactory} using <a href="https://google.github.io/guava/releases/24.0-jre/api/docs/com/google/common/cache/CacheBuilder.html">CacheBuilder</a> from the Guava library is below:
+     * 
+     * <pre><code>
+     * Function&lt;Consumer&lt;Object&gt;, Map&lt;Integer, Object&gt;&gt; evictingMapFactory =
+     *   notify -&gt;
+     *       CacheBuilder
+     *         .newBuilder()
+     *         .maximumSize(3)
+     *         .removalListener(entry -&gt; {
+     *              try {
+     *                  // emit the value not the key!
+     *                  notify.accept(entry.getValue());
+     *              } catch (Exception e) {
+     *                  throw new RuntimeException(e);
+     *              }
+     *            })
+     *         .&lt;Integer, Object&gt; build()
+     *         .asMap();
+     *
+     * // Emit 1000 items but ensure that the
+     * // internal map never has more than 3 items in it
+     * Flowable
+     *   .range(1, 1000)
+     *   // note that number of keys is 10
+     *   .groupBy(x -&gt; x % 10, x -&gt; x, true, 16, evictingMapFactory)
+     *   .flatMap(g -&gt; g)
+     *   .forEach(System.out::println);
+     * </code></pre>
+     * 
+     * <p>
+     * <img width="640" height="360" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/groupBy.png" alt="">
+     * <p>
+     * <em>Note:</em> A {@link GroupedFlowable} will cache the items it is to emit until such time as it
+     * is subscribed to. For this reason, in order to avoid memory leaks, you should not simply ignore those
+     * {@code GroupedFlowable}s that do not concern you. Instead, you can signal to them that they may
+     * discard their buffers by applying an operator like {@link #ignoreElements} to them.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>Both the returned and its inner {@code GroupedFlowable}s honor backpressure and the source {@code Publisher}
+     *  is consumed in a bounded mode (i.e., requested a fixed amount upfront and replenished based on
+     *  downstream consumption). Note that both the returned and its inner {@code GroupedFlowable}s use
+     *  unbounded internal buffers and if the source {@code Publisher} doesn't honor backpressure, that <em>may</em>
+     *  lead to {@code OutOfMemoryError}.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code groupBy} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param keySelector
+     *            a function that extracts the key for each item
+     * @param valueSelector
+     *            a function that extracts the return element for each item
+     * @param delayError
+     *            if true, the exception from the current Flowable is delayed in each group until that specific group emitted
+     *            the normal values; if false, the exception bypasses values in the groups and is reported immediately.
+     * @param bufferSize
+     *            the hint for how many {@link GroupedFlowable}s and element in each {@link GroupedFlowable} should be buffered
+     * @param evictingMapFactory
+     *            The factory used to create a map that will be used by the implementation to hold the
+     *            {@link GroupedFlowable}s. The evicting map created by this factory must
+     *            notify the provided {@code Consumer<Object>} with the entry value (not the key!) when
+     *            an entry in this map has been evicted. The next source emission will bring about the
+     *            completion of the evicted {@link GroupedFlowable}s. See example above.
+     * @param <K>
+     *            the key type
+     * @param <V>
+     *            the element type
+     * @return a {@code Publisher} that emits {@link GroupedFlowable}s, each of which corresponds to a
+     *         unique key value and each of which emits those items from the source Publisher that share that
+     *         key value
+     * @see <a href="http://reactivex.io/documentation/operators/groupby.html">ReactiveX operators documentation: GroupBy</a>
+     *
+     * @since 2.1.10
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Beta
+    public final <K, V> Flowable<GroupedFlowable<K, V>> groupBy(Function<? super T, ? extends K> keySelector,
+            Function<? super T, ? extends V> valueSelector,
+            boolean delayError, int bufferSize,
+            Function<? super Consumer<Object>, ? extends Map<K, Object>> evictingMapFactory) {
+        ObjectHelper.requireNonNull(keySelector, "keySelector is null");
+        ObjectHelper.requireNonNull(valueSelector, "valueSelector is null");
+        ObjectHelper.verifyPositive(bufferSize, "bufferSize");
+        ObjectHelper.requireNonNull(evictingMapFactory, "evictingMapFactory is null");
+
+        return RxJavaPlugins.onAssembly(new FlowableGroupBy<T, K, V>(this, keySelector, valueSelector, bufferSize, delayError, evictingMapFactory));
     }
 
     /**
@@ -9666,34 +10756,150 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * <strong>This method requires advanced knowledge about building operators; please consider
+     * <strong>This method requires advanced knowledge about building operators, please consider
      * other standard composition methods first;</strong>
-     * Lifts a function to the current Publisher and returns a new Publisher that when subscribed to will pass
-     * the values of the current Publisher through the Operator function.
+     * Returns a {@code Flowable} which, when subscribed to, invokes the {@link FlowableOperator#apply(Subscriber) apply(Subscriber)} method
+     * of the provided {@link FlowableOperator} for each individual downstream {@link Subscriber} and allows the
+     * insertion of a custom operator by accessing the downstream's {@link Subscriber} during this subscription phase
+     * and providing a new {@code Subscriber}, containing the custom operator's intended business logic, that will be
+     * used in the subscription process going further upstream.
      * <p>
-     * In other words, this allows chaining Subscribers together on a Publisher for acting on the values within
-     * the Publisher.
-     * <p> {@code
-     * Publisher.map(...).filter(...).take(5).lift(new OperatorA()).lift(new OperatorB(...)).subscribe()
+     * Generally, such a new {@code Subscriber} will wrap the downstream's {@code Subscriber} and forwards the
+     * {@code onNext}, {@code onError} and {@code onComplete} events from the upstream directly or according to the
+     * emission pattern the custom operator's business logic requires. In addition, such operator can intercept the
+     * flow control calls of {@code cancel} and {@code request} that would have traveled upstream and perform
+     * additional actions depending on the same business logic requirements.
+     * <p>
+     * Example:
+     * <pre><code>
+     * // Step 1: Create the consumer type that will be returned by the FlowableOperator.apply():
+     * 
+     * public final class CustomSubscriber&lt;T&gt; implements FlowableSubscriber&lt;T&gt;, Subscription {
+     *
+     *     // The downstream's Subscriber that will receive the onXXX events
+     *     final Subscriber&lt;? super String&gt; downstream;
+     *
+     *     // The connection to the upstream source that will call this class' onXXX methods
+     *     Subscription upstream;
+     *
+     *     // The constructor takes the downstream subscriber and usually any other parameters
+     *     public CustomSubscriber(Subscriber&lt;? super String&gt; downstream) {
+     *         this.downstream = downstream;
+     *     }
+     *
+     *     // In the subscription phase, the upstream sends a Subscription to this class
+     *     // and subsequently this class has to send a Subscription to the downstream.
+     *     // Note that relaying the upstream's Subscription directly is not allowed in RxJava
+     *     &#64;Override
+     *     public void onSubscribe(Subscription s) {
+     *         if (upstream != null) {
+     *             s.cancel();
+     *         } else {
+     *             upstream = s;
+     *             downstream.onSubscribe(this);
+     *         }
+     *     }
+     *
+     *     // The upstream calls this with the next item and the implementation's
+     *     // responsibility is to emit an item to the downstream based on the intended
+     *     // business logic, or if it can't do so for the particular item,
+     *     // request more from the upstream
+     *     &#64;Override
+     *     public void onNext(T item) {
+     *         String str = item.toString();
+     *         if (str.length() &lt; 2) {
+     *             downstream.onNext(str);
+     *         } else {
+     *             upstream.request(1);
+     *         }
+     *     }
+     *
+     *     // Some operators may handle the upstream's error while others
+     *     // could just forward it to the downstream.
+     *     &#64;Override
+     *     public void onError(Throwable throwable) {
+     *         downstream.onError(throwable);
+     *     }
+     *
+     *     // When the upstream completes, usually the downstream should complete as well.
+     *     &#64;Override
+     *     public void onComplete() {
+     *         downstream.onComplete();
+     *     }
+     *
+     *     // Some operators have to intercept the downstream's request calls to trigger
+     *     // the emission of queued items while others can simply forward the request
+     *     // amount as is.
+     *     &#64;Override
+     *     public void request(long n) {
+     *         upstream.request(n);
+     *     }
+     *
+     *     // Some operators may use their own resources which should be cleaned up if
+     *     // the downstream cancels the flow before it completed. Operators without
+     *     // resources can simply forward the cancellation to the upstream.
+     *     // In some cases, a canceled flag may be set by this method so that other parts
+     *     // of this class may detect the cancellation and stop sending events
+     *     // to the downstream.
+     *     &#64;Override
+     *     public void cancel() {
+     *         upstream.cancel();
+     *     }
      * }
+     *
+     * // Step 2: Create a class that implements the FlowableOperator interface and
+     * //         returns the custom consumer type from above in its apply() method.
+     * //         Such class may define additional parameters to be submitted to
+     * //         the custom consumer type.
+     *
+     * final class CustomOperator&lt;T&gt; implements FlowableOperator&lt;String&gt; {
+     *     &#64;Override
+     *     public Subscriber&lt;? super String&gt; apply(Subscriber&lt;? super T&gt; upstream) {
+     *         return new CustomSubscriber&lt;T&gt;(upstream);
+     *     }
+     * }
+     *
+     * // Step 3: Apply the custom operator via lift() in a flow by creating an instance of it
+     * //         or reusing an existing one.
+     *
+     * Flowable.range(5, 10)
+     * .lift(new CustomOperator&lt;Integer&gt;())
+     * .test()
+     * .assertResult("5", "6", "7", "8", "9");
+     * </code></pre>
      * <p>
-     * If the operator you are creating is designed to act on the individual items emitted by a source
-     * Publisher, use {@code lift}. If your operator is designed to transform the source Publisher as a whole
-     * (for instance, by applying a particular set of existing RxJava operators to it) use {@link #compose}.
+     * Creating custom operators can be complicated and it is recommended one consults the
+     * <a href="https://github.com/ReactiveX/RxJava/wiki/Writing-operators-for-2.0">RxJava wiki: Writing operators</a> page about
+     * the tools, requirements, rules, considerations and pitfalls of implementing them.
+     * <p>
+     * Note that implementing custom operators via this {@code lift()} method adds slightly more overhead by requiring
+     * an additional allocation and indirection per assembled flows. Instead, extending the abstract {@code Flowable}
+     * class and creating a {@link FlowableTransformer} with it is recommended.
+     * <p>
+     * Note also that it is not possible to stop the subscription phase in {@code lift()} as the {@code apply()} method
+     * requires a non-null {@code Subscriber} instance to be returned, which is then unconditionally subscribed to
+     * the upstream {@code Flowable}. For example, if the operator decided there is no reason to subscribe to the
+     * upstream source because of some optimization possibility or a failure to prepare the operator, it still has to
+     * return a {@code Subscriber} that should immediately cancel the upstream's {@code Subscription} in its
+     * {@code onSubscribe} method. Again, using a {@code FlowableTransformer} and extending the {@code Flowable} is
+     * a better option as {@link #subscribeActual} can decide to not subscribe to its upstream after all.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The {@code Operator} instance provided is responsible to be backpressure-aware or
-     *  document the fact that the consumer of the returned {@code Publisher} has to apply one of
+     *  <dd>The {@code Subscriber} instance returned by the {@link FlowableOperator} is responsible to be
+     *  backpressure-aware or document the fact that the consumer of the returned {@code Publisher} has to apply one of
      *  the {@code onBackpressureXXX} operators.</dd>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code lift} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code lift} does not operate by default on a particular {@link Scheduler}, however, the
+     *  {@link FlowableOperator} may use a {@code Scheduler} to support its own asynchronous behavior.</dd>
      * </dl>
      *
      * @param <R> the output value type
-     * @param lifter the Operator that implements the Publisher-operating function to be applied to the source
-     *             Publisher
-     * @return a Flowable that is the result of applying the lifted Operator to the source Publisher
-     * @see <a href="https://github.com/ReactiveX/RxJava/wiki/Implementing-Your-Own-Operators">RxJava wiki: Implementing Your Own Operators</a>
+     * @param lifter the {@link FlowableOperator} that receives the downstream's {@code Subscriber} and should return
+     *               a {@code Subscriber} with custom behavior to be used as the consumer for the current
+     *               {@code Flowable}.
+     * @return the new Flowable instance
+     * @see <a href="https://github.com/ReactiveX/RxJava/wiki/Writing-operators-for-2.0">RxJava wiki: Writing operators</a>
+     * @see #compose(FlowableTransformer)
      */
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.SPECIAL)
@@ -9828,6 +11034,89 @@ public abstract class Flowable<T> implements Publisher<T> {
     public final Flowable<T> mergeWith(Publisher<? extends T> other) {
         ObjectHelper.requireNonNull(other, "other is null");
         return merge(this, other);
+    }
+
+    /**
+     * Merges the sequence of items of this Flowable with the success value of the other SingleSource.
+     * <p>
+     * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/merge.png" alt="">
+     * <p>
+     * The success value of the other {@code SingleSource} can get interleaved at any point of this
+     * {@code Flowable} sequence.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator honors backpressure from downstream and ensures the success item from the
+     *  {@code SingleSource} is emitted only when there is a downstream demand.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code mergeWith} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param other the {@code SingleSource} whose success value to merge with
+     * @return the new Flowable instance
+     * @since 2.1.10 - experimental
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Flowable<T> mergeWith(@NonNull SingleSource<? extends T> other) {
+        ObjectHelper.requireNonNull(other, "other is null");
+        return RxJavaPlugins.onAssembly(new FlowableMergeWithSingle<T>(this, other));
+    }
+
+    /**
+     * Merges the sequence of items of this Flowable with the success value of the other MaybeSource
+     * or waits for both to complete normally if the MaybeSource is empty.
+     * <p>
+     * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/merge.png" alt="">
+     * <p>
+     * The success value of the other {@code MaybeSource} can get interleaved at any point of this
+     * {@code Flowable} sequence.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator honors backpressure from downstream and ensures the success item from the
+     *  {@code MaybeSource} is emitted only when there is a downstream demand.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code mergeWith} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param other the {@code MaybeSource} which provides a success value to merge with or completes
+     * @return the new Flowable instance
+     * @since 2.1.10 - experimental
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.FULL)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Flowable<T> mergeWith(@NonNull MaybeSource<? extends T> other) {
+        ObjectHelper.requireNonNull(other, "other is null");
+        return RxJavaPlugins.onAssembly(new FlowableMergeWithMaybe<T>(this, other));
+    }
+
+    /**
+     * Relays the items of this Flowable and completes only when the other CompletableSource completes
+     * as well.
+     * <p>
+     * <img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/merge.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator doesn't interfere with backpressure which is determined by the source {@code Publisher}'s backpressure
+     *  behavior.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code mergeWith} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param other the {@code CompletableSource} to await for completion
+     * @return the new Flowable instance
+     * @since 2.1.10 - experimental
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.PASS_THROUGH)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Flowable<T> mergeWith(@NonNull CompletableSource other) {
+        ObjectHelper.requireNonNull(other, "other is null");
+        return RxJavaPlugins.onAssembly(new FlowableMergeWithCompletable<T>(this, other));
     }
 
     /**
@@ -10006,7 +11295,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * </dl>
      * @param delayError
      *                if true, an exception from the current Flowable is delayed until all buffered elements have been
-     *                consumed by the downstream; if false, an exception is immediately signalled to the downstream, skipping
+     *                consumed by the downstream; if false, an exception is immediately signaled to the downstream, skipping
      *                any buffered element
      * @return the source Publisher modified to buffer items to the extent system resources allow
      * @see <a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
@@ -10020,9 +11309,9 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Instructs a Publisher that is emitting items faster than its Subscriber can consume them to buffer up to
-     * a given amount of items until they can be emitted. The resulting Publisher will {@code onError} emitting
-     * a {@code BufferOverflowException} as soon as the buffer's capacity is exceeded, dropping all undelivered
-     * items, and cancelling the source.
+     * a given amount of items until they can be emitted. The resulting Publisher will signal
+     * a {@code BufferOverflowException} via {@code onError} as soon as the buffer's capacity is exceeded, dropping all undelivered
+     * items, and canceling the source.
      * <p>
      * <img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt="">
      * <dl>
@@ -10047,9 +11336,9 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Instructs a Publisher that is emitting items faster than its Subscriber can consume them to buffer up to
-     * a given amount of items until they can be emitted. The resulting Publisher will {@code onError} emitting
-     * a {@code BufferOverflowException} as soon as the buffer's capacity is exceeded, dropping all undelivered
-     * items, and cancelling the source.
+     * a given amount of items until they can be emitted. The resulting Publisher will signal
+     * a {@code BufferOverflowException} via {@code onError} as soon as the buffer's capacity is exceeded, dropping all undelivered
+     * items, and canceling the source.
      * <p>
      * <img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt="">
      * <dl>
@@ -10063,7 +11352,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param capacity number of slots available in the buffer.
      * @param delayError
      *                if true, an exception from the current Flowable is delayed until all buffered elements have been
-     *                consumed by the downstream; if false, an exception is immediately signalled to the downstream, skipping
+     *                consumed by the downstream; if false, an exception is immediately signaled to the downstream, skipping
      *                any buffered element
      * @return the source {@code Publisher} modified to buffer items up to the given capacity.
      * @see <a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
@@ -10078,9 +11367,9 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Instructs a Publisher that is emitting items faster than its Subscriber can consume them to buffer up to
-     * a given amount of items until they can be emitted. The resulting Publisher will {@code onError} emitting
-     * a {@code BufferOverflowException} as soon as the buffer's capacity is exceeded, dropping all undelivered
-     * items, and cancelling the source.
+     * a given amount of items until they can be emitted. The resulting Publisher will signal
+     * a {@code BufferOverflowException} via {@code onError} as soon as the buffer's capacity is exceeded, dropping all undelivered
+     * items, and canceling the source.
      * <p>
      * <img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt="">
      * <dl>
@@ -10094,7 +11383,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param capacity number of slots available in the buffer.
      * @param delayError
      *                if true, an exception from the current Flowable is delayed until all buffered elements have been
-     *                consumed by the downstream; if false, an exception is immediately signalled to the downstream, skipping
+     *                consumed by the downstream; if false, an exception is immediately signaled to the downstream, skipping
      *                any buffered element
      * @param unbounded
      *                if true, the capacity value is interpreted as the internal "island" size of the unbounded buffer
@@ -10112,9 +11401,9 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Instructs a Publisher that is emitting items faster than its Subscriber can consume them to buffer up to
-     * a given amount of items until they can be emitted. The resulting Publisher will {@code onError} emitting
-     * a {@code BufferOverflowException} as soon as the buffer's capacity is exceeded, dropping all undelivered
-     * items, cancelling the source, and notifying the producer with {@code onOverflow}.
+     * a given amount of items until they can be emitted. The resulting Publisher will signal
+     * a {@code BufferOverflowException} via {@code onError} as soon as the buffer's capacity is exceeded, dropping all undelivered
+     * items, canceling the source, and notifying the producer with {@code onOverflow}.
      * <p>
      * <img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt="">
      * <dl>
@@ -10128,7 +11417,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param capacity number of slots available in the buffer.
      * @param delayError
      *                if true, an exception from the current Flowable is delayed until all buffered elements have been
-     *                consumed by the downstream; if false, an exception is immediately signalled to the downstream, skipping
+     *                consumed by the downstream; if false, an exception is immediately signaled to the downstream, skipping
      *                any buffered element
      * @param unbounded
      *                if true, the capacity value is interpreted as the internal "island" size of the unbounded buffer
@@ -10149,9 +11438,9 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Instructs a Publisher that is emitting items faster than its Subscriber can consume them to buffer up to
-     * a given amount of items until they can be emitted. The resulting Publisher will {@code onError} emitting
-     * a {@code BufferOverflowException} as soon as the buffer's capacity is exceeded, dropping all undelivered
-     * items, cancelling the source, and notifying the producer with {@code onOverflow}.
+     * a given amount of items until they can be emitted. The resulting Publisher will signal
+     * a {@code BufferOverflowException} via {@code onError} as soon as the buffer's capacity is exceeded, dropping all undelivered
+     * items, canceling the source, and notifying the producer with {@code onOverflow}.
      * <p>
      * <img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt="">
      * <dl>
@@ -10181,10 +11470,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * by {@code overflowStrategy} if the buffer capacity is exceeded.
      *
      * <ul>
-     *     <li>{@code BackpressureOverflow.Strategy.ON_OVERFLOW_ERROR} (default) will {@code onError} dropping all undelivered items,
-     *     cancelling the source, and notifying the producer with {@code onOverflow}. </li>
+     *     <li>{@code BackpressureOverflow.Strategy.ON_OVERFLOW_ERROR} (default) will call {@code onError} dropping all undelivered items,
+     *     canceling the source, and notifying the producer with {@code onOverflow}. </li>
      *     <li>{@code BackpressureOverflow.Strategy.ON_OVERFLOW_DROP_LATEST} will drop any new items emitted by the producer while
-     *     the buffer is full, without generating any {@code onError}.  Each drop will however invoke {@code onOverflow}
+     *     the buffer is full, without generating any {@code onError}.  Each drop will, however, invoke {@code onOverflow}
      *     to signal the overflow to the producer.</li>
      *     <li>{@code BackpressureOverflow.Strategy.ON_OVERFLOW_DROP_OLDEST} will drop the oldest items in the buffer in order to make
      *     room for newly emitted ones. Overflow will not generate an{@code onError}, but each drop will invoke
@@ -10328,7 +11617,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  are expected to honor backpressure as well.
      *  If any of them violate this expectation, the operator <em>may</em> throw an
      *  {@code IllegalStateException} when the source {@code Publisher} completes or
-     *  a {@code MissingBackpressureException} is signalled somewhere downstream.</dd>
+     *  a {@code MissingBackpressureException} is signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code onErrorResumeNext} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -10371,7 +11660,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  are expected to honor backpressure as well.
      *  If any of them violate this expectation, the operator <em>may</em> throw an
      *  {@code IllegalStateException} when the source {@code Publisher} completes or
-     *  {@code MissingBackpressureException} is signalled somewhere downstream.</dd>
+     *  {@code MissingBackpressureException} is signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code onErrorResumeNext} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -10410,7 +11699,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dd>The operator honors backpressure from downstream. The source {@code Publisher}s is expected to honor
      *  backpressure as well. If it this expectation is violated, the operator <em>may</em> throw
      *  {@code IllegalStateException} when the source {@code Publisher} completes or
-     *  {@code MissingBackpressureException} is signalled somewhere downstream.</dd>
+     *  {@code MissingBackpressureException} is signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code onErrorReturn} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -10449,7 +11738,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dd>The operator honors backpressure from downstream. The source {@code Publisher}s is expected to honor
      *  backpressure as well. If it this expectation is violated, the operator <em>may</em> throw
      *  {@code IllegalStateException} when the source {@code Publisher} completes or
-     *  {@code MissingBackpressureException} is signalled somewhere downstream.</dd>
+     *  {@code MissingBackpressureException} is signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code onErrorReturnItem} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -10495,7 +11784,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  are expected to honor backpressure as well.
      *  If any of them violate this expectation, the operator <em>may</em> throw an
      *  {@code IllegalStateException} when the source {@code Publisher} completes or
-     *  {@code MissingBackpressureException} is signalled somewhere downstream.</dd>
+     *  {@code MissingBackpressureException} is signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code onExceptionResumeNext} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -10668,7 +11957,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dd>The operator expects the source {@code Publisher} to honor backpressure and if this expectation is
      *  violated, the operator will signal a {@code MissingBackpressureException} through the {@code Publisher}
      *  provided to the function. Since the {@code Publisher} returned by the {@code selector} may be
-     *  independent from the provided {@code Publisher} to the function, the output's backpressure behavior
+     *  independent of the provided {@code Publisher} to the function, the output's backpressure behavior
      *  is determined by this returned {@code Publisher}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code publish} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -10700,7 +11989,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dd>The operator expects the source {@code Publisher} to honor backpressure and if this expectation is
      *  violated, the operator will signal a {@code MissingBackpressureException} through the {@code Publisher}
      *  provided to the function. Since the {@code Publisher} returned by the {@code selector} may be
-     *  independent from the provided {@code Publisher} to the function, the output's backpressure behavior
+     *  independent of the provided {@code Publisher} to the function, the output's backpressure behavior
      *  is determined by this returned {@code Publisher}.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code publish} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -10783,16 +12072,20 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Maybe that applies a specified accumulator function to the first item emitted by a source
      * Publisher, then feeds the result of that function along with the second item emitted by the source
-     * Publisher into the same function, and so on until all items have been emitted by the source Publisher,
+     * Publisher into the same function, and so on until all items have been emitted by the finite source Publisher,
      * and emits the final result from the final call to your function as its sole item.
      * <p>
-     * If the source is empty, a {@code NoSuchElementException} is signalled.
+     * If the source is empty, a {@code NoSuchElementException} is signaled.
      * <p>
      * <img width="640" height="320" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/reduce.png" alt="">
      * <p>
      * This technique, which is called "reduce" here, is sometimes called "aggregate," "fold," "accumulate,"
      * "compress," or "inject" in other programming contexts. Groovy, for instance, has an {@code inject} method
      * that does a similar operation on lists.
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulator object to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure of its downstream consumer and consumes the
@@ -10821,7 +12114,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Single that applies a specified accumulator function to the first item emitted by a source
      * Publisher and a specified seed value, then feeds the result of that function along with the second item
      * emitted by a Publisher into the same function, and so on until all items have been emitted by the
-     * source Publisher, emitting the final result from the final call to your function as its sole item.
+     * finite source Publisher, emitting the final result from the final call to your function as its sole item.
      * <p>
      * <img width="640" height="325" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/reduceSeed.png" alt="">
      * <p>
@@ -10846,6 +12139,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * source.reduceWith(() -&gt; new ArrayList&lt;&gt;(), (list, item) -&gt; list.add(item)));
      * </code></pre>
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulator object to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure of its downstream consumer and consumes the
@@ -10879,7 +12176,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Single that applies a specified accumulator function to the first item emitted by a source
      * Publisher and a seed value derived from calling a specified seedSupplier, then feeds the result
      * of that function along with the second item emitted by a Publisher into the same function, and so on until
-     * all items have been emitted by the source Publisher, emitting the final result from the final call to your
+     * all items have been emitted by the finite source Publisher, emitting the final result from the final call to your
      * function as its sole item.
      * <p>
      * <img width="640" height="325" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/reduceSeed.png" alt="">
@@ -10887,6 +12184,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      * This technique, which is called "reduce" here, is sometimes called "aggregate," "fold," "accumulate,"
      * "compress," or "inject" in other programming contexts. Groovy, for instance, has an {@code inject} method
      * that does a similar operation on lists.
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulator object to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure of its downstream consumer and consumes the
@@ -11094,6 +12395,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * emitted by a {@link ConnectableFlowable} that shares a single subscription to the source Publisher,
      * replaying {@code bufferSize} notifications.
      * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
+     * <p>
      * <img width="640" height="440" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.fn.png" alt="">
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
@@ -11129,6 +12433,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits items that are the results of invoking a specified selector on items
      * emitted by a {@link ConnectableFlowable} that shares a single subscription to the source Publisher,
      * replaying no more than {@code bufferSize} items that were emitted within a specified time window.
+     * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
      * <p>
      * <img width="640" height="445" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.fnt.png" alt="">
      * <dl>
@@ -11168,6 +12475,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits items that are the results of invoking a specified selector on items
      * emitted by a {@link ConnectableFlowable} that shares a single subscription to the source Publisher,
      * replaying no more than {@code bufferSize} items that were emitted within a specified time window.
+     * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
      * <p>
      * <img width="640" height="445" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.fnts.png" alt="">
      * <dl>
@@ -11216,6 +12526,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits items that are the results of invoking a specified selector on items
      * emitted by a {@link ConnectableFlowable} that shares a single subscription to the source Publisher,
      * replaying a maximum of {@code bufferSize} items.
+     * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
      * <p>
      * <img width="640" height="440" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.fns.png" alt="">
      * <dl>
@@ -11372,6 +12685,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * an ordinary Publisher, except that it does not begin emitting items when it is subscribed to, but only
      * when its {@code connect} method is called.
      * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
+     * <p>
      * <img width="640" height="515" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.n.png" alt="">
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
@@ -11401,6 +12717,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * replays at most {@code bufferSize} items that were emitted during a specified time window. A Connectable
      * Publisher resembles an ordinary Publisher, except that it does not begin emitting items when it is
      * subscribed to, but only when its {@code connect} method is called.
+     * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
      * <p>
      * <img width="640" height="515" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.nt.png" alt="">
      * <dl>
@@ -11435,6 +12754,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * that replays a maximum of {@code bufferSize} items that are emitted within a specified time window. A
      * Connectable Publisher resembles an ordinary Publisher, except that it does not begin emitting items
      * when it is subscribed to, but only when its {@code connect} method is called.
+     * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
      * <p>
      * <img width="640" height="515" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.nts.png" alt="">
      * <dl>
@@ -11477,6 +12799,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      * replays at most {@code bufferSize} items emitted by that Publisher. A Connectable Publisher resembles
      * an ordinary Publisher, except that it does not begin emitting items when it is subscribed to, but only
      * when its {@code connect} method is called.
+     * <p>
+     * Note that due to concurrency requirements, {@code replay(bufferSize)} may hold strong references to more than
+     * {@code bufferSize} source emissions.
      * <p>
      * <img width="640" height="515" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/replay.ns.png" alt="">
      * <dl>
@@ -11802,7 +13127,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Note that the inner {@code Publisher} returned by the handler function should signal
      * either {@code onNext}, {@code onError} or {@code onComplete} in response to the received
      * {@code Throwable} to indicate the operator should retry or terminate. If the upstream to
-     * the operator is asynchronous, signalling onNext followed by onComplete immediately may
+     * the operator is asynchronous, signaling onNext followed by onComplete immediately may
      * result in the sequence to be completed immediately. Similarly, if this inner
      * {@code Publisher} signals {@code onError} or {@code onComplete} while the upstream is
      * active, the sequence is terminated with the same signal immediately.
@@ -12089,7 +13414,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors downstream backpressure and expects the source {@code Publisher} to honor backpressure as well.
-     *  Violating this expectation, a {@code MissingBackpressureException} <em>may</em> get signalled somewhere downstream.</dd>
+     *  Violating this expectation, a {@code MissingBackpressureException} <em>may</em> get signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code scan} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -12138,7 +13463,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors downstream backpressure and expects the source {@code Publisher} to honor backpressure as well.
-     *  Violating this expectation, a {@code MissingBackpressureException} <em>may</em> get signalled somewhere downstream.</dd>
+     *  Violating this expectation, a {@code MissingBackpressureException} <em>may</em> get signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code scan} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -12177,7 +13502,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors downstream backpressure and expects the source {@code Publisher} to honor backpressure as well.
-     *  Violating this expectation, a {@code MissingBackpressureException} <em>may</em> get signalled somewhere downstream.</dd>
+     *  Violating this expectation, a {@code MissingBackpressureException} <em>may</em> get signaled somewhere downstream.</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code scanWith} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
@@ -12233,16 +13558,16 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a new {@link Publisher} that multicasts (shares) the original {@link Publisher}. As long as
+     * Returns a new {@link Publisher} that multicasts (and shares a single subscription to) the original {@link Publisher}. As long as
      * there is at least one {@link Subscriber} this {@link Publisher} will be subscribed and emitting data.
-     * When all subscribers have cancelled it will cancel the source {@link Publisher}.
+     * When all subscribers have canceled it will cancel the source {@link Publisher}.
      * <p>
-     * This is an alias for {@link #publish()}.{@link ConnectableFlowable#refCount()}.
+     * This is an alias for {@link #publish()}.{@link ConnectableFlowable#refCount() refCount()}.
      * <p>
      * <img width="640" height="510" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/publishRefCount.png" alt="">
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator honors backpressure and and expects the source {@code Publisher} to honor backpressure as well.
+     *  <dd>The operator honors backpressure and expects the source {@code Publisher} to honor backpressure as well.
      *  If this expectation is violated, the operator will signal a {@code MissingBackpressureException} to
      *  its {@code Subscriber}s.</dd>
      *  <dt><b>Scheduler:</b></dt>
@@ -12287,7 +13612,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Single that emits the single item emitted by the source Publisher, if that Publisher
      * emits only a single item, or a default item if the source Publisher emits no items. If the source
-     * Publisher emits more than one item, an {@code IllegalArgumentException} is signalled instead.
+     * Publisher emits more than one item, an {@code IllegalArgumentException} is signaled instead.
      * <p>
      * <img width="640" height="315" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/singleOrDefault.png" alt="">
      * <dl>
@@ -12315,8 +13640,8 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Single that emits the single item emitted by this Flowable, if this Flowable
      * emits only a single item, otherwise
-     * if this Flowable completes without emitting any items a {@link NoSuchElementException} will be signalled and
-     * if this Flowable emits more than one item, an {@code IllegalArgumentException} will be signalled.
+     * if this Flowable completes without emitting any items a {@link NoSuchElementException} will be signaled and
+     * if this Flowable emits more than one item, an {@code IllegalArgumentException} will be signaled.
      * <p>
      * <img width="640" height="205" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/singleOrError.png" alt="">
      * <dl>
@@ -12373,7 +13698,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/skip.t.png" alt="">
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator doesn't support backpressure as it uses time to skip arbitrary number of elements and
+     *  <dd>The operator doesn't support backpressure as it uses time to skip an arbitrary number of elements and
      *  thus has to consume the source {@code Publisher} in an unbounded manner (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code skip} does not operate on any particular scheduler but uses the current time
@@ -12402,7 +13727,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/skip.ts.png" alt="">
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator doesn't support backpressure as it uses time to skip arbitrary number of elements and
+     *  <dd>The operator doesn't support backpressure as it uses time to skip an arbitrary number of elements and
      *  thus has to consume the source {@code Publisher} in an unbounded manner (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>You specify which {@link Scheduler} this operator will use for the timed skipping</dd>
@@ -12472,7 +13797,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Note: this action will cache the latest items arriving in the specified time window.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator doesn't support backpressure as it uses time to skip arbitrary number of elements and
+     *  <dd>The operator doesn't support backpressure as it uses time to skip an arbitrary number of elements and
      *  thus has to consume the source {@code Publisher} in an unbounded manner (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code skipLast} does not operate on any particular scheduler but uses the current time
@@ -12503,7 +13828,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Note: this action will cache the latest items arriving in the specified time window.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator doesn't support backpressure as it uses time to skip arbitrary number of elements and
+     *  <dd>The operator doesn't support backpressure as it uses time to skip an arbitrary number of elements and
      *  thus has to consume the source {@code Publisher} in an unbounded manner (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code skipLast} does not operate on any particular scheduler but uses the current time
@@ -12515,8 +13840,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param unit
      *            the time unit of {@code time}
      * @param delayError
-     *            if true, an exception signalled by the current Flowable is delayed until the regular elements are consumed
-     *            by the downstream; if false, an exception is immediately signalled and all regular elements dropped
+     *            if true, an exception signaled by the current Flowable is delayed until the regular elements are consumed
+     *            by the downstream; if false, an exception is immediately signaled and all regular elements dropped
      * @return a Flowable that drops those items emitted by the source Publisher in a time window before the
      *         source completes defined by {@code time}
      * @see <a href="http://reactivex.io/documentation/operators/skiplast.html">ReactiveX operators documentation: SkipLast</a>
@@ -12537,7 +13862,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Note: this action will cache the latest items arriving in the specified time window.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator doesn't support backpressure as it uses time to skip arbitrary number of elements and
+     *  <dd>The operator doesn't support backpressure as it uses time to skip an arbitrary number of elements and
      *  thus has to consume the source {@code Publisher} in an unbounded manner (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>You specify which {@link Scheduler} this operator will use for tracking the current time</dd>
@@ -12569,7 +13894,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Note: this action will cache the latest items arriving in the specified time window.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator doesn't support backpressure as it uses time to skip arbitrary number of elements and
+     *  <dd>The operator doesn't support backpressure as it uses time to skip an arbitrary number of elements and
      *  thus has to consume the source {@code Publisher} in an unbounded manner (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>You specify which {@link Scheduler} this operator will use to track the current time</dd>
@@ -12582,8 +13907,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param scheduler
      *            the scheduler used as the time source
      * @param delayError
-     *            if true, an exception signalled by the current Flowable is delayed until the regular elements are consumed
-     *            by the downstream; if false, an exception is immediately signalled and all regular elements dropped
+     *            if true, an exception signaled by the current Flowable is delayed until the regular elements are consumed
+     *            by the downstream; if false, an exception is immediately signaled and all regular elements dropped
      * @return a Flowable that drops those items emitted by the source Publisher in a time window before the
      *         source completes defined by {@code time} and {@code scheduler}
      * @see <a href="http://reactivex.io/documentation/operators/skiplast.html">ReactiveX operators documentation: SkipLast</a>
@@ -12604,7 +13929,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Note: this action will cache the latest items arriving in the specified time window.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
-     *  <dd>The operator doesn't support backpressure as it uses time to skip arbitrary number of elements and
+     *  <dd>The operator doesn't support backpressure as it uses time to skip an arbitrary number of elements and
      *  thus has to consume the source {@code Publisher} in an unbounded manner (i.e., no backpressure applied to it).</dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>You specify which {@link Scheduler} this operator will use.</dd>
@@ -12617,8 +13942,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param scheduler
      *            the scheduler used as the time source
      * @param delayError
-     *            if true, an exception signalled by the current Flowable is delayed until the regular elements are consumed
-     *            by the downstream; if false, an exception is immediately signalled and all regular elements dropped
+     *            if true, an exception signaled by the current Flowable is delayed until the regular elements are consumed
+     *            by the downstream; if false, an exception is immediately signaled and all regular elements dropped
      * @param bufferSize
      *            the hint about how many elements to expect to be skipped
      * @return a Flowable that drops those items emitted by the source Publisher in a time window before the
@@ -13108,9 +14433,10 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Operator implementations (both source and intermediate) should implement this method that
-     * performs the necessary business logic.
-     * <p>There is no need to call any of the plugin hooks on the current Flowable instance or
-     * the Subscriber.
+     * performs the necessary business logic and handles the incoming {@link Subscriber}s.
+     * <p>There is no need to call any of the plugin hooks on the current {@code Flowable} instance or
+     * the {@code Subscriber}; all hooks and basic safeguards have been
+     * applied by {@link #subscribe(Subscriber)} before this method gets called.
      * @param s the incoming Subscriber, never null
      */
     protected abstract void subscribeActual(Subscriber<? super T> s);
@@ -13231,7 +14557,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dd>If the source {@code Publisher} is empty, the alternate {@code Publisher} is expected to honor backpressure.
      *  If the source {@code Publisher} is non-empty, it is expected to honor backpressure as instead.
      *  In either case, if violated, a {@code MissingBackpressureException} <em>may</em> get
-     *  signalled somewhere downstream.
+     *  signaled somewhere downstream.
      *  </dd>
      *  <dt><b>Scheduler:</b></dt>
      *  <dd>{@code switchIfEmpty} does not operate by default on a particular {@link Scheduler}.</dd>
@@ -13257,7 +14583,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * of these Publishers.
      * <p>
      * The resulting Publisher completes if both the upstream Publisher and the last inner Publisher, if any, complete.
-     * If the upstream Publisher signals an onError, the inner Publisher is cancelled and the error delivered in-sequence.
+     * If the upstream Publisher signals an onError, the inner Publisher is canceled and the error delivered in-sequence.
      * <p>
      * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
      * <dl>
@@ -13272,7 +14598,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the element type of the inner Publishers and the output
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @return a Flowable that emits the items emitted by the Publisher returned from applying {@code func} to the most recently emitted item emitted by the source Publisher
      * @see <a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
@@ -13290,7 +14616,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * of these Publishers.
      * <p>
      * The resulting Publisher completes if both the upstream Publisher and the last inner Publisher, if any, complete.
-     * If the upstream Publisher signals an onError, the inner Publisher is cancelled and the error delivered in-sequence.
+     * If the upstream Publisher signals an onError, the inner Publisher is canceled and the error delivered in-sequence.
      * <p>
      * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
      * <dl>
@@ -13305,7 +14631,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the element type of the inner Publishers and the output
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @param bufferSize
      *            the number of elements to prefetch from the current active inner Publisher
@@ -13319,6 +14645,98 @@ public abstract class Flowable<T> implements Publisher<T> {
         return switchMap0(mapper, bufferSize, false);
     }
 
+
+    /**
+     * Maps the upstream values into {@link CompletableSource}s, subscribes to the newer one while
+     * disposing the subscription to the previous {@code CompletableSource}, thus keeping at most one
+     * active {@code CompletableSource} running.
+     * <p>
+     * <img width="640" height="521" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMapCompletable.f.png" alt="">
+     * <p>
+     * Since a {@code CompletableSource} doesn't produce any items, the resulting reactive type of
+     * this operator is a {@link Completable} that can only indicate successful completion or
+     * a failure in any of the inner {@code CompletableSource}s or the failure of the current
+     * {@link Flowable}.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator consumes the current {@link Flowable} in an unbounded manner and otherwise
+     *  does not have backpressure in its return type because no items are ever produced.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code switchMapCompletable} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>If either this {@code Flowable} or the active {@code CompletableSource} signals an {@code onError},
+     *  the resulting {@code Completable} is terminated immediately with that {@code Throwable}.
+     *  Use the {@link #switchMapCompletableDelayError(Function)} to delay such inner failures until
+     *  every inner {@code CompletableSource}s and the main {@code Flowable} terminates in some fashion.
+     *  If they fail concurrently, the operator may combine the {@code Throwable}s into a
+     *  {@link io.reactivex.exceptions.CompositeException CompositeException}
+     *  and signal it to the downstream instead. If any inactivated (switched out) {@code CompletableSource}
+     *  signals an {@code onError} late, the {@code Throwable}s will be signaled to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors.
+     *  </dd>
+     * </dl>
+     * @param mapper the function called with each upstream item and should return a
+     *               {@link CompletableSource} to be subscribed to and awaited for
+     *               (non blockingly) for its terminal event
+     * @return the new Completable instance
+     * @since 2.1.11 - experimental
+     * @see #switchMapCompletableDelayError(Function)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Completable switchMapCompletable(@NonNull Function<? super T, ? extends CompletableSource> mapper) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        return RxJavaPlugins.onAssembly(new FlowableSwitchMapCompletable<T>(this, mapper, false));
+    }
+
+    /**
+     * Maps the upstream values into {@link CompletableSource}s, subscribes to the newer one while
+     * disposing the subscription to the previous {@code CompletableSource}, thus keeping at most one
+     * active {@code CompletableSource} running and delaying any main or inner errors until all
+     * of them terminate.
+     * <p>
+     * <img width="640" height="453" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMapCompletableDelayError.f.png" alt="">
+     * <p>
+     * Since a {@code CompletableSource} doesn't produce any items, the resulting reactive type of
+     * this operator is a {@link Completable} that can only indicate successful completion or
+     * a failure in any of the inner {@code CompletableSource}s or the failure of the current
+     * {@link Flowable}.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator consumes the current {@link Flowable} in an unbounded manner and otherwise
+     *  does not have backpressure in its return type because no items are ever produced.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code switchMapCompletableDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>Errors of this {@code Flowable} and all the {@code CompletableSource}s, who had the chance
+     *  to run to their completion, are delayed until
+     *  all of them terminate in some fashion. At this point, if there was only one failure, the respective
+     *  {@code Throwable} is emitted to the downstream. If there was more than one failure, the
+     *  operator combines all {@code Throwable}s into a {@link io.reactivex.exceptions.CompositeException CompositeException}
+     *  and signals that to the downstream.
+     *  If any inactivated (switched out) {@code CompletableSource}
+     *  signals an {@code onError} late, the {@code Throwable}s will be signaled to the global error handler via
+     *  {@link RxJavaPlugins#onError(Throwable)} method as {@code UndeliverableException} errors.
+     *  </dd>
+     * </dl>
+     * @param mapper the function called with each upstream item and should return a
+     *               {@link CompletableSource} to be subscribed to and awaited for
+     *               (non blockingly) for its terminal event
+     * @return the new Completable instance
+     * @since 2.1.11 - experimental
+     * @see #switchMapCompletableDelayError(Function)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final Completable switchMapCompletableDelayError(@NonNull Function<? super T, ? extends CompletableSource> mapper) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        return RxJavaPlugins.onAssembly(new FlowableSwitchMapCompletable<T>(this, mapper, true));
+    }
+
     /**
      * Returns a new Publisher by applying a function that you supply to each item emitted by the source
      * Publisher that returns a Publisher, and then emitting the items emitted by the most recently emitted
@@ -13326,7 +14744,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <p>
      * The resulting Publisher completes if both the upstream Publisher and the last inner Publisher, if any, complete.
      * If the upstream Publisher signals an onError, the termination of the last inner Publisher will emit that error as is
-     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signalled.
+     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signaled.
      * <p>
      * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
      * <dl>
@@ -13341,7 +14759,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the element type of the inner Publishers and the output
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @return a Flowable that emits the items emitted by the Publisher returned from applying {@code func} to the most recently emitted item emitted by the source Publisher
      * @see <a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
@@ -13361,7 +14779,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * <p>
      * The resulting Publisher completes if both the upstream Publisher and the last inner Publisher, if any, complete.
      * If the upstream Publisher signals an onError, the termination of the last inner Publisher will emit that error as is
-     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signalled.
+     * or wrapped into a CompositeException along with the other possible errors the former inner Publishers signaled.
      * <p>
      * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
      * <dl>
@@ -13376,7 +14794,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *
      * @param <R> the element type of the inner Publishers and the output
      * @param mapper
-     *            a function that, when applied to an item emitted by the source Publisher, returns an
+     *            a function that, when applied to an item emitted by the source Publisher, returns a
      *            Publisher
      * @param bufferSize
      *            the number of elements to prefetch from the current active inner Publisher
@@ -13403,6 +14821,146 @@ public abstract class Flowable<T> implements Publisher<T> {
             return FlowableScalarXMap.scalarXMap(v, mapper);
         }
         return RxJavaPlugins.onAssembly(new FlowableSwitchMap<T, R>(this, mapper, bufferSize, delayError));
+    }
+
+    /**
+     * Maps the upstream items into {@link MaybeSource}s and switches (subscribes) to the newer ones
+     * while disposing the older ones (and ignoring their signals) and emits the latest success value of the current one if
+     * available while failing immediately if this {@code Flowable} or any of the
+     * active inner {@code MaybeSource}s fail.
+     * <p>
+     * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator honors backpressure from downstream. The main {@code Flowable} is consumed in an
+     *  unbounded manner (i.e., without backpressure).</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code switchMapMaybe} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>This operator terminates with an {@code onError} if this {@code Flowable} or any of
+     *  the inner {@code MaybeSource}s fail while they are active. When this happens concurrently, their
+     *  individual {@code Throwable} errors may get combined and emitted as a single
+     *  {@link io.reactivex.exceptions.CompositeException CompositeException}. Otherwise, a late
+     *  (i.e., inactive or switched out) {@code onError} from this {@code Flowable} or from any of
+     *  the inner {@code MaybeSource}s will be forwarded to the global error handler via
+     *  {@link io.reactivex.plugins.RxJavaPlugins#onError(Throwable)} as
+     *  {@link io.reactivex.exceptions.UndeliverableException UndeliverableException}</dd>
+     * </dl>
+     * @param <R> the output value type
+     * @param mapper the function called with the current upstream event and should
+     *               return a {@code MaybeSource} to replace the current active inner source
+     *               and get subscribed to.
+     * @return the new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #switchMapMaybe(Function)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> switchMapMaybe(@NonNull Function<? super T, ? extends MaybeSource<? extends R>> mapper) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        return RxJavaPlugins.onAssembly(new FlowableSwitchMapMaybe<T, R>(this, mapper, false));
+    }
+
+    /**
+     * Maps the upstream items into {@link MaybeSource}s and switches (subscribes) to the newer ones
+     * while disposing the older ones  (and ignoring their signals) and emits the latest success value of the current one if
+     * available, delaying errors from this {@code Flowable} or the inner {@code MaybeSource}s until all terminate.
+     * <p>
+     * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator honors backpressure from downstream. The main {@code Flowable} is consumed in an
+     *  unbounded manner (i.e., without backpressure).</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code switchMapMaybeDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the output value type
+     * @param mapper the function called with the current upstream event and should
+     *               return a {@code MaybeSource} to replace the current active inner source
+     *               and get subscribed to.
+     * @return the new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #switchMapMaybe(Function)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> switchMapMaybeDelayError(@NonNull Function<? super T, ? extends MaybeSource<? extends R>> mapper) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        return RxJavaPlugins.onAssembly(new FlowableSwitchMapMaybe<T, R>(this, mapper, true));
+    }
+
+    /**
+     * Maps the upstream items into {@link SingleSource}s and switches (subscribes) to the newer ones
+     * while disposing the older ones (and ignoring their signals) and emits the latest success value of the current one
+     * while failing immediately if this {@code Flowable} or any of the
+     * active inner {@code SingleSource}s fail.
+     * <p>
+     * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator honors backpressure from downstream. The main {@code Flowable} is consumed in an
+     *  unbounded manner (i.e., without backpressure).</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code switchMapSingle} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dt><b>Error handling:</b></dt>
+     *  <dd>This operator terminates with an {@code onError} if this {@code Flowable} or any of
+     *  the inner {@code SingleSource}s fail while they are active. When this happens concurrently, their
+     *  individual {@code Throwable} errors may get combined and emitted as a single
+     *  {@link io.reactivex.exceptions.CompositeException CompositeException}. Otherwise, a late
+     *  (i.e., inactive or switched out) {@code onError} from this {@code Flowable} or from any of
+     *  the inner {@code SingleSource}s will be forwarded to the global error handler via
+     *  {@link io.reactivex.plugins.RxJavaPlugins#onError(Throwable)} as
+     *  {@link io.reactivex.exceptions.UndeliverableException UndeliverableException}</dd>
+     * </dl>
+     * @param <R> the output value type
+     * @param mapper the function called with the current upstream event and should
+     *               return a {@code SingleSource} to replace the current active inner source
+     *               and get subscribed to.
+     * @return the new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #switchMapSingle(Function)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> switchMapSingle(@NonNull Function<? super T, ? extends SingleSource<? extends R>> mapper) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        return RxJavaPlugins.onAssembly(new FlowableSwitchMapSingle<T, R>(this, mapper, false));
+    }
+
+    /**
+     * Maps the upstream items into {@link SingleSource}s and switches (subscribes) to the newer ones
+     * while disposing the older ones  (and ignoring their signals) and emits the latest success value of the current one,
+     * delaying errors from this {@code Flowable} or the inner {@code SingleSource}s until all terminate.
+     * <p>
+     * <img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="">
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>The operator honors backpressure from downstream. The main {@code Flowable} is consumed in an
+     *  unbounded manner (i.e., without backpressure).</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code switchMapSingleDelayError} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     * @param <R> the output value type
+     * @param mapper the function called with the current upstream event and should
+     *               return a {@code SingleSource} to replace the current active inner source
+     *               and get subscribed to.
+     * @return the new Flowable instance
+     * @since 2.1.11 - experimental
+     * @see #switchMapSingle(Function)
+     */
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
+    @SchedulerSupport(SchedulerSupport.NONE)
+    @Experimental
+    public final <R> Flowable<R> switchMapSingleDelayError(@NonNull Function<? super T, ? extends SingleSource<? extends R>> mapper) {
+        ObjectHelper.requireNonNull(mapper, "mapper is null");
+        return RxJavaPlugins.onAssembly(new FlowableSwitchMapSingle<T, R>(this, mapper, true));
     }
 
     /**
@@ -13629,8 +15187,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param scheduler
      *            the {@link Scheduler} that provides the timestamps for the observed items
      * @param delayError
-     *            if true, an exception signalled by the current Flowable is delayed until the regular elements are consumed
-     *            by the downstream; if false, an exception is immediately signalled and all regular elements dropped
+     *            if true, an exception signaled by the current Flowable is delayed until the regular elements are consumed
+     *            by the downstream; if false, an exception is immediately signaled and all regular elements dropped
      * @param bufferSize
      *            the hint about how many elements to expect to be last
      * @return a Flowable that emits at most {@code count} items from the source Publisher that were emitted
@@ -13703,8 +15261,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param unit
      *            the time unit of {@code time}
      * @param delayError
-     *            if true, an exception signalled by the current Flowable is delayed until the regular elements are consumed
-     *            by the downstream; if false, an exception is immediately signalled and all regular elements dropped
+     *            if true, an exception signaled by the current Flowable is delayed until the regular elements are consumed
+     *            by the downstream; if false, an exception is immediately signaled and all regular elements dropped
      * @return a Flowable that emits the items from the source Publisher that were emitted in the window of
      *         time before the Publisher completed specified by {@code time}
      * @see <a href="http://reactivex.io/documentation/operators/takelast.html">ReactiveX operators documentation: TakeLast</a>
@@ -13773,8 +15331,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param scheduler
      *            the Scheduler that provides the timestamps for the Observed items
      * @param delayError
-     *            if true, an exception signalled by the current Flowable is delayed until the regular elements are consumed
-     *            by the downstream; if false, an exception is immediately signalled and all regular elements dropped
+     *            if true, an exception signaled by the current Flowable is delayed until the regular elements are consumed
+     *            by the downstream; if false, an exception is immediately signaled and all regular elements dropped
      * @return a Flowable that emits the items from the source Publisher that were emitted in the window of
      *         time before the Publisher completed specified by {@code time}, where the timing information is
      *         provided by {@code scheduler}
@@ -13810,8 +15368,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * @param scheduler
      *            the Scheduler that provides the timestamps for the Observed items
      * @param delayError
-     *            if true, an exception signalled by the current Flowable is delayed until the regular elements are consumed
-     *            by the downstream; if false, an exception is immediately signalled and all regular elements dropped
+     *            if true, an exception signaled by the current Flowable is delayed until the regular elements are consumed
+     *            by the downstream; if false, an exception is immediately signaled and all regular elements dropped
      * @param bufferSize
      *            the hint about how many elements to expect to be last
      * @return a Flowable that emits the items from the source Publisher that were emitted in the window of
@@ -13920,7 +15478,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits only the first item emitted by the source Publisher during sequential
      * time windows of a specified duration.
      * <p>
-     * This differs from {@link #throttleLast} in that this only tracks passage of time whereas
+     * This differs from {@link #throttleLast} in that this only tracks the passage of time whereas
      * {@link #throttleLast} ticks at scheduled intervals.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleFirst.png" alt="">
@@ -13950,7 +15508,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits only the first item emitted by the source Publisher during sequential
      * time windows of a specified duration, where the windows are managed by a specified Scheduler.
      * <p>
-     * This differs from {@link #throttleLast} in that this only tracks passage of time whereas
+     * This differs from {@link #throttleLast} in that this only tracks the passage of time whereas
      * {@link #throttleLast} ticks at scheduled intervals.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleFirst.s.png" alt="">
@@ -13986,7 +15544,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * time windows of a specified duration.
      * <p>
      * This differs from {@link #throttleFirst} in that this ticks along at a scheduled interval whereas
-     * {@link #throttleFirst} does not tick, it just tracks passage of time.
+     * {@link #throttleFirst} does not tick, it just tracks the passage of time.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleLast.png" alt="">
      * <dl>
@@ -14018,7 +15576,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      * time windows of a specified duration, where the duration is governed by a specified Scheduler.
      * <p>
      * This differs from {@link #throttleFirst} in that this ticks along at a scheduled interval whereas
-     * {@link #throttleFirst} does not tick, it just tracks passage of time.
+     * {@link #throttleFirst} does not tick, it just tracks the passage of time.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleLast.s.png" alt="">
      * <dl>
@@ -14049,20 +15607,166 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Flowable that only emits those items emitted by the source Publisher that are not followed
-     * by another emitted item within a specified time window.
+     * Throttles items from the upstream {@code Flowable} by first emitting the next
+     * item from upstream, then periodically emitting the latest item (if any) when
+     * the specified timeout elapses between them.
      * <p>
-     * <em>Note:</em> If the source Publisher keeps emitting items more frequently than the length of the time
-     * window then no items will be emitted by the resulting Publisher.
+     * <img width="640" height="325" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleLatest.png" alt="">
+     * <p>
+     * Unlike the option with {@link #throttleLatest(long, TimeUnit, boolean)}, the very last item being held back
+     * (if any) is not emitted when the upstream completes.
+     * <p>
+     * If no items were emitted from the upstream during this timeout phase, the next
+     * upstream item is emitted immediately and the timeout window starts from then.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>This operator does not support backpressure as it uses time to control data flow.
+     *  If the downstream is not ready to receive items, a
+     *  {@link io.reactivex.exceptions.MissingBackpressureException MissingBackpressureException}
+     *  will be signaled.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code throttleLatest} operates by default on the {@code computation} {@link Scheduler}.</dd>
+     * </dl>
+     * @param timeout the time to wait after an item emission towards the downstream
+     *                before trying to emit the latest item from upstream again
+     * @param unit    the time unit
+     * @return the new Flowable instance
+     * @since 2.1.14 - experimental
+     * @see #throttleLatest(long, TimeUnit, boolean)
+     * @see #throttleLatest(long, TimeUnit, Scheduler)
+     */
+    @Experimental
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.ERROR)
+    @SchedulerSupport(SchedulerSupport.COMPUTATION)
+    public final Flowable<T> throttleLatest(long timeout, TimeUnit unit) {
+        return throttleLatest(timeout, unit, Schedulers.computation(), false);
+    }
+
+    /**
+     * Throttles items from the upstream {@code Flowable} by first emitting the next
+     * item from upstream, then periodically emitting the latest item (if any) when
+     * the specified timeout elapses between them.
+     * <p>
+     * <img width="640" height="325" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleLatest.e.png" alt="">
+     * <p>
+     * If no items were emitted from the upstream during this timeout phase, the next
+     * upstream item is emitted immediately and the timeout window starts from then.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>This operator does not support backpressure as it uses time to control data flow.
+     *  If the downstream is not ready to receive items, a
+     *  {@link io.reactivex.exceptions.MissingBackpressureException MissingBackpressureException}
+     *  will be signaled.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code throttleLatest} operates by default on the {@code computation} {@link Scheduler}.</dd>
+     * </dl>
+     * @param timeout the time to wait after an item emission towards the downstream
+     *                before trying to emit the latest item from upstream again
+     * @param unit    the time unit
+     * @param emitLast If {@code true}, the very last item from the upstream will be emitted
+     *                 immediately when the upstream completes, regardless if there is
+     *                 a timeout window active or not. If {@code false}, the very last
+     *                 upstream item is ignored and the flow terminates.
+     * @return the new Flowable instance
+     * @since 2.1.14 - experimental
+     * @see #throttleLatest(long, TimeUnit, Scheduler, boolean)
+     */
+    @Experimental
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.ERROR)
+    @SchedulerSupport(SchedulerSupport.COMPUTATION)
+    public final Flowable<T> throttleLatest(long timeout, TimeUnit unit, boolean emitLast) {
+        return throttleLatest(timeout, unit, Schedulers.computation(), emitLast);
+    }
+
+    /**
+     * Throttles items from the upstream {@code Flowable} by first emitting the next
+     * item from upstream, then periodically emitting the latest item (if any) when
+     * the specified timeout elapses between them.
+     * <p>
+     * <img width="640" height="325" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleLatest.s.png" alt="">
+     * <p>
+     * Unlike the option with {@link #throttleLatest(long, TimeUnit, Scheduler, boolean)}, the very last item being held back
+     * (if any) is not emitted when the upstream completes.
+     * <p>
+     * If no items were emitted from the upstream during this timeout phase, the next
+     * upstream item is emitted immediately and the timeout window starts from then.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>This operator does not support backpressure as it uses time to control data flow.
+     *  If the downstream is not ready to receive items, a
+     *  {@link io.reactivex.exceptions.MissingBackpressureException MissingBackpressureException}
+     *  will be signaled.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>You specify which {@link Scheduler} this operator will use.</dd>
+     * </dl>
+     * @param timeout the time to wait after an item emission towards the downstream
+     *                before trying to emit the latest item from upstream again
+     * @param unit    the time unit
+     * @param scheduler the {@link Scheduler} where the timed wait and latest item
+     *                  emission will be performed
+     * @return the new Flowable instance
+     * @since 2.1.14 - experimental
+     * @see #throttleLatest(long, TimeUnit, Scheduler, boolean)
+     */
+    @Experimental
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.ERROR)
+    @SchedulerSupport(SchedulerSupport.CUSTOM)
+    public final Flowable<T> throttleLatest(long timeout, TimeUnit unit, Scheduler scheduler) {
+        return throttleLatest(timeout, unit, scheduler, false);
+    }
+
+    /**
+     * Throttles items from the upstream {@code Flowable} by first emitting the next
+     * item from upstream, then periodically emitting the latest item (if any) when
+     * the specified timeout elapses between them.
+     * <p>
+     * <img width="640" height="325" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleLatest.se.png" alt="">
+     * <p>
+     * If no items were emitted from the upstream during this timeout phase, the next
+     * upstream item is emitted immediately and the timeout window starts from then.
+     * <dl>
+     *  <dt><b>Backpressure:</b></dt>
+     *  <dd>This operator does not support backpressure as it uses time to control data flow.
+     *  If the downstream is not ready to receive items, a
+     *  {@link io.reactivex.exceptions.MissingBackpressureException MissingBackpressureException}
+     *  will be signaled.</dd>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>You specify which {@link Scheduler} this operator will use.</dd>
+     * </dl>
+     * @param timeout the time to wait after an item emission towards the downstream
+     *                before trying to emit the latest item from upstream again
+     * @param unit    the time unit
+     * @param scheduler the {@link Scheduler} where the timed wait and latest item
+     *                  emission will be performed
+     * @param emitLast If {@code true}, the very last item from the upstream will be emitted
+     *                 immediately when the upstream completes, regardless if there is
+     *                 a timeout window active or not. If {@code false}, the very last
+     *                 upstream item is ignored and the flow terminates.
+     * @return the new Flowable instance
+     * @since 2.1.14 - experimental
+     */
+    @Experimental
+    @CheckReturnValue
+    @BackpressureSupport(BackpressureKind.ERROR)
+    @SchedulerSupport(SchedulerSupport.CUSTOM)
+    public final Flowable<T> throttleLatest(long timeout, TimeUnit unit, Scheduler scheduler, boolean emitLast) {
+        ObjectHelper.requireNonNull(unit, "unit is null");
+        ObjectHelper.requireNonNull(scheduler, "scheduler is null");
+        return RxJavaPlugins.onAssembly(new FlowableThrottleLatest<T>(this, timeout, unit, scheduler, emitLast));
+    }
+
+    /**
+     * Returns a Flowable that mirrors the source Publisher, except that it drops items emitted by the
+     * source Publisher that are followed by newer items before a timeout value expires. The timer resets on
+     * each emission (alias to {@link #debounce(long, TimeUnit)}).
+     * <p>
+     * <em>Note:</em> If items keep being emitted by the source Publisher faster than the timeout then no items
+     * will be emitted by the resulting Publisher.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleWithTimeout.png" alt="">
-     * <p>
-     * Information on debounce vs throttle:
-     * <ul>
-     * <li><a href="http://drupalmotion.com/article/debounce-and-throttle-visual-explanation">Debounce and Throttle: visual explanation</a></li>
-     * <li><a href="http://unscriptable.com/2009/03/20/debouncing-javascript-methods/">Debouncing: javascript methods</a></li>
-     * <li><a href="http://www.illyriad.co.uk/blog/index.php/2011/09/javascript-dont-spam-your-server-debounce-and-throttle/">Javascript - don't spam your server: debounce and throttle</a></li>
-     * </ul>
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it uses time to control data flow.</dd>
@@ -14075,8 +15779,9 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            Publisher in which that Publisher emits no items in order for the item to be emitted by the
      *            resulting Publisher
      * @param unit
-     *            the {@link TimeUnit} of {@code timeout}
-     * @return a Flowable that filters out items that are too quickly followed by newer items
+     *            the unit of time for the specified {@code timeout}
+     * @return a Flowable that filters out items from the source Publisher that are too quickly followed by
+     *         newer items
      * @see <a href="http://reactivex.io/documentation/operators/debounce.html">ReactiveX operators documentation: Debounce</a>
      * @see <a href="https://github.com/ReactiveX/RxJava/wiki/Backpressure">RxJava wiki: Backpressure</a>
      * @see #debounce(long, TimeUnit)
@@ -14089,21 +15794,14 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Flowable that only emits those items emitted by the source Publisher that are not followed
-     * by another emitted item within a specified time window, where the time window is governed by a specified
-     * Scheduler.
+     * Returns a Flowable that mirrors the source Publisher, except that it drops items emitted by the
+     * source Publisher that are followed by newer items before a timeout value expires on a specified
+     * Scheduler. The timer resets on each emission (alias to {@link #debounce(long, TimeUnit, Scheduler)}).
      * <p>
-     * <em>Note:</em> If the source Publisher keeps emitting items more frequently than the length of the time
-     * window then no items will be emitted by the resulting Publisher.
+     * <em>Note:</em> If items keep being emitted by the source Publisher faster than the timeout then no items
+     * will be emitted by the resulting Publisher.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/throttleWithTimeout.s.png" alt="">
-     * <p>
-     * Information on debounce vs throttle:
-     * <ul>
-     * <li><a href="http://drupalmotion.com/article/debounce-and-throttle-visual-explanation">Debounce and Throttle: visual explanation</a></li>
-     * <li><a href="http://unscriptable.com/2009/03/20/debouncing-javascript-methods/">Debouncing: javascript methods</a></li>
-     * <li><a href="http://www.illyriad.co.uk/blog/index.php/2011/09/javascript-dont-spam-your-server-debounce-and-throttle/">Javascript - don't spam your server: debounce and throttle</a></li>
-     * </ul>
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as it uses time to control data flow.</dd>
@@ -14116,11 +15814,12 @@ public abstract class Flowable<T> implements Publisher<T> {
      *            Publisher in which that Publisher emits no items in order for the item to be emitted by the
      *            resulting Publisher
      * @param unit
-     *            the {@link TimeUnit} of {@code timeout}
+     *            the unit of time for the specified {@code timeout}
      * @param scheduler
      *            the {@link Scheduler} to use internally to manage the timers that handle the timeout for each
      *            item
-     * @return a Flowable that filters out items that are too quickly followed by newer items
+     * @return a Flowable that filters out items from the source Publisher that are too quickly followed by
+     *         newer items
      * @see <a href="http://reactivex.io/documentation/operators/debounce.html">ReactiveX operators documentation: Debounce</a>
      * @see <a href="https://github.com/ReactiveX/RxJava/wiki/Backpressure">RxJava wiki: Backpressure</a>
      * @see #debounce(long, TimeUnit, Scheduler)
@@ -14411,7 +16110,7 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Flowable that mirrors the source Publisher but applies a timeout policy for each emitted
-     * item, where this policy is governed on a specified Scheduler. If the next item isn't emitted within the
+     * item, where this policy is governed by a specified Scheduler. If the next item isn't emitted within the
      * specified timeout duration starting from its predecessor, the resulting Publisher terminates and
      * notifies Subscribers of a {@code TimeoutException}.
      * <p>
@@ -14453,7 +16152,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  are expected to honor backpressure as well. If any of then violates this rule, it <em>may</em> throw an
      *  {@code IllegalStateException} when the {@code Publisher} completes.</dd>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code timeout} does not operates by default on any {@link Scheduler}.</dd>
+     *  <dd>{@code timeout} does not operate by default on any {@link Scheduler}.</dd>
      * </dl>
      *
      * @param <U>
@@ -14494,7 +16193,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  If any of the source {@code Publisher}s violate this, it <em>may</em> throw an
      *  {@code IllegalStateException} when the source {@code Publisher} completes.</dd>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code timeout} does not operates by default on any {@link Scheduler}.</dd>
+     *  <dd>{@code timeout} does not operate by default on any {@link Scheduler}.</dd>
      * </dl>
      *
      * @param <U>
@@ -14786,12 +16485,16 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Single that emits a single HashMap containing all items emitted by the source Publisher,
+     * Returns a Single that emits a single HashMap containing all items emitted by the finite source Publisher,
      * mapped by the keys returned by a specified {@code keySelector} function.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toMap.png" alt="">
      * <p>
      * If more than one source item maps to the same key, the HashMap will contain the latest of those items.
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated map to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -14817,12 +16520,16 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Single that emits a single HashMap containing values corresponding to items emitted by the
-     * source Publisher, mapped by the keys returned by a specified {@code keySelector} function.
+     * finite source Publisher, mapped by the keys returned by a specified {@code keySelector} function.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toMap.png" alt="">
      * <p>
      * If more than one source item maps to the same key, the HashMap will contain a single entry that
      * corresponds to the latest of those items.
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated map to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -14852,9 +16559,13 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Single that emits a single Map, returned by a specified {@code mapFactory} function, that
-     * contains keys and values extracted from the items emitted by the source Publisher.
+     * contains keys and values extracted from the items emitted by the finite source Publisher.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toMap.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated map to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -14888,9 +16599,13 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Single that emits a single HashMap that contains an ArrayList of items emitted by the
-     * source Publisher keyed by a specified {@code keySelector} function.
+     * finite source Publisher keyed by a specified {@code keySelector} function.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toMultiMap.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated map to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>This operator does not support backpressure as by intent it is requesting and buffering everything.</dd>
@@ -14917,10 +16632,14 @@ public abstract class Flowable<T> implements Publisher<T> {
 
     /**
      * Returns a Single that emits a single HashMap that contains an ArrayList of values extracted by a
-     * specified {@code valueSelector} function from items emitted by the source Publisher, keyed by a
+     * specified {@code valueSelector} function from items emitted by the finite source Publisher, keyed by a
      * specified {@code keySelector} function.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toMultiMap.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated map to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -14951,9 +16670,13 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Single that emits a single Map, returned by a specified {@code mapFactory} function, that
      * contains a custom collection of values, extracted by a specified {@code valueSelector} function from
-     * items emitted by the source Publisher, and keyed by the {@code keySelector} function.
+     * items emitted by the finite source Publisher, and keyed by the {@code keySelector} function.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toMultiMap.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated map to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -14994,9 +16717,13 @@ public abstract class Flowable<T> implements Publisher<T> {
     /**
      * Returns a Single that emits a single Map, returned by a specified {@code mapFactory} function, that
      * contains an ArrayList of values, extracted by a specified {@code valueSelector} function from items
-     * emitted by the source Publisher and keyed by the {@code keySelector} function.
+     * emitted by the finite source Publisher and keyed by the {@code keySelector} function.
      * <p>
      * <img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toMultiMap.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated map to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -15048,7 +16775,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Single that emits a list that contains the items emitted by the source Publisher, in a
+     * Returns a Single that emits a list that contains the items emitted by the finite source Publisher, in a
      * sorted order. Each item emitted by the Publisher must implement {@link Comparable} with respect to all
      * other items in the sequence.
      *
@@ -15057,6 +16784,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *             sequence is terminated with a {@link ClassCastException}.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toSortedList.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated list to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -15076,10 +16807,14 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Single that emits a list that contains the items emitted by the source Publisher, in a
+     * Returns a Single that emits a list that contains the items emitted by the finite source Publisher, in a
      * sorted order based on a specified comparison function.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toSortedList.f.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated list to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -15104,10 +16839,14 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Single that emits a list that contains the items emitted by the source Publisher, in a
+     * Returns a Single that emits a list that contains the items emitted by the finite source Publisher, in a
      * sorted order based on a specified comparison function.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toSortedList.f.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated list to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -15135,7 +16874,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     }
 
     /**
-     * Returns a Flowable that emits a list that contains the items emitted by the source Publisher, in a
+     * Returns a Flowable that emits a list that contains the items emitted by the finite source Publisher, in a
      * sorted order. Each item emitted by the Publisher must implement {@link Comparable} with respect to all
      * other items in the sequence.
      *
@@ -15144,6 +16883,10 @@ public abstract class Flowable<T> implements Publisher<T> {
      *             sequence is terminated with a {@link ClassCastException}.
      * <p>
      * <img width="640" height="310" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/toSortedList.png" alt="">
+     * <p>
+     * Note that this operator requires the upstream to signal {@code onComplete} for the accumulated list to
+     * be emitted. Sources that are infinite and never complete will never emit anything through this
+     * operator and an infinite source may lead to a fatal {@code OutOfMemoryError}.
      * <dl>
      *  <dt><b>Backpressure:</b></dt>
      *  <dd>The operator honors backpressure from downstream and consumes the source {@code Publisher} in an
@@ -16167,8 +17910,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits items that are the result of applying a specified function to pairs of
      * values, one each from the source Publisher and another specified Publisher.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -16214,8 +17957,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits items that are the result of applying a specified function to pairs of
      * values, one each from the source Publisher and another specified Publisher.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -16264,8 +18007,8 @@ public abstract class Flowable<T> implements Publisher<T> {
      * Returns a Flowable that emits items that are the result of applying a specified function to pairs of
      * values, one each from the source Publisher and another specified Publisher.
      * <p>
-     * The operator subscribes to its sources in order they are specified and completes eagerly if
-     * one of the sources is shorter than the rest while cancelling the other sources. Therefore, it
+     * The operator subscribes to its sources in the order they are specified and completes eagerly if
+     * one of the sources is shorter than the rest while canceling the other sources. Therefore, it
      * is possible those other sources will never be able to run to completion (and thus not calling
      * {@code doOnComplete()}). This can also happen if the sources are exactly the same length; if
      * source A completes and B has been consumed and is about to complete, the operator detects A won't
@@ -16369,7 +18112,7 @@ public abstract class Flowable<T> implements Publisher<T> {
      *  <dd>{@code test} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
      * @param initialRequest the initial request amount, positive
-     * @param cancel should the TestSubscriber be cancelled before the subscription?
+     * @param cancel should the TestSubscriber be canceled before the subscription?
      * @return the new TestSubscriber instance
      * @since 2.0
      */

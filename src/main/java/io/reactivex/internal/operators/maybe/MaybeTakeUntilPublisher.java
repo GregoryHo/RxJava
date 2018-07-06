@@ -132,13 +132,12 @@ public final class MaybeTakeUntilPublisher<T, U> extends AbstractMaybeWithUpstre
 
             @Override
             public void onSubscribe(Subscription s) {
-                if (SubscriptionHelper.setOnce(this, s)) {
-                    s.request(Long.MAX_VALUE);
-                }
+                SubscriptionHelper.setOnce(this, s, Long.MAX_VALUE);
             }
 
             @Override
             public void onNext(Object value) {
+                SubscriptionHelper.cancel(this);
                 parent.otherComplete();
             }
 

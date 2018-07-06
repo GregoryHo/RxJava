@@ -15,12 +15,15 @@ package io.reactivex.internal.operators.single;
 
 import static org.junit.Assert.*;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
 import io.reactivex.*;
 import io.reactivex.exceptions.TestException;
 import io.reactivex.functions.*;
+import io.reactivex.subscribers.TestSubscriber;
 
 public class SingleFlatMapTest {
 
@@ -128,6 +131,92 @@ public class SingleFlatMapTest {
     }
 
     @Test(expected = NullPointerException.class)
+    public void flatMapPublisherMapperNull() {
+        Single.just(1).flatMapPublisher(null);
+    }
+
+    @Test
+    public void flatMapPublisherMapperThrows() {
+        final TestException ex = new TestException();
+        Single.just(1)
+        .flatMapPublisher(new Function<Integer, Publisher<Integer>>() {
+            @Override
+            public Publisher<Integer> apply(Integer v) throws Exception {
+                throw ex;
+            }
+        })
+        .test()
+        .assertNoValues()
+        .assertError(ex);
+    }
+
+    @Test
+    public void flatMapPublisherSingleError() {
+        final TestException ex = new TestException();
+        Single.<Integer>error(ex)
+        .flatMapPublisher(new Function<Integer, Publisher<Integer>>() {
+            @Override
+            public Publisher<Integer> apply(Integer v) throws Exception {
+                return Flowable.just(1);
+            }
+        })
+        .test()
+        .assertNoValues()
+        .assertError(ex);
+    }
+
+    @Test
+    public void flatMapPublisherCancelDuringSingle() {
+        final AtomicBoolean disposed = new AtomicBoolean();
+        TestSubscriber<Integer> ts = Single.<Integer>never()
+        .doOnDispose(new Action() {
+            @Override
+            public void run() throws Exception {
+                disposed.set(true);
+            }
+        })
+        .flatMapPublisher(new Function<Integer, Publisher<Integer>>() {
+            @Override
+            public Publisher<Integer> apply(Integer v) throws Exception {
+                return Flowable.range(v, 5);
+            }
+        })
+        .test()
+        .assertNoValues()
+        .assertNotTerminated();
+        assertFalse(disposed.get());
+        ts.cancel();
+        assertTrue(disposed.get());
+        ts.assertNotTerminated();
+    }
+
+    @Test
+    public void flatMapPublisherCancelDuringFlowable() {
+        final AtomicBoolean disposed = new AtomicBoolean();
+        TestSubscriber<Integer> ts =
+        Single.just(1)
+        .flatMapPublisher(new Function<Integer, Publisher<Integer>>() {
+            @Override
+            public Publisher<Integer> apply(Integer v) throws Exception {
+                return Flowable.<Integer>never()
+                        .doOnCancel(new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                disposed.set(true);
+                            }
+                        });
+            }
+        })
+        .test()
+        .assertNoValues()
+        .assertNotTerminated();
+        assertFalse(disposed.get());
+        ts.cancel();
+        assertTrue(disposed.get());
+        ts.assertNotTerminated();
+    }
+
+    @Test(expected = NullPointerException.class)
     public void flatMapNull() {
         Single.just(1)
             .flatMap(null);
@@ -222,5 +311,22 @@ public class SingleFlatMapTest {
         })
         .test()
         .assertFailure(TestException.class);
+    }
+
+    @Test
+    public void doubleOnSubscribe() {
+        TestHelper.checkDoubleOnSubscribeSingle(new Function<Single<Object>, SingleSource<Object>>() {
+            @Override
+            public SingleSource<Object> apply(Single<Object> s)
+                    throws Exception {
+                return s.flatMap(new Function<Object, SingleSource<? extends Object>>() {
+                    @Override
+                    public SingleSource<? extends Object> apply(Object v)
+                            throws Exception {
+                        return Single.just(v);
+                    }
+                });
+            }
+        });
     }
 }

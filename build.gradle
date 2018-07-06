@@ -9,7 +9,7 @@ buildscript {
   dependencies {
     classpath "ru.vyarus:gradle-animalsniffer-plugin:1.2.0"
     classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.13.1"
-    classpath "me.champeau.gradle:jmh-gradle-plugin:0.4.4"
+    classpath "me.champeau.gradle:jmh-gradle-plugin:0.4.5"
     classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
     classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.5.2"
   }
@@ -43,6 +43,7 @@ apply plugin: "me.champeau.gradle.jmh"
 apply plugin: "com.github.hierynomus.license"
 apply plugin: "com.jfrog.bintray"
 apply plugin: "com.jfrog.artifactory"
+apply plugin: "eclipse"
 
 sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
@@ -53,9 +54,10 @@ targetCompatibility = JavaVersion.VERSION_1_6
 def junitVersion = "4.12"
 def reactiveStreamsVersion = "1.0.2"
 def mockitoVersion = "2.1.0"
-def jmhLibVersion = "1.19"
+def jmhLibVersion = "1.20"
 def testNgVersion = "6.11"
-
+def guavaVersion = "24.0-jre"
+def jacocoVersion = "0.8.0"
 // --------------------------------------
 
 repositories {
@@ -73,6 +75,7 @@ dependencies {
 
     testImplementation "org.reactivestreams:reactive-streams-tck:$reactiveStreamsVersion"
     testImplementation "org.testng:testng:$testNgVersion"
+    testImplementation "com.google.guava:guava:$guavaVersion"
 }
 
 javadoc {
@@ -88,9 +91,12 @@ javadoc {
     options.addStringOption("top").value = ""
     options.addStringOption("doctitle").value = ""
     options.addStringOption("header").value = ""
+    options.stylesheetFile = new File(projectDir, "gradle/stylesheet.css");
 
-    options.links("http://docs.oracle.com/javase/7/docs/api/")
-    options.links("http://www.reactive-streams.org/reactive-streams-${reactiveStreamsVersion}-javadoc/")
+    options.links(
+        "https://docs.oracle.com/javase/7/docs/api/",
+        "http://www.reactive-streams.org/reactive-streams-${reactiveStreamsVersion}-javadoc/"
+    )
 
     if (JavaVersion.current().isJava7()) {
         // "./gradle/stylesheet.css" only supports Java 7
@@ -196,6 +202,8 @@ jmh {
     jmhVersion = jmhLibVersion
     humanOutputFile = null
     includeTests = false
+    jvmArgs = ["-Djmh.ignoreLock=true"]
+    jvmArgsAppend = ["-Djmh.separateClasspathJAR=true"]
 
     if (project.hasProperty("jmh")) {
         include = ".*" + project.jmh + ".*"
@@ -253,7 +261,7 @@ task testng(type: Test) {
 check.dependsOn testng 
 
 jacoco {
-    toolVersion = "0.7.9" // See http://www.eclemma.org/jacoco/.
+    toolVersion = jacocoVersion // See http://www.eclemma.org/jacoco/.
 }
 
 task GCandMem(dependsOn: "check") doLast {
@@ -363,3 +371,4 @@ if (rootProject.hasProperty("releaseMode")) {
    }
 }
 
+apply from: file("gradle/javadoc_cleanup.gradle")
